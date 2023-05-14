@@ -39,8 +39,14 @@ public class Game {
 	 ********** GETTER E SETTER **********
 	 *************************************/
 
+	
+	
 	public Long getId() {
 		return Id;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
 	public void setId(Long id) {

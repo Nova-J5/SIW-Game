@@ -33,8 +33,18 @@ public class Developer {
 	 ********** GETTER E SETTER **********
 	 *************************************/
 
+	
+	
 	public Long getId() {
 		return Id;
+	}
+
+	public List<Game> getGamesProduced() {
+		return gamesProduced;
+	}
+
+	public void setGamesProduced(List<Game> gamesProduced) {
+		this.gamesProduced = gamesProduced;
 	}
 
 	public void setId(Long id) {

@@ -1,5 +1,7 @@
 package it.uniroma3.siw.model;
 
+import java.util.List;
+
 import jakarta.persistence.*;
 
 @Entity
@@ -12,8 +14,43 @@ public class User {
 	private String name;
 	private String surname;
 	private String email;
+	
+	@OneToMany
+	private List<Game> currentlyPlaying;
+	
+	@OneToMany
+	private List<Game> played;
+	
+	@OneToMany(mappedBy = "user")
+	private List<Review> reviews;
 
-    public Long getId() {
+	
+	
+    public List<Review> getReviews() {
+		return reviews;
+	}
+
+	public void setReviews(List<Review> reviews) {
+		this.reviews = reviews;
+	}
+
+	public List<Game> getCurrentlyPlaying() {
+		return currentlyPlaying;
+	}
+
+	public void setCurrentlyPlaying(List<Game> currentlyPlaying) {
+		this.currentlyPlaying = currentlyPlaying;
+	}
+
+	public List<Game> getPlayed() {
+		return played;
+	}
+
+	public void setPlayed(List<Game> played) {
+		this.played = played;
+	}
+
+	public Long getId() {
 		return id;
 	}
 

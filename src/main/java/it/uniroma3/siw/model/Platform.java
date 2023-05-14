@@ -33,6 +33,8 @@ public class Platform {
 	 ********** GETTER E SETTER **********
 	 *************************************/
 
+	
+	
 	public Long getId() {
 		return Id;
 	}

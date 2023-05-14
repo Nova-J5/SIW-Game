@@ -112,6 +112,6 @@ public class Developer {
 		Developer other = (Developer) obj;
 		return Objects.equals(Id, other.Id) && Objects.equals(yearOfFoundation, other.yearOfFoundation);
 	}
-	
+
 	
 }

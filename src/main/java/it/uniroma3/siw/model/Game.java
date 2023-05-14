@@ -19,9 +19,6 @@ public class Game {
 	@Max(2023)
 	private Integer year;
 	
-	@NotBlank
-	private String UrlImage;
-	
 	@Column(length = 2000)
 	private String description;
 
@@ -29,10 +26,17 @@ public class Game {
 	private Developer developer;
 	
 	@ManyToMany(mappedBy = "games")
-	private List<Platform> platforms;
+	private List<Genre> genres;
 	
 	@ManyToMany(mappedBy = "games")
-	private List<Genre> genres;
+	private List<Platform> platforms;
+	
+	@OneToMany(mappedBy = "game") 
+	private List<Review> reviews;
+	
+
+	
+	
 	
 	
 	/*************************************
@@ -63,14 +67,6 @@ public class Game {
 		this.year = year;
 	}
 	
-	public String getUrlImage() {
-		return UrlImage;
-	}
-
-	public void setUrlImage(String urlImage) {
-		UrlImage = urlImage;
-	}
-
 	public String getDescription() {
 		return description;
 	}

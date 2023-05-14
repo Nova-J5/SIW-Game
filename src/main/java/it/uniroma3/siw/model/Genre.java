@@ -26,8 +26,6 @@ public class Genre {
 	 ********** GETTER E SETTER **********
 	 *************************************/
 
-	
-	
 	public Long getId() {
 		return Id;
 	}

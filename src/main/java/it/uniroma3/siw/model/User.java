@@ -20,6 +20,9 @@ public class User {
 	
 	@OneToMany
 	private List<Game> played;
+	
+	@OneToMany(mappedBy = "user")
+	private List<Review> reviews;
 
 	
 	

@@ -34,6 +34,9 @@ public class Game {
 	@ManyToMany(mappedBy = "games")
 	private List<Genre> genres;
 	
+	@OneToMany (mappedBy = "game")
+	private List<Review> reviews;
+	
 	
 	/*************************************
 	 ********** GETTER E SETTER **********
@@ -41,8 +44,17 @@ public class Game {
 
 	
 	
+	
 	public Long getId() {
 		return Id;
+	}
+
+	public List<Review> getReviews() {
+		return reviews;
+	}
+
+	public void setReviews(List<Review> reviews) {
+		this.reviews = reviews;
 	}
 
 	public void setTitle(String title) {

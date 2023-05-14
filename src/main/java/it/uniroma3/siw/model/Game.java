@@ -31,13 +31,6 @@ public class Game {
 	@ManyToMany(mappedBy = "games")
 	private List<Platform> platforms;
 	
-	@OneToMany(mappedBy = "game") 
-	private List<Review> reviews;
-	
-
-	
-	
-	
 	
 	/*************************************
 	 ********** GETTER E SETTER **********

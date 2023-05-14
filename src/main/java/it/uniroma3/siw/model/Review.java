@@ -27,6 +27,8 @@ public class Review {
 	@ManyToOne
 	private Game game;
 
+	
+	
 	public Long getId() {
 		return Id;
 	}

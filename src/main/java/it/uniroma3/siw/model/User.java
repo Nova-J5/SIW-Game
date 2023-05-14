@@ -26,7 +26,15 @@ public class User {
 
 	
 	
-    public List<Game> getCurrentlyPlaying() {
+    public List<Review> getReviews() {
+		return reviews;
+	}
+
+	public void setReviews(List<Review> reviews) {
+		this.reviews = reviews;
+	}
+
+	public List<Game> getCurrentlyPlaying() {
 		return currentlyPlaying;
 	}
 

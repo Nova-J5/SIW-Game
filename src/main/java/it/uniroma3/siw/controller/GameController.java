@@ -26,7 +26,7 @@ public class GameController {
 	 //private GameValidator gameValidator;
 
 	
-	@GetMapping("/index.html")
+	@GetMapping("/index")
 	public String index() {
 		return "index.html";
 	}

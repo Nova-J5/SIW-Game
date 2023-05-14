@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+	
+<head>
+	<title>Giochi</title>
+	<link rel="stylesheet" href="/stile.css?version=2" />
+</head>
+
+<body>
+	<h1>Giochi</h1>
+	<div th:if="${games.isEmpty()}">Non ci sono giochi nel sistema</div>
+	<ul>
+		<li th:each="game : ${games}">
+			<a th:href="@{'/games' + '/' + ${game.id}}"
+				th:text="${game.title} + ' (' + ${game.year} + ')'">Up! (2000)</a>
+		</li>
+	</ul>
+</body>
+
+</html>

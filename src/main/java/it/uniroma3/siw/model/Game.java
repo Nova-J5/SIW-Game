@@ -16,6 +16,7 @@ public class Game {
 
 	@NotNull
 	@Min(1958)
+	@Max(2023)
 	private Integer year;
 	
 	@NotBlank

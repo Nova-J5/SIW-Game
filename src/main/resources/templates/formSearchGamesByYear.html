@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Cerca gioco per anno</title>
+	<link rel="stylesheet" href="/stile.css?version=2" />
+</head>
+
+<body>
+	<h1>Cerca gioco per anno</h1>
+	<form th:action="@{/searchGamesByYear}" method="post">
+		<div>Anno: <input type="text" th:value="${year}" name="year" />
+		</div>
+		<div><input type="submit" /></div>
+	</form>
+</body>
+
+</html>

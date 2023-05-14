@@ -11,6 +11,7 @@ public class GameValidator implements Validator {
 
 	@Autowired 
 	private GameRepository gameRepository;
+	
 	@Override
 	public boolean supports(Class<?> aClass) {
 	      return Game.class.equals(aClass);

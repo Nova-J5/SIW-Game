@@ -2,6 +2,7 @@ package it.uniroma3.siw.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.annotation.Validated;
@@ -13,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import it.uniroma3.siw.model.Game;
 import it.uniroma3.siw.repository.GameRepository;
-import it.uniroma3.siw.validator.GameValidator;
 
 @Controller
 @Validated
@@ -26,7 +26,7 @@ public class GameController {
 	 //private GameValidator gameValidator;
 
 	
-	@GetMapping("/index.html")
+	@GetMapping("/index")
 	public String index() {
 		return "index.html";
 	}

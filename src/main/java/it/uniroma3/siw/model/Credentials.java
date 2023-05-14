@@ -18,7 +18,7 @@ public class Credentials {
 	
 	private String password;
 	
-	private String ruolo;
+	private String role;
 	
 	@OneToOne(cascade = CascadeType.ALL)
 	private User user;
@@ -49,12 +49,12 @@ public class Credentials {
 		this.password = password;
 	}
 
-	public String getRuolo() {
-		return ruolo;
+	public String getRole() {
+		return role;
 	}
 
-	public void setRuolo(String ruolo) {
-		this.ruolo = ruolo;
+	public void setRole(String role) {
+		this.role = role;
 	}
 
 	public User getUser() {
@@ -67,7 +67,7 @@ public class Credentials {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(id, password, ruolo, user, username);
+		return Objects.hash(id, password, role, user, username);
 	}
 	
 	

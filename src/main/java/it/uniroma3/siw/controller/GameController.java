@@ -22,8 +22,8 @@ public class GameController {
 	@Autowired 
 	GameRepository gameRepository;
 	
-	 @Autowired
-	 private GameValidator gameValidator;
+	 //@Autowired
+	 //private GameValidator gameValidator;
 
 	
 	@GetMapping("/index.html")

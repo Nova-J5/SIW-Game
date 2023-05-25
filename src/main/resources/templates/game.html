@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Gioco</title>
+   <link rel="stylesheet" href="/stile.css?version=2" />
+</head>
+
+<body>
+    <div th:if="${game}">
+	    <h1 th:text="${game.title}">Titolo Gioco</h1>
+	    <p th:text="${game.description}">Dettagli Gioco</p>
+        <div>Anno: <span th:text="'(' + ${game.year} + ')'">2000</span></div>
+        <span th:if= "${!game.genres.isEmpty()}">
+        	<li th:each="genre : ${game.genres}">
+		        <p1 th:text=" 'Generi: ' + ${genre.name}"> Genere </p1>   	
+			</li>
+    	</span>
+    	<span th:if= "${!game.platforms.isEmpty()}">
+        	<li th:each="platform : ${game.platforms}">
+		        <p1 th:text=" 'Piattaforme: ' + ${platform.name}"> Piattaforma </p1>   	
+			</li>
+    	</span>
+    <div th:unless="${game}">Non esiste</div>
+  </body>
+</html>

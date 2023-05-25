@@ -6,4 +6,5 @@ import it.uniroma3.siw.model.Genre;
 
 public interface GenreRepository extends CrudRepository<Genre, Long>{
 
+	public Genre findByName(String name);
 }

@@ -7,7 +7,6 @@
 </head>
 
 <body>
-	<div><a href="/"><img src="/logo-siw.png" width="50%"/></a></div>
 	<h1>Giochi che soddisfano i requisiti</h1>
 	<div th:if="${games.isEmpty()}">Non ci sono giochi che soddisfano i requisiti</div>
 	<ul th:if="${!games.isEmpty()}">
@@ -17,5 +16,4 @@
 		</li>
 	</ul>
 </body>
-
 </html>

@@ -9,15 +9,10 @@
 		</title>
 	</head>
 	<body>
+		<form th:action="@{/searchGames}" method="post">
+			<input type="text" name="str" placeholder="cerca gioco" />
+			<button type="submit" > cerca </button>
+		</form>
 		<h1>Operazioni</h1>
-		<div>
-			<a href="/formNewGame">Inserisci i dati di un gioco</a>
-		</div>
-		<div>
-			<a href="/games">Mostra tutti i giochi</a>
-		</div>
-		<div>
-			<a href="/formSearchGamesByYear">Cerca gioco per anno</a>
-		</div>
 	</body>
 </html>

@@ -1,5 +1,7 @@
 package it.uniroma3.siw.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 
@@ -14,6 +16,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import it.uniroma3.siw.model.Game;
 import it.uniroma3.siw.repository.GameRepository;
+import it.uniroma3.siw.model.Genre;
+import it.uniroma3.siw.model.Platform;
+import it.uniroma3.siw.repository.GenreRepository;
+import it.uniroma3.siw.repository.PlatformRepository;
+
 
 @Controller
 @Validated
@@ -21,10 +28,10 @@ public class GameController {
 	
 	@Autowired 
 	GameRepository gameRepository;
-	
-	 //@Autowired
-	 //private GameValidator gameValidator;
-
+	@Autowired
+	GenreRepository genreRepository;
+	@Autowired
+	PlatformRepository platformRepository;
 	
 	@GetMapping("/index")
 	public String index() {
@@ -66,9 +73,31 @@ public class GameController {
 		return "formSearchGamesByYear.html";
 	}
 
-	@PostMapping("/searchGamesByYear")
-	public String searchGamesByYear(Model model, @RequestParam Integer year) {
-		model.addAttribute("games", this.gameRepository.findByYear(year));
+	@PostMapping("/searchGames")
+	public String searchGamesByYear(Model model, @RequestParam String str) {
+		
+		Genre genre= genreRepository.findByName(str);
+		
+		Platform platform = platformRepository.findByName(str);
+		
+		List<Game> titleGames = this.gameRepository.findByTitle(str);
+		
+		
+		try {
+			Integer year = Integer.parseInt(str);
+			model.addAttribute("games", this.gameRepository.findByYear(year));
+			
+		} catch(Exception e) {
+			if (genre != null) 
+				model.addAttribute("games", genre.getGames());
+	
+			else if (platform != null)
+			model.addAttribute("games", platform.getGames());
+			
+			else
+				model.addAttribute("games", titleGames);
+	
+		}
 		return "foundGames.html";
 	}
 }

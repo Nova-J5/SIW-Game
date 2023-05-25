@@ -77,7 +77,7 @@ public class Genre {
 		if (getClass() != obj.getClass())
 			return false;
 		Genre other = (Genre) obj;
-		return Objects.equals(Id, other.Id) && Objects.equals(name, other.name);
+		return Objects.equals(name, other.name);
 	}
 	
 }

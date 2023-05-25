@@ -6,4 +6,5 @@ import it.uniroma3.siw.model.Platform;
 
 public interface PlatformRepository extends CrudRepository<Platform, Long>{
 
+	public Platform findByName(String name);
 }

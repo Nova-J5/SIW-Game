@@ -33,7 +33,7 @@ public class GameController {
 	@Autowired
 	PlatformRepository platformRepository;
 	
-	@GetMapping("/index")
+	@GetMapping("/")
 	public String index() {
 		return "index.html";
 	}
@@ -42,18 +42,6 @@ public class GameController {
 	public String formNewGame(Model model) {
 		model.addAttribute("game", new Game());
 		return "formNewGame.html";
-	}
-
-	@PostMapping("/games")
-	public String newGame(@ModelAttribute("game") Game game, Model model) {
-		if (!gameRepository.existsByTitleAndYear(game.getTitle(), game.getYear())) {
-			this.gameRepository.save(game); 
-			model.addAttribute("game", game);
-			return "game.html";
-		} else {
-			model.addAttribute("messaggioErrore", "Questo gioco esiste già");
-			return "formNewGame.html"; 
-		}
 	}
 
 	@GetMapping("/games/{id}")
@@ -71,6 +59,18 @@ public class GameController {
 	@GetMapping("/formSearchGamesByYear")
 	public String formSearchGamesByYear() {
 		return "formSearchGamesByYear.html";
+	}
+	
+	@PostMapping("/games")
+	public String newGame(@ModelAttribute("game") Game game, Model model) {
+		if (!gameRepository.existsByTitleAndYear(game.getTitle(), game.getYear())) {
+			this.gameRepository.save(game); 
+			model.addAttribute("game", game);
+			return "game.html";
+		} else {
+			model.addAttribute("messaggioErrore", "Questo gioco esiste già");
+			return "formNewGame.html"; 
+		}
 	}
 
 	@PostMapping("/searchGames")

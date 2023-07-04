@@ -5,14 +5,20 @@ import java.util.List;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "users") // cambiamo nome perchè in postgres user e' una parola riservata
+@Table(name = "users")
 public class User {
+	
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+	@Column(nullable = false)
 	private String name;
+	
+	@Column(nullable = false)
 	private String surname;
+	
+    @Column(unique=true, nullable=false)
 	private String email;
 	
 	@OneToMany
@@ -24,31 +30,6 @@ public class User {
 	@OneToMany(mappedBy = "user")
 	private List<Review> reviews;
 
-	
-	
-    public List<Review> getReviews() {
-		return reviews;
-	}
-
-	public void setReviews(List<Review> reviews) {
-		this.reviews = reviews;
-	}
-
-	public List<Game> getCurrentlyPlaying() {
-		return currentlyPlaying;
-	}
-
-	public void setCurrentlyPlaying(List<Game> currentlyPlaying) {
-		this.currentlyPlaying = currentlyPlaying;
-	}
-
-	public List<Game> getPlayed() {
-		return played;
-	}
-
-	public void setPlayed(List<Game> played) {
-		this.played = played;
-	}
 
 	public Long getId() {
 		return id;
@@ -80,4 +61,29 @@ public class User {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	
+    public List<Review> getReviews() {
+		return reviews;
+	}
+
+	public void setReviews(List<Review> reviews) {
+		this.reviews = reviews;
+	}
+
+	public List<Game> getCurrentlyPlaying() {
+		return currentlyPlaying;
+	}
+
+	public void setCurrentlyPlaying(List<Game> currentlyPlaying) {
+		this.currentlyPlaying = currentlyPlaying;
+	}
+
+	public List<Game> getPlayed() {
+		return played;
+	}
+
+	public void setPlayed(List<Game> played) {
+		this.played = played;
+	}
+	
 }

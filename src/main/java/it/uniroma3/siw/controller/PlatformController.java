@@ -25,7 +25,7 @@ public class PlatformController {
 		return "formNewPlatform.html";
 	}
 
-	@GetMapping("/platforms/{id}")
+	@GetMapping("/platform/{id}")
 	public String getPlatform(@PathVariable("id") Long id, Model model) {
 		model.addAttribute("platform", this.platformRepository.findById(id).get());
 		return "platform.html";

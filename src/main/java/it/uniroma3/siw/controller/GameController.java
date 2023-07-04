@@ -44,7 +44,7 @@ public class GameController {
 		return "formNewGame.html";
 	}
 
-	@GetMapping("/games/{id}")
+	@GetMapping("/game/{id}")
 	public String getGame(@PathVariable("id") Long id, Model model) {
 		model.addAttribute("game", this.gameRepository.findById(id).get());
 		return "game.html";

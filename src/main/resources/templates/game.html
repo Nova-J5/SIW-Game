@@ -24,13 +24,20 @@
 		<nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
 		    <div class="container-fluid">
 		        <a href="/">
-		            <img class="logo" src="/images/siw-game-logo.png" width="22%" alt="logo" />
+		            <img class="logo" src="/images/navbar-logo.png" width="40%" alt="logo" />
 		        </a>		    
-		        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-		            <span class="navbar-toggler-icon"></span>
-		        </button>
 		        <div class="collapse navbar-collapse" id="navbarCollapse">
-		            <ul class="navbar-nav me-auto mb-2 mb-md-0">
+					<form class="d-flex justify-content-center" role="search" th:action="@{/searchGames}" method="post">
+                		<input class="form-control me-2" type="text" name="str" placeholder="Cerca" aria-label="Search">
+                		<button class="btn btn-outline-success" type="submit">Cerca</button>
+            		</form>
+            		<ul class="navbar-nav ms-auto mb-2 mb-md-0">
+		                <li class="nav-item">
+		                    <a class="nav-link" href="/games">Giochi</a>
+		                </li>
+		                <li class="nav-item">
+		                    <a class="nav-link" href="/platforms">Piattaforme</a>
+		                </li> 
 		                <li class="nav-item" th:if="${userDetails}">
 		                    <a class="nav-link">
 		                        <span th:text="${userDetails.username}"></span>
@@ -39,32 +46,19 @@
 		                <li class="nav-item" th:if="${userDetails}">
 							<a class="nav-link" href="/logout">Logout</a>
 		                </li>
-		                <li class="nav-item" th:unless="${user}" sec:authorize="!isAuthenticated()">
+		                <li class="nav-item" th:unless="${user}">
 		                    <a class="nav-link" href="/login">Login</a>
-		                </li>				
-		                <li class="nav-item">
-		                    <a class="nav-link" href="/game">Giochi</a>
-		                </li>
-		                <li class="nav-item">
-		                    <a class="nav-link" href="/platform">Piattaforme</a>
-		                </li> 
-		                <li class="nav-item">
-		                    <a class="nav-link" href="/developer">Sviluppatori</a>
-		                </li> 
+		                </li>	
 		            </ul>
-		            <form class="d-flex" role="search" th:action="@{/searchGames}" method="post">
-		                <input class="form-control me-2" type="text" name="str" placeholder="Cerca" aria-label="Search">
-		                <button class="btn btn-outline-success" type="submit">Cerca</button>
-		            </form>
 		        </div>
 		    </div>
 		</nav>
 		
 
 	    <div th:if="${game}">
-		    <h1 th:text="${game.title}">Titolo Gioco</h1>
-		    <p th:text="${game.description}">Dettagli Gioco</p>
-	        <div>Anno: <span th:text="'(' + ${game.year} + ')'">2000</span></div>
+		    <h1 th:text="${game.title}"></h1>
+		    <p th:text="${game.description}"></p>
+	        <div>Anno di rilascio: <span th:text="'(' + ${game.year} + ')'"></span></div>
 	        <span th:if= "${!game.genres.isEmpty()}">
 	        	<li th:each="genre : ${game.genres}">
 			        <p1 th:text=" 'Generi: ' + ${genre.name}"> Genere </p1>   	

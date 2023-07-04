@@ -2,13 +2,13 @@
 <html>
 	<head>
 		<title>
-			SiwGame - Admin Homepage
+			Genere
 		</title>
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
     	<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="/css/stile.css" />
-		<link rel="stylesheet" href="/css/admin/index_admin_style.css" />		
+		<link rel="stylesheet" href="/css/genre_style.css" />		
 		<link 
 			href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" 
 			rel="stylesheet" 
@@ -17,9 +17,8 @@
 		 <link
 	     	rel="stylesheet" 
 	    	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
-
 	</head>
-	
+
 	<body>
 		
 		<nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
@@ -55,10 +54,15 @@
 		    </div>
 		</nav>
 		
-		<form th:action="@{/searchGames}" method="post">
-			<input type="text" name="str" placeholder="cerca gioco" />
-			<button type="submit" > cerca </button>
-		</form>
-		<h1>Operazioni</h1>
-	</body>
+
+	    <div th:if="${genre}">
+		    <h1 th:text="${genre.name}"></h1>
+		    <p th:text="${genre.description}"></p>
+	        <span th:if= "${!genre.games.isEmpty()}">
+	        	<li th:each="game : ${genre.games}">
+			        <p1 th:text=" 'Giochi: ' + ${game.title}"></p1>   	
+				</li>
+	    	</span>
+	    <div th:unless="${genre}">Non esiste</div>
+	 </body>
 </html>

@@ -7,62 +7,62 @@
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
     	<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="stylesheet" href="/css/stile.css" />
+		<link rel="stylesheet" href="stile.css" />
 		<link rel="stylesheet" href="/css/index_style.css" />		
-		<link 
-			href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" 
-			rel="stylesheet" 
-			integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" 
-			crossorigin="anonymous">
-		 <link
-	     	rel="stylesheet" 
-	    	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
+		<!--Bootstrap Css-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 	</head>
 	
-	<body>
-		<nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
-		    <div class="container-fluid">
-		        <a href="/">
-		            <img class="logo" src="/images/siw-game-logo.png" width="22%" alt="logo" />
-		        </a>		    
-		        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-		            <span class="navbar-toggler-icon"></span>
-		        </button>
-		        <div class="collapse navbar-collapse" id="navbarCollapse">
-		            <ul class="navbar-nav me-auto mb-2 mb-md-0">
-		                <li class="nav-item" th:if="${userDetails}">
-		                    <a class="nav-link">
-		                        <span th:text="${userDetails.username}"></span>
-		                    </a>
-		                </li>
-		                <li class="nav-item" th:if="${userDetails}">
-							<a class="nav-link" href="/logout">Logout</a>
-		                </li>
-		                <li class="nav-item" th:unless="${user}" sec:authorize="!isAuthenticated()">
-		                    <a class="nav-link" href="/login">Login</a>
-		                </li>				
-		                <li class="nav-item">
-		                    <a class="nav-link" href="/games">Giochi</a>
-		                </li>
-		                <li class="nav-item">
-		                    <a class="nav-link" href="/platforms">Piattaforme</a>
-		                </li> 
-		                <li class="nav-item">
-		                    <a class="nav-link" href="/developers">Sviluppatori</a>
-		                </li> 
-		            </ul>
-		            <form class="d-flex" role="search" th:action="@{/searchGames}" method="post">
-		                <input class="form-control me-2" type="text" name="str" placeholder="Cerca" aria-label="Search">
-		                <button class="btn btn-outline-success" type="submit">Cerca</button>
-		            </form>
-		        </div>
-		    </div>
-		</nav>
-		
-		<form th:action="@{/searchGames}" method="post">
-			<input type="text" name="str" placeholder="cerca gioco" />
-			<button type="submit" > cerca </button>
-		</form>
-		<h1>Operazioni</h1>
+	<body>		
+		<header class="container-fluid shadow-sm">
+			<div class="row">
+				<div class="col h2 header-col text-start text-decoration-underline">
+					<a href="/">
+						<img class="logo" src="siw-game-logo.png" alt="logo" />
+					</a>
+				</div>
+				<div class="col h2 header-col text-center">
+                    <form role="search" th:action="@{/searchGames}" method="post">
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" name="str" placeholder="Cerca gioco per nome, piattaforma o genere" aria-label="Search" aria-describedby="basic-addon1">
+                            <span class="input-group-text" id="basic-addon1"> 
+                                <button type="submit" class="btn" > 
+                                    <img src="lente.png"> 
+                                </button> 
+                            </span>
+                          </div>
+                    </form>
+                </div>
+				<div class="col">
+					<ul class="list-group list-group-horizontal list-group-header">
+						<li class="list-group-item elemento-lista-header border-0" th:if="${userDetails}" >
+							<a>
+								<span th:text="${userDetails.username}"> username</span>
+							</a>
+						</li>
+						<li class="list-group-item elemento-lista-header border-0" th:if="${userDetails}">
+							<a href="/logout">Logout</a>
+						</li>
+						<li class="list-group-item elemento-lista-header lista-header border-0" th:unless="${user}" >
+							<a href="/login">Login</a>
+						</li>
+						<li class="list-group-item elemento-lista-header border-0">
+							<a href="/games">Giochi</a>
+						</li>
+						<li class="list-group-item elemento-lista-header border-0">
+							<a href="/platforms">Piattaforme</a>
+						</li> 
+						<li class="list-group-item elemento-lista-header border-0">
+							<a href="/developers">Sviluppatori</a>
+						</li> 
+					</ul>
+				</div>
+			</div>
+		</header>
 	</body>
 </html>
+

@@ -15,16 +15,10 @@ public class GenreController {
 	private GenreRepository genreRepository;
 	
 	
-	@GetMapping("/genres/{id}")
+	@GetMapping("/genre/{id}")
 	public String getGenre(@PathVariable("id") Long id, Model model) {
 		model.addAttribute("genre", this.genreRepository.findById(id).get());
 		return "genre.html";
-	}
-
-	@GetMapping("/genres")
-	public String showGenres(Model model) {
-		model.addAttribute("genres", this.genreRepository.findAll());
-		return "genres.html";
 	}
 	
 }

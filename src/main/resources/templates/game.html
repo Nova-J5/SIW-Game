@@ -16,8 +16,9 @@
 		    <p th:text="${game.description}"></p>
 	        <div>Anno di rilascio: <span th:text="'(' + ${game.year} + ')'"></span></div>
 	        <span th:if= "${!game.genres.isEmpty()}">
+		        <h1>Generi</h1>
 	        	<li th:each="genre : ${game.genres}">
-			        <p1 th:text=" 'Generi: ' + ${genre.name}"> Genere </p1>   	
+			        <span th:text="${genre.name}"> Genere </span>   	
 				</li>
 	    	</span>
 	    	<span th:if= "${!game.platforms.isEmpty()}">

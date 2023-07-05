@@ -34,40 +34,44 @@ INSERT INTO game VALUES (nextval('game_seq'), 'descrizione', 'Hollow Knight', 20
 
 
 
-INSERT INTO genre VALUES (nextval('genre_seq'), 'Azione')
+INSERT INTO genre (id, name) VALUES (nextval('genre_seq'), 'Azione')
 
-INSERT INTO genre VALUES (nextval('genre_seq'), 'Arcade')
+INSERT INTO genre (id, name) VALUES (nextval('genre_seq'), 'Arcade')
 
-INSERT INTO genre VALUES (nextval('genre_seq'), 'Avventura')
+INSERT INTO genre (id, name) VALUES (nextval('genre_seq'), 'Avventura')
 
-INSERT INTO genre VALUES (nextval('genre_seq'), 'Beat em all')
+INSERT INTO genre (id, name) VALUES (nextval('genre_seq'), 'Beat em all')
 
-INSERT INTO genre VALUES (nextval('genre_seq'), 'Cooperazione')
+INSERT INTO genre (id, name) VALUES (nextval('genre_seq'), 'Cooperazione')
 
-INSERT INTO genre VALUES (nextval('genre_seq'), 'Corse')
+INSERT INTO genre (id, name) VALUES (nextval('genre_seq'), 'Corse')
 
-INSERT INTO genre VALUES (nextval('genre_seq'), 'FPS')
+INSERT INTO genre (id, name) VALUES (nextval('genre_seq'), 'FPS')
 
-INSERT INTO genre VALUES (nextval('genre_seq'), 'Gestionale')
+INSERT INTO genre (id, name) VALUES (nextval('genre_seq'), 'Gestionale')
 
-INSERT INTO genre VALUES (nextval('genre_seq'), 'Guerra')
+INSERT INTO genre (id, name) VALUES (nextval('genre_seq'), 'Guerra')
 
-INSERT INTO genre VALUES (nextval('genre_seq'), 'Indie')
+INSERT INTO genre (id, name) VALUES (nextval('genre_seq'), 'Indie')
 
-INSERT INTO genre VALUES (nextval('genre_seq'), 'MMO')
+INSERT INTO genre (id, name) VALUES (nextval('genre_seq'), 'MMO')
 
-INSERT INTO genre VALUES (nextval('genre_seq'), 'Piattaforme')
+INSERT INTO genre (id, name) VALUES (nextval('genre_seq'), 'Piattaforme')
 
-INSERT INTO genre VALUES (nextval('genre_seq'), 'Picchiaduro')
+INSERT INTO genre (id, name) VALUES (nextval('genre_seq'), 'Picchiaduro')
 
-INSERT INTO genre VALUES (nextval('genre_seq'), 'RPG')
+INSERT INTO genre (id, name) VALUES (nextval('genre_seq'), 'RPG')
 
-INSERT INTO genre VALUES (nextval('genre_seq'), 'Simulazione')
+INSERT INTO genre (id, name) VALUES (nextval('genre_seq'), 'Simulazione')
 
-INSERT INTO genre VALUES (nextval('genre_seq'), 'Single-player')
+INSERT INTO genre (id, name) VALUES (nextval('genre_seq'), 'Single-player')
 
-INSERT INTO genre VALUES (nextval('genre_seq'), 'Sport')
+INSERT INTO genre (id, name) VALUES (nextval('genre_seq'), 'Sport')
 
-INSERT INTO genre VALUES (nextval('genre_seq'), 'Strategia')
+INSERT INTO genre (id, name) VALUES (nextval('genre_seq'), 'Strategia')
 
-INSERT INTO genre VALUES (nextval('genre_seq'), 'VR')
+INSERT INTO genre (id, name) VALUES (nextval('genre_seq'), 'VR')
+
+INSERT INTO genre_games VALUES (1, 1)
+INSERT INTO genre_games VALUES (1, 51)
+INSERT INTO genre_games VALUES (1, 101)

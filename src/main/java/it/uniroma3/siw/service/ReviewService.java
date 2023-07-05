@@ -26,11 +26,6 @@ public class ReviewService {
         Optional<Review> result = this.reviewRepository.findById(id);
         return result.orElse(null);
     }
-	
-	@Transactional
-	public List<Review> getReviewsByUser(User user) {
-		return this.reviewRepository.findByUser(user);
-	}
 
 	@Transactional
 	public List<Review> getReviewsByGame(Game game) {

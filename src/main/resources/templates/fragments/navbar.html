@@ -1,26 +1,11 @@
 <!DOCTYPE html>
 <html>
-
-	<head>
-		<title>
-			Giochi
-		</title>
-		<meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-    	<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="stylesheet" href="/css/stile.css" />
-		<link rel="stylesheet" href="/css/found_games_style.css" />		
-		<link 
-			href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" 
-			rel="stylesheet" 
-			integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" 
-			crossorigin="anonymous">
-		 <link
-	     	rel="stylesheet" 
-	    	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
-	</head>
-
-	<body>
+<head>
+	<meta charset="UTF-8">
+	<title>Navbar fragment</title>
+</head>
+	<th:block th:fragment="navbar">
+		
 		<nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
 		    <div class="container-fluid">
 		        <a href="/">
@@ -53,14 +38,6 @@
 		        </div>
 		    </div>
 		</nav>
-	
-		<h1>Giochi che soddisfano i requisiti</h1>
-		<div th:if="${games.isEmpty()}">Non ci sono giochi che soddisfano i requisiti</div>
-		<ul th:if="${!games.isEmpty()}">
-			<li th:each="game : ${games}">
-				<a th:href="@{'/game' + '/' + ${game.id}}"
-					th:text="${game.title} + ' (' + ${game.year}+')'">Up! (2000)</a>
-			</li>
-		</ul>
-	</body>
+		
+	</th:block>
 </html>

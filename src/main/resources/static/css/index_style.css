@@ -1,0 +1,20 @@
+.carosello{
+    display: flex;
+    justify-content: center;
+}
+
+.carousel{
+    width: 100%;
+}
+
+.carousel-item img{
+    height: 500px;
+}
+
+.blocco-carosello{
+    margin-top: 3%;
+    background-color: #c8c8c8;
+    margin-left: 20%;
+    margin-right: 20%;
+    padding: 2%;
+}

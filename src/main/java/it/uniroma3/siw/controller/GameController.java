@@ -23,7 +23,6 @@ import it.uniroma3.siw.repository.PlatformRepository;
 
 
 @Controller
-@Validated
 public class GameController {
 	
 	@Autowired 

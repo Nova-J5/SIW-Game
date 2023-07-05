@@ -1,6 +1,7 @@
 package it.uniroma3.siw.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -8,16 +9,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import it.uniroma3.siw.model.Platform;
 import it.uniroma3.siw.repository.PlatformRepository;
 
+@Controller
 public class PlatformController {
 	
 	@Autowired
 	private PlatformRepository platformRepository;
 	
 
-	@GetMapping("/")
-	public String index() {
-		return "index.html";
-	}
 	
 	@GetMapping("/formNewPlatform")
 	public String formNewPlatform(Model model) {

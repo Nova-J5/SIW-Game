@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>
+			Sviluppatore
+		</title>
+		<div th:replace="fragments/css :: css-dep"></div>
+		<link rel="stylesheet" href="/css/developer_style.css"/>		
+	</head>
+
+	<body>
+		<div th:replace="fragments/navbar :: navbar"></div>
+	
+	    <div th:if="${developer}">
+		    <h1 th:text="${developer.name}"></h1>
+		    <p th:text="${developer.description}"></p>
+	        <div>Anno di fondazione: <span th:text="'(' + ${developer.yearOfFoundation} + ')'"></span></div>
+	    <div th:unless="${developer}">Non esiste</div>
+	 </body>
+</html>

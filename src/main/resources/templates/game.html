@@ -4,14 +4,13 @@
 		<title>
 			Gioco
 		</title>
-			<div th:replace="fragments/css :: css-dep"></div>
+		<div th:replace="fragments/css :: css-dep"></div>
+		<link rel="stylesheet" href="/css/game_style.css"/>		
 	</head>
 
 	<body>
-		
 		<div th:replace="fragments/navbar :: navbar"></div>
-		
-
+	
 	    <div th:if="${game}">
 		    <h1 th:text="${game.title}"></h1>
 		    <p th:text="${game.description}"></p>

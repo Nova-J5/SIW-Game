@@ -15,7 +15,7 @@ public class DeveloperService {
 
 	
 	@Transactional
-	public Developer addDeveloper(Developer developer) {
+	public Developer saveDeveloper(Developer developer) {
 		return this.developerRepository.save(developer);
 	}
 	

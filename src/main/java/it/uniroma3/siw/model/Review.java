@@ -19,6 +19,7 @@ public class Review {
 	
 	@NotBlank
 	private String title;
+	
 	@NotBlank
 	private String body;
 	
@@ -33,7 +34,6 @@ public class Review {
 	@ManyToOne
 	private Game game;
 
-	
 	
 	public Long getId() {
 		return Id;

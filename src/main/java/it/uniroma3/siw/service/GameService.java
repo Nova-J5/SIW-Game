@@ -17,7 +17,7 @@ public class GameService {
 	private GameRepository gameRepository;
 	
 	@Transactional
-	public Game addGame(Game game) {
+	public Game saveGame(Game game) {
 		return this.gameRepository.save(game);
 	}
 	

@@ -17,7 +17,7 @@ public class PlatformService {
 	private PlatformRepository platformRepository;
 	
 	@Transactional
-	public Platform addPlatform(Platform platform) {
+	public Platform savePlatform(Platform platform) {
 		return this.platformRepository.save(platform);
 	}
 	

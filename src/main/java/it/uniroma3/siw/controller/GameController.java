@@ -27,8 +27,10 @@ public class GameController {
 	
 	@Autowired 
 	GameRepository gameRepository;
+	
 	@Autowired
 	GenreRepository genreRepository;
+	
 	@Autowired
 	PlatformRepository platformRepository;
 	
@@ -75,7 +77,7 @@ public class GameController {
 	@PostMapping("/searchGames")
 	public String searchGamesByYear(Model model, @RequestParam String str) {
 		
-		Genre genre= genreRepository.findByName(str);
+		Genre genre = genreRepository.findByName(str);
 		
 		Platform platform = platformRepository.findByName(str);
 		

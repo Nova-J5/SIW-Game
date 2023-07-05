@@ -17,7 +17,7 @@ public class GenreService {
 	private GenreRepository genreRepository;
 	
 	@Transactional
-	public Genre addGenre(Genre genre) {
+	public Genre saveGenre(Genre genre) {
 		return this.genreRepository.save(genre);
 	}
 	

@@ -9,13 +9,12 @@ import it.uniroma3.siw.repository.DeveloperRepository;
 
 @Controller
 public class DeveloperController {
-
 	
 	@Autowired
 	private DeveloperRepository developerRepository;
 	
 	
-	@GetMapping("/developers/{id}")
+	@GetMapping("/developer/{id}")
 	public String getDeveloper(@PathVariable("id") Long id, Model model) {
 		model.addAttribute("developer", this.developerRepository.findById(id).get());
 		return "developer.html";

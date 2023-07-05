@@ -17,7 +17,7 @@ public class ReviewService {
 	
 	
 	@Transactional
-	public Review addReview(Review review) {
+	public Review saveReview(Review review) {
 		return reviewRepository.save(review);
 	}
 	

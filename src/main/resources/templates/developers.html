@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>
+			Lista Sviluppatori
+		</title>
+		<div th:replace="fragments/css :: css-dep"></div>
+		<link rel="stylesheet" href="/css/developers_style.css" />		
+	</head>
+	
+	<body>
+		<div th:replace="fragments/navbar :: navbar"></div>
+		
+		<h1>Sviluppatori</h1>
+		<div th:if="${developers==null || developers.isEmpty()}">Non ci sono sviluppatori nel sistema</div>
+		<ul>
+			<li th:each="developer : ${developers}">
+				<a th:href="@{'/developer' + '/' + ${developer.id}}"
+					th:text="${developer.name} + ' (' + ${developer.yearOfFoundation} + ')'">Up! (2000)</a>
+			</li>
+		</ul>
+	</body>
+</html>

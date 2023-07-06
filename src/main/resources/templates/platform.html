@@ -12,9 +12,22 @@
 		
 		<div th:replace="fragments/navbar :: navbar"></div>
 
-	    <div th:if="${platform}">
+	    <span th:if="${platform}">
 		    <h1 th:text="${platform.name}">Titolo Piattaforma</h1>
+		    <h5 th:text="${platform.description}"></h5>
+		    
 	        <div>Anno: <span th:text="'(' + ${platform.yearOfRelease} + ')'">2000</span></div>
 	    <div th:unless="${platform}">Non esiste</div>
+	    
+	    <span th:if= "${!platform.games.isEmpty()}">
+		        <h2>Giochi</h2>
+	        	<li th:each="game : ${platform.games}">
+			        <a th:href="@{'/game/' + ${game.id}}" th:text="${game.title}"> Gioco </a>   	
+				</li>
+	    	</span>
+	    	<span th:if= "${platform.developer != null}">
+		        <h1>Sviluppatore</h1>
+			        <a th:href="@{'/developer/' + ${platform.developer.id}}" th:text="${platform.developer.name}"> Sviluppatore </a>   	
+	    	</span>
 	 </body>
 </html>

@@ -20,6 +20,9 @@ public class User {
 	
     @Column(unique=true, nullable=false)
 	private String email;
+    
+    @OneToOne
+    private Image image;
 	
 	@OneToMany
 	private List<Game> currentlyPlaying;
@@ -56,6 +59,14 @@ public class User {
 	
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public Image getImage() {
+		return image;
+	}
+
+	public void setImage(Image image) {
+		this.image = image;
 	}
 
 	public List<Game> getCurrentlyPlaying() {

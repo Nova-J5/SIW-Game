@@ -18,6 +18,9 @@ public class Genre {
 	@Column(length = 2000)
 	private String description;
 	
+	@OneToOne
+	private Image image;
+	
 	@ManyToMany
 	private List<Game> games;
 	
@@ -48,6 +51,14 @@ public class Genre {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public Image getImage() {
+		return image;
+	}
+
+	public void setImage(Image image) {
+		this.image = image;
 	}
 
 	public List<Game> getGames() {

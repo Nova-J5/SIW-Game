@@ -25,6 +25,9 @@ public class Game {
 	@ManyToOne
 	private Developer developer;
 	
+	@OneToOne
+	private Image image;
+	
 	@ManyToMany(mappedBy = "games")
 	private List<Genre> genres;
 	
@@ -89,6 +92,14 @@ public class Game {
 
 	public void setDeveloper(Developer developer) {
 		this.developer = developer;
+	}
+
+	public Image getImage() {
+		return image;
+	}
+
+	public void setImage(Image image) {
+		this.image = image;
 	}
 
 	public List<Platform> getPlatforms() {

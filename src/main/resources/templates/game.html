@@ -31,6 +31,27 @@
 		        <h1>Sviluppatore</h1>
 			        <a th:href="@{'/developer/' + ${game.developer.id}}" th:text="${game.developer.name}"> Sviluppatore </a>   	
 	    	</span>
+	    	
+	    	<div th:if="${game.image} != null">
+				<img th:src="@{'/display/image/' + ${game.image.id}}" width=50% />
+	        </div>
+	        <div th:if="${game.image} == null">
+	        	<img src="/images/image-not-available.jpeg" />
+	        </div>
+	    	
+	    	<div th:if="${!game.reviews.isEmpty()}" >
+				<h3 class="mt-5"> Recensioni: </h3>
+				<li th:each="review: ${game.reviews}" th:remove="tag">
+					<div class="border rounded bg-light text-dark p-3 my-3" style="width: 1000px">
+					<h5 th:text="${review.credentials.user.name} + ' ' + ${review.credentials.user.surname} + ' (' + ${review.credentials.username} + ')'"> </h5>
+                        <span th:each="i : ${#numbers.sequence(1, review.score)}">&#9733;</span>
+					
+					<span class="h5" th:text="${review.title}"></span>
+					<div th:text="${review.body}" ></div>
+				</div>
+				</li>
+			</div>
+			
 	    <div th:unless="${game}">Non esiste</div>
 	 </body>
 </html>

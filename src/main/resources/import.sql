@@ -77,5 +77,3 @@ INSERT INTO genre_games VALUES (51, 1)
 INSERT INTO genre_games VALUES (1, 101)
 
 INSERT INTO platform_games VALUES (1, 1)
-INSERT INTO platform_games VALUES (51, 1)
-INSERT INTO platform_games VALUES (1, 101)

@@ -25,6 +25,9 @@ public class Platform {
 	@ManyToOne
 	private Developer developer;
 	
+	@OneToOne
+	private Image image;
+	
 	@ManyToMany
 	private List<Game> games;
 	
@@ -71,6 +74,14 @@ public class Platform {
 
 	public void setDeveloper(Developer developer) {
 		this.developer = developer;
+	}
+
+	public Image getImage() {
+		return image;
+	}
+
+	public void setImage(Image image) {
+		this.image = image;
 	}
 
 	public List<Game> getGames() {

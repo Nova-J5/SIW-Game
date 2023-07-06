@@ -26,10 +26,6 @@ public class User {
 	
 	@OneToMany
 	private List<Game> played;
-	
-	@OneToMany(mappedBy = "user")
-	private List<Review> reviews;
-
 
 	public Long getId() {
 		return id;
@@ -60,14 +56,6 @@ public class User {
 	
 	public void setEmail(String email) {
 		this.email = email;
-	}
-	
-    public List<Review> getReviews() {
-		return reviews;
-	}
-
-	public void setReviews(List<Review> reviews) {
-		this.reviews = reviews;
 	}
 
 	public List<Game> getCurrentlyPlaying() {

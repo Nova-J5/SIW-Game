@@ -13,7 +13,6 @@ public class DeveloperController {
 	@Autowired
 	private DeveloperRepository developerRepository;
 	
-	
 	@GetMapping("/developer/{id}")
 	public String getDeveloper(@PathVariable("id") Long id, Model model) {
 		model.addAttribute("developer", this.developerRepository.findById(id).get());

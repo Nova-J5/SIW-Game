@@ -11,7 +11,5 @@ import it.uniroma3.siw.model.User;
 public interface ReviewRepository extends CrudRepository<Review, Long>{
 
 	public List<Review> findByGame(Game game);
-
-	public List<Review> findByUser(User user);
 		
 }

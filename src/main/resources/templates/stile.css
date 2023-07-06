@@ -1,7 +1,18 @@
 body { 
     font-family: "Geneva";
     color:dimgrey;
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
 }
+
+footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+}
+
 
 .elemento-lista-header{
     margin-left: -2.9%;

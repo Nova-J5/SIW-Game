@@ -13,8 +13,10 @@
 		        </a>		    
 		        <div class="collapse navbar-collapse" id="navbarCollapse">
 					<form class="d-flex justify-content-center" role="search" th:action="@{/searchGames}" method="post">
-                		<input class="form-control me-2" type="text" name="str" placeholder="Cerca" aria-label="Search">
-                		<button class="btn btn-outline-success" type="submit">Cerca</button>
+                		<input class="form-control me-2" type="text" name="str" placeholder="Cerca gioco per nome, piattaforma o genere" aria-label="Search">
+                		<button class="btn btn-outline-success" type="submit">
+ 							<i class="fas fa-search"></i>						
+  						</button>
             		</form>
             		<ul class="navbar-nav ms-auto mb-2 mb-md-0">
 		                <li class="nav-item">

@@ -29,5 +29,13 @@
 		        <h1>Sviluppatore</h1>
 			        <a th:href="@{'/developer/' + ${platform.developer.id}}" th:text="${platform.developer.name}"> Sviluppatore </a>   	
 	    	</span>
+	    	
+	    	 <div th:if="${platform.image} != null">
+				<img th:src="@{'/display/image/' + ${platform.image.id}}" width=50% />
+	        </div>
+	        <div th:if="${platform.image} == null">
+	        	<img src="/images/image-not-available.jpeg" />
+	        </div>
+	    	
 	 </body>
 </html>

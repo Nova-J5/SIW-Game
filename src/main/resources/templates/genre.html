@@ -16,12 +16,22 @@
 
 	    <div th:if="${genre}">
 		    <h1 th:text="${genre.name}"></h1>
-		    <p th:text="${genre.description}"></p>
+		    <h5 th:text="${genre.description}"></h5>
+		    
 	        <span th:if= "${!genre.games.isEmpty()}">
+	        	<h2>Giochi</h2>
 	        	<li th:each="game : ${genre.games}">
-			        <p1 th:text=" 'Giochi: ' + ${game.title}"></p1>   	
+			        <a th:href="@{'/game/' + ${game.id}}" th:text="${game.title}"></a>   	
 				</li>
 	    	</span>
+	    	
+	   	 	<div th:if="${genre.image} != null">
+				<img th:src="@{'/display/image/' + ${genre.image.id}}" width=50% />
+	        </div>
+	        <div th:if="${genre.image} == null">
+	        	<img src="/images/image-not-available.jpeg" />
+	      	</div>
+	    	
 	    <div th:unless="${genre}">Non esiste</div>
 	 </body>
 </html>

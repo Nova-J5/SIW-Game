@@ -14,7 +14,7 @@
 	<name>SIW-Game</name>
 	<description>Sistema informativo per la gestione di videogiochi.</description>
 	<properties>
-		<java.version>1.8</java.version>
+		<java.version>17</java.version>
 	</properties>
 	<dependencies>
 		<dependency>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>
+			Impostazioni Utente
+		</title>
+		<div th:replace="fragments/css :: css-dep"></div>
+		<link rel="stylesheet" href="/css/user_settings_style.css" />		
+	</head>
+	<body>
+		
+		<div th:replace="fragments/navbar :: navbar"></div>
+
+		<div class="container rounded bg-white mt-5 mb-5">
+		    <div class="row">
+		        <div class="col-md-3 border-right">
+		            <div class="d-flex flex-column align-items-center text-center p-3 py-5">
+						<img class="rounded-circle mt-5" width="150px" th:src="@{${userDetails.PhotosImagePath}}">
+						<span class="font-weight-bold" th:text="${userDetails.name} + ' ' + ${userDetails.surname}"></span>
+						<span class="text-black-50" th:text="${userDetails.email}"></span>
+						<span> </span>
+					</div>
+		        </div>
+		        <form class="col-md-5 border-right" th:action="@{'/updateUser' + '/' + ${userDetails.id}}" method="post">
+		            <div class="p-3 py-5">
+		                <div class="d-flex justify-content-between align-items-center mb-3">
+		                    <h4 class="text-right">Impostazioni</h4>
+		                </div>
+		                <div class="row mt-2">
+		                    <div class="col-md-6">
+								<label class="labels">Nome</label>
+								<input th:value="${userDetails.name}" id="name" type="text" class="form-control" placeholder="nome">
+							</div>
+		                    <div class="col-md-6">
+								<label class="labels">Cognome</label>
+								<input th:value="${userDetails.surname}" id="surname" type="text" class="form-control" placeholder="cognome">
+							</div>
+		                </div>
+		                <div class="row mt-3">
+		                    <div class="col-md-12"><label class="labels">Email</label><input type="text" class="form-control" placeholder="email" value=""></div>
+		                </div>
+		                <span class="mt-5 text-center"><button class="btn btn-primary profile-button" type="button">Salva modifiche</button></span>
+		            </div>
+		        </form>
+		        <div class="col-md-4">
+		            <div class="p-3 py-5">
+		                <div class="d-flex justify-content-between align-items-center experience"><span>Edit Experience</span><span class="border px-3 p-1 add-experience"><i class="fa fa-plus"></i>&nbsp;Experience</span></div><br>
+		                <div class="col-md-12"><label class="labels">Experience in Designing</label><input type="text" class="form-control" placeholder="experience" value=""></div> <br>
+		                <div class="col-md-12"><label class="labels">Additional Details</label><input type="text" class="form-control" placeholder="additional details" value=""></div>
+		            </div>
+		        </div>
+		    </div>
+		</div>
+		</div>
+		</div>
+				
+		
+	</body>

@@ -42,11 +42,11 @@
 			          <div class="p-4 text-black" style="background-color: #f8f9fa;">
 			            <div class="d-flex justify-content-end text-center py-1">
 			              <div>
-			                <p class="mb-1 h5" th:text="${#lists.size(user.currentlyPlaying)}">[Game Size]</p>
+			                <p class="mb-1 h5" th:text="${#lists.size(currentlyPlaying)}">[Game Size]</p>
 			                <p class="small text-muted mb-0">Numero di giochi correnti</p>
 			              </div>
 			              <div>
-			                <p class="mb-1 h5" th:text="${#lists.size(user.played)}">[Game Size]>/p>
+			                <p class="mb-1 h5" th:text="${#lists.size(played)}">[Game Size]>/p>
 			                <p class="small text-muted mb-0">Numero di giochi terminati</p>
 			              </div>
 			            </div>
@@ -56,11 +56,11 @@
 			            <p class="mb-0"><a th:action="@{'/currentlyPlayingGames'}" class="text-muted">Mostra tutti</a></p>
 			          </div>
 			          
-					   <div class="h3" th:if="${user.currentlyPlaying == null || user.currentlyPlaying.isEmpty()}">
+					   <div class="h3" th:if="${currentlyPlaying == null || currentlyPlaying.isEmpty()}">
 							L'utente non sta ancora giocando a nessun gioco
 						</div>
-						<ul class="d-flex flex-row flex-nowrap overflow-auto list-group list-group-horizontal" th:if="${!user.currentlyPlaying.isEmpty()}">
-							<li class="list-group-item border-0" th:each="game : ${user.currentlyPlaying}">
+						<ul class="d-flex flex-row flex-nowrap overflow-auto list-group list-group-horizontal" th:if="${!currentlyPlaying.isEmpty()}">
+							<li class="list-group-item border-0" th:each="game : ${currentlyPlaying}">
 								<div class="card border-0" style="width: 18rem;">
 									<a th:href="@{'/game/' + ${game.id}}">   
 										<div th:if="${game.image} != null" class="card-img-top">
@@ -81,11 +81,11 @@
 			            <p class="lead fw-normal mb-0">Giochi che l'utente ha finito</p>
 			            <p class="mb-0"><a th:action="@{'/playedGames'}" class="text-muted">Mostra tutti</a></p>
 			          </div>
-					    <div class="h3" th:if="${user.played == null || user.played.isEmpty()}">
+					    <div class="h3" th:if="${played == null || played.isEmpty()}">
 							L'utente non ha ancora finito nessun gioco
 						</div>
-						<ul class="d-flex flex-row flex-nowrap overflow-auto list-group list-group-horizontal" th:if="${!user.played.isEmpty()}">
-							<li class="list-group-item border-0" th:each="game : ${user.played}">
+						<ul class="d-flex flex-row flex-nowrap overflow-auto list-group list-group-horizontal" th:if="${!played.isEmpty()}">
+							<li class="list-group-item border-0" th:each="game : ${played}">
 								<div class="card border-0" style="width: 18rem;">
 									<a th:href="@{'/game/' + ${game.id}}">   
 										<div th:if="${game.image} != null" class="card-img-top">

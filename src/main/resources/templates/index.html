@@ -8,7 +8,8 @@
 		<link rel="stylesheet" href="/css/index_style.css" />		
 	</head>
 	
-	<body>		
+	<body>	
+		<a href="/admin/formNewGame">Crea un nuovo gioco (per i test)</a>	
 		<div th:replace="fragments/navbar :: navbar"></div>
 
 		<div class="blocco-carosello rounded-3" th:if="${!platforms.isEmpty() || platformActive!=null}">

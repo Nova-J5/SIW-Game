@@ -37,6 +37,11 @@ public class Game {
 	@OneToMany (mappedBy = "game")
 	private List<Review> reviews;
 	
+	public Game() {
+		this.genres = new ArrayList<>();
+		this.platforms = new ArrayList<>();
+		this.reviews = new ArrayList<>();
+	}
 	
 	/*************************************
 	 ********** GETTER E SETTER **********

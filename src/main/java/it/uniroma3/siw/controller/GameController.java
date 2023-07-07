@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,6 +23,8 @@ import it.uniroma3.siw.repository.GenreRepository;
 import it.uniroma3.siw.repository.PlatformRepository;
 import it.uniroma3.siw.service.DeveloperService;
 import it.uniroma3.siw.service.GameService;
+import it.uniroma3.siw.validator.GameValidator;
+import jakarta.validation.Valid;
 
 
 @Controller
@@ -45,6 +48,9 @@ public class GameController {
 	@Autowired
 	GameService gameService;
 
+	@Autowired
+	private GameValidator gameValidator;
+	
 	@GetMapping("/game/{id}")
 	public String getGame(@PathVariable("id") Long id, Model model) {
 		model.addAttribute("game", this.gameRepository.findById(id).get());
@@ -89,22 +95,21 @@ public class GameController {
 	public String formNewGame(Model model) {
 		model.addAttribute("game", new Game());
 		model.addAttribute("developers", this.developerRepository.findAll());
-		model.addAttribute("genres", this.genreRepository.findAll());
-		model.addAttribute("platforms", this.platformRepository.findAll());
+		//model.addAttribute("genres", this.genreRepository.findAll());
+		//model.addAttribute("platforms", this.platformRepository.findAll());
 		
 		return "admin/formNewGame.html";
 	}
 	
 	@PostMapping("/admin/newGame")
-	public String newGame(@ModelAttribute("game") Game game, 
-			@RequestParam("developerId") Long developerId, Model model) {
-		if (!gameRepository.existsByTitleAndYear(game.getTitle(), game.getYear())) {
-			game.setDeveloper(this.developerService.getDeveloper(developerId));
+	public String newGame(@Valid @ModelAttribute("game") Game game, BindingResult bindingResult, Model model) {
+		this.gameValidator.validate(game, bindingResult);
+		if (!bindingResult.hasErrors()) {
+			//game.setDeveloper(this.developerService.getDeveloper(developerId));
 			this.gameService.saveGame(game);
 			model.addAttribute("game", game);
 			return "game.html";
 		} else {
-			model.addAttribute("messaggioErrore", "Questo gioco esiste già");
 			return "admin/formNewGame.html"; 
 		}
 	}

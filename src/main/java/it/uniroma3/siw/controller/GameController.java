@@ -14,11 +14,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import it.uniroma3.siw.model.Game;
+import it.uniroma3.siw.repository.DeveloperRepository;
 import it.uniroma3.siw.repository.GameRepository;
 import it.uniroma3.siw.model.Genre;
 import it.uniroma3.siw.model.Platform;
 import it.uniroma3.siw.repository.GenreRepository;
 import it.uniroma3.siw.repository.PlatformRepository;
+import it.uniroma3.siw.service.DeveloperService;
+import it.uniroma3.siw.service.GameService;
 
 
 @Controller
@@ -28,16 +31,19 @@ public class GameController {
 	GameRepository gameRepository;
 	
 	@Autowired
+	DeveloperRepository developerRepository;
+	
+	@Autowired
 	GenreRepository genreRepository;
 	
 	@Autowired
 	PlatformRepository platformRepository;
 	
-	@GetMapping("/formNewGame")
-	public String formNewGame(Model model) {
-		model.addAttribute("game", new Game());
-		return "formNewGame.html";
-	}
+	@Autowired
+	DeveloperService developerService;
+	
+	@Autowired
+	GameService gameService;
 
 	@GetMapping("/game/{id}")
 	public String getGame(@PathVariable("id") Long id, Model model) {
@@ -49,23 +55,6 @@ public class GameController {
 	public String showGames(Model model) {
 		model.addAttribute("genres", this.genreRepository.findAll());
 		return "games.html";
-	}
-	
-	@GetMapping("/formSearchGamesByYear")
-	public String formSearchGamesByYear() {
-		return "formSearchGamesByYear.html";
-	}
-	
-	@PostMapping("/games")
-	public String newGame(@ModelAttribute("game") Game game, Model model) {
-		if (!gameRepository.existsByTitleAndYear(game.getTitle(), game.getYear())) {
-			this.gameRepository.save(game); 
-			model.addAttribute("game", game);
-			return "game.html";
-		} else {
-			model.addAttribute("messaggioErrore", "Questo gioco esiste già");
-			return "formNewGame.html"; 
-		}
 	}
 
 	@PostMapping("/searchGames")
@@ -95,4 +84,29 @@ public class GameController {
 		}
 		return "foundGames.html";
 	}
+	
+	@GetMapping("/admin/formNewGame")
+	public String formNewGame(Model model) {
+		model.addAttribute("game", new Game());
+		model.addAttribute("developers", this.developerRepository.findAll());
+		model.addAttribute("genres", this.genreRepository.findAll());
+		model.addAttribute("platforms", this.platformRepository.findAll());
+		
+		return "admin/formNewGame.html";
+	}
+	
+	@PostMapping("/admin/newGame")
+	public String newGame(@ModelAttribute("game") Game game, 
+			@RequestParam("developerId") Long developerId, Model model) {
+		if (!gameRepository.existsByTitleAndYear(game.getTitle(), game.getYear())) {
+			game.setDeveloper(this.developerService.getDeveloper(developerId));
+			this.gameService.saveGame(game);
+			model.addAttribute("game", game);
+			return "game.html";
+		} else {
+			model.addAttribute("messaggioErrore", "Questo gioco esiste già");
+			return "admin/formNewGame.html"; 
+		}
+	}
+	
 }

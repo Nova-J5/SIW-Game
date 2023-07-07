@@ -1,5 +1,6 @@
 package it.uniroma3.siw.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.persistence.*;
@@ -29,6 +30,11 @@ public class User {
 	
 	@OneToMany
 	private List<Game> played;
+	
+	public User() {
+		this.currentlyPlaying = new ArrayList<>();
+		this.played = new ArrayList<>();
+	}
 
 	public Long getId() {
 		return id;

@@ -27,7 +27,9 @@ public class Genre {
 	@ManyToMany
 	private List<Game> games;
 	
-	
+	public Genre() {
+		this.games = new ArrayList<>();
+	}
 	/*************************************
 	 ********** GETTER E SETTER **********
 	 *************************************/

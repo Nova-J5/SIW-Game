@@ -35,6 +35,9 @@ public class Platform {
 	@ManyToMany
 	private List<Game> games;
 	
+	public Platform() {
+		this.games = new ArrayList<>();
+	}
 	
 	/*************************************
 	 ********** GETTER E SETTER **********

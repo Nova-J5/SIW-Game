@@ -28,6 +28,10 @@ public class Developer {
 	@OneToMany(mappedBy = "developer")
 	private List<Platform> platformsProduced;
 	
+	public Developer() {
+		this.gamesProduced = new ArrayList<>();
+		this.platformsProduced = new ArrayList<>();
+	}
 	
 	/*************************************
 	 ********** GETTER E SETTER **********

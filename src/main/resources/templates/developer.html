@@ -16,5 +16,12 @@
 		    <p th:text="${developer.description}"></p>
 	        <div>Anno di fondazione: <span th:text="'(' + ${developer.yearOfFoundation} + ')'"></span></div>
 	    <div th:unless="${developer}">Non esiste</div>
+	    
+	    <span th:if= "${!developer.gamesProduced.isEmpty()}">
+		        <h2>Giochi</h2>
+	        	<li th:each="game : ${developer.gamesProduced}">
+			        <a th:href="@{'/game/' + ${game.id}}" th:text="${game.title}"> gioco </a>   	
+				</li>
+	    </span>
 	 </body>
 </html>

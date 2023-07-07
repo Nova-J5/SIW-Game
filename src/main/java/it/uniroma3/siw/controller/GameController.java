@@ -1,5 +1,6 @@
 package it.uniroma3.siw.controller;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,16 +14,19 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import it.uniroma3.siw.model.Game;
 import it.uniroma3.siw.repository.DeveloperRepository;
 import it.uniroma3.siw.repository.GameRepository;
 import it.uniroma3.siw.model.Genre;
+import it.uniroma3.siw.model.Image;
 import it.uniroma3.siw.model.Platform;
 import it.uniroma3.siw.repository.GenreRepository;
 import it.uniroma3.siw.repository.PlatformRepository;
 import it.uniroma3.siw.service.DeveloperService;
 import it.uniroma3.siw.service.GameService;
+import it.uniroma3.siw.service.ImageService;
 import it.uniroma3.siw.validator.GameValidator;
 import jakarta.validation.Valid;
 
@@ -31,22 +35,25 @@ import jakarta.validation.Valid;
 public class GameController {
 	
 	@Autowired 
-	GameRepository gameRepository;
+	private GameRepository gameRepository;
 	
 	@Autowired
-	DeveloperRepository developerRepository;
+	private DeveloperRepository developerRepository;
 	
 	@Autowired
-	GenreRepository genreRepository;
+	private GenreRepository genreRepository;
 	
 	@Autowired
-	PlatformRepository platformRepository;
+	private PlatformRepository platformRepository;
 	
 	@Autowired
-	DeveloperService developerService;
+	private DeveloperService developerService;
+
+	@Autowired
+	private ImageService imageService;
 	
 	@Autowired
-	GameService gameService;
+	private GameService gameService;
 
 	@Autowired
 	private GameValidator gameValidator;
@@ -103,8 +110,17 @@ public class GameController {
 	
 	@PostMapping("/admin/newGame")
 	public String newGame(@Valid @ModelAttribute("game") Game game, BindingResult bindingResult, Model model,
-			@RequestParam Long developerId) {
+			@RequestParam Long developerId, @RequestParam("file") MultipartFile file) throws IOException {
+		
+		//se volete inserire un immagine in un form aggiungete questo if nel controller e il file come argomento
+		if (!file.isEmpty()) {
+			Image img = new Image(file.getBytes());
+			this.imageService.save(img);
+			game.setImage(img);
+		}		
+		
 		this.gameValidator.validate(game, bindingResult);
+		
 		if (!bindingResult.hasErrors()) {
 			game.setDeveloper(this.developerService.getDeveloperById(developerId));
 			this.gameService.saveGame(game);

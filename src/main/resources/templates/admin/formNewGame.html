@@ -17,7 +17,7 @@
 			    <span class="ms-2">Nuovo Gioco</span>
 			</h1>
 			
-			<form th:action="@{/admin/newGame}" method="POST" th:object="${game}" class="mb-4">
+			<form th:action="@{/admin/newGame}" method="POST" th:object="${game}" enctype="multipart/form-data" class="mb-4">
 			    <div class="row">
 			        <div class="col-md-6 mb-3">
 			            <label for="title" class="form-label"><b>Titolo:</b></label>
@@ -39,12 +39,12 @@
 			            </select>
 			            <div class="invalid-feedback" th:if="${#fields.hasErrors('developer')}" th:errors="*{developer}"></div>
 			        </div>
-					<!--
+					
 			         <div class="col-md-6 mb-3">
 			            <label for="image" class="form-label"><b>Immagine:</b></label>
-			            <input type="file" class="form-control" id="image" th:field="${game.image}">
+			            <input type="file" name="file" class="form-control" id="image">
 			            <div class="invalid-feedback" th:if="${#fields.hasErrors('image')}" th:errors="*{image}"></div>
-			        </div> -->
+			        </div>
 			    </div>
 			    <div class="mb-3">
 			        <label for="description" class="form-label"><b>Descrizione:</b></label>

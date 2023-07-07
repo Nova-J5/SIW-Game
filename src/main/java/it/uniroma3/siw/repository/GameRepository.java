@@ -16,8 +16,4 @@ public interface GameRepository extends CrudRepository<Game, Long> {
 			
     public boolean existsByTitleAndYear(String title, Integer year); 
     
-    public List<Game> findCurrentlyPlayingByUser(User user);
-    
-    public List<Game> findPlayedByUser(User user);
-    
 }

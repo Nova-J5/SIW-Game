@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>
+			Nuovo Genere
+		</title>
+		<div th:replace="fragments/css :: css-dep"></div>
+		<link rel="stylesheet" href="/css/form_new_genre_style.css" />		
+	</head>
+
+	<body>
+		<div th:replace="fragments/navbar :: navbar"></div>
+		
+		<div class="container">
+			
+			<h1 class="mb-4">
+			    <span class="ms-2">Nuovo Genere</span>
+			</h1>
+			
+			<form th:action="@{/admin/newGenre}" method="POST" th:object="${genre}" class="mb-4">
+			    <div class="row">
+			        <div class="col mb-3">
+			            <label for="name" class="form-label"><b>Nome:</b></label>
+			            <input type="text" class="form-control" id="name" th:field="${genre.name}">
+			            <div class="invalid-feedback" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
+			        </div>
+			    </div>
+			    <div class="row">
+			        <div class="col-md-6 mb-3">
+			            <label for="iconImage" class="form-label"><b>Icona:</b></label>
+			            <input type="file" class="form-control" id="iconImage" th:field="${genre.iconImage}">
+			            <div class="invalid-feedback" th:if="${#fields.hasErrors('iconImage')}" th:errors="*{iconImage}"></div>
+			        </div>
+					<div class="col-md-6 mb-3">
+			            <label for="backgroundImage" class="form-label"><b>Sfondo:</b></label>
+			            <input type="file" class="form-control" id="backgroundImage" th:field="${genre.backgroundImage}">
+			            <div class="invalid-feedback" th:if="${#fields.hasErrors('backgroundImage')}" th:errors="*{backgroundImage}"></div>
+			        </div>
+			    </div>
+			    <div class="mb-3">
+			        <label for="description" class="form-label"><b>Descrizione:</b></label>
+			        <textarea class="form-control" id="description" rows="5" th:field="${genre.description}"></textarea>
+			    </div>
+			    <div>
+			        <button type="submit" class="btn btn-primary">Conferma</button>
+			    </div>
+			</form>
+		</div>
+	</body>
+</html>

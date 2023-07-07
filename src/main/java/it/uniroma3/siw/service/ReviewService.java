@@ -4,12 +4,16 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import it.uniroma3.siw.model.Game;
 import it.uniroma3.siw.model.Review;
 import it.uniroma3.siw.model.User;
 import it.uniroma3.siw.repository.ReviewRepository;
 import jakarta.transaction.Transactional;
 
+
+@Service
 public class ReviewService {
 
 	@Autowired

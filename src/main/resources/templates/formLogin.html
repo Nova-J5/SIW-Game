@@ -9,62 +9,68 @@
 	<body>
 		<div th:replace="fragments/navbar :: navbar"></div>
 		
-			<section class="vh-100">
-			  <div class="container py-5 h-100">
-			    <div class="row d-flex">
-      			  <div class="col-md-8 col-lg-7 col-xl-6 align-items-center justify-content-center text-center">
-			        <img src="https://fs-prod-cdn.nintendo-europe.com/media/images/08_content_images/games_6/nintendo_switch_7/nswitch_thelegendofzeldatearsofthekingdom/TheLegendOfZeldaTearsOfTheKingdom_Link_sideimg_01.png"
-			          class="img-fluid" alt="Phone image">
-			      </div>
-      			  <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
-						
-					<p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Login</p>
+		<section class="vh-auto" 
+			style="background-color: #eee;">
+		  <div class="container h-100">
+		    <div class="row d-flex justify-content-center align-items-center h-100">
+		      <div class="col-lg-12 col-xl-11">
+		        <div class="card text-black" style="border-radius: 25px;">
+		          <div class="card-body p-md-5">
+		            <div class="row d-flex">
+		              <div class="col-md-8 col-lg-7 col-xl-6 align-items-center justify-content-center text-center">
+		                <img src="https://fs-prod-cdn.nintendo-europe.com/media/images/08_content_images/games_6/nintendo_switch_7/nswitch_thelegendofzeldatearsofthekingdom/TheLegendOfZeldaTearsOfTheKingdom_Link_sideimg_01.png"
+		                  class="img-fluid" alt="Phone image">
+		              </div>
+		              <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
+		                <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Login</p>
+		
+		                <form th:action="@{/login}" method="POST">
+		                  <div class="form-outline mb-4">
+		                    <input type="text" placeholder="Username" id="form1Example13" class="form-control form-control-lg" required  />
+		                    <label class="form-label" for="form1Example13"></label>
+		                  </div>
+		
+		                  <div class="form-outline mb-4">
+		                    <input type="password" placeholder="Password" id="form1Example23" class="form-control form-control-lg" required  />
+		                    <label class="form-label" for="form1Example23"></label>
+		                  </div>
+		
+		                  <div class="d-flex justify-content-around align-items-center mb-4">
+		                    <div class="form-check">
+		                      <input class="form-check-input" type="checkbox" value="" id="form1Example3" checked />
+		                      <label class="form-check-label" for="form1Example3"> Ricordami </label>
+		                    </div>
+		                    <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">Hai dimenticato la password?</a>
+		                  </div>
+		
+		                  <span><button type="submit" class="btn btn-primary btn-lg btn-block">Accedi</button></span>
+		
+		                  <div class="divider d-flex align-items-center my-4">
+		                    <p class="text-center fw-bold mx-3 mb-0 text-muted">OPPURE</p>
+		                  </div>
+		
+		                  <a class="btn btn-primary btn-lg btn-block" style="background-color: #444c56" role="button">
+		                    <i class="fab fa-github me-2"></i>Continua con GitHub
+		                  </a>
+		
+		                  <a class="btn btn-primary btn-lg btn-block" style="background-color: #55acee" role="button">
+		                    <i class="fab fa-twitter me-2"></i>Continua con Twitter
+		                  </a>
+		
+		                  <p class="text-center text-muted mt-5 mb-0">Non hai ancora un account?
+		                    <a th:href="@{/register}" class="fw-bold text-body"><u>Registrati</u></a>
+		                  </p>
+		                </form>
+		              </div>
+		            </div>
+		          </div>
+		        </div>
+		      </div>
+		    </div>
+		  </div>
+		</section>
+		
+		<div th:replace="fragments/footer :: footer"></div>
 
-			        <form th:action="@{/login}" method="POST">
-						
-			          <div class="form-outline mb-4">
-			            <input type="text" placeholder="Username" id="form1Example13" class="form-control form-control-lg" required />
-			            <label class="form-label" for="form1Example13"></label>
-			          </div>
-			
-			          <div class="form-outline mb-4">
-			            <input type="password" placeholder="Password" id="form1Example23" class="form-control form-control-lg" required />
-			            <label class="form-label" for="form1Example23"></label>
-			          </div>
-			
-			          <div class="d-flex justify-content-around align-items-center mb-4">
-			            <!-- Checkbox -->
-			            <div class="form-check">
-			              <input class="form-check-input" type="checkbox" value="" id="form1Example3" checked />
-			              <label class="form-check-label" for="form1Example3"> Ricordami </label>
-			            </div>
-			            <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">Hai dimenticato la password?</a>
-			          </div>
-			
-			          <!-- Submit button -->
-			          <span><button type="submit" class="btn btn-primary btn-lg btn-block">Accedi</button></span>
-			
-			          <div class="divider d-flex align-items-center my-4">
-			            <p class="text-center fw-bold mx-3 mb-0 text-muted">OPPURE</p>
-			          </div>
-			
-			          <a class="btn btn-primary btn-lg btn-block" style="background-color: #444c56"
-			            role="button">
-			            <i class="fab fa-github me-2"></i>Continua con GitHub
-			          </a>
-			          
-			          <a class="btn btn-primary btn-lg btn-block" style="background-color: #55acee"
-			            role="button">
-			            <i class="fab fa-twitter me-2"></i>Continua con Twitter
-			          </a>
-			
-  						<p class="text-center text-muted mt-5 mb-0">Non hai ancora un account? 
-							<a th:href="@{/register}" class="fw-bold text-body"><u>Registrati</u></a>
-						</p>
-			        </form>
-			      </div>
-			    </div>
-			  </div>
-			</section>
 	</body>
 </html>

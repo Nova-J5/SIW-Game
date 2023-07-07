@@ -22,6 +22,10 @@ public class Platform {
 	@Column(length = 2000)
 	private String description;
 	
+	// Descrizione della piattaforma usata nel carosello quindi dovrà essere molto corta //
+	@Column(length = 200)
+	private String carouselDescription;
+	
 	@ManyToOne
 	private Developer developer;
 	
@@ -93,6 +97,15 @@ public class Platform {
 	}
 	
 	
+	
+	public String getCarouselDescription() {
+		return carouselDescription;
+	}
+
+	public void setCarouselDescription(String carouselDescription) {
+		this.carouselDescription = carouselDescription;
+	}
+
 	/***************************************
 	 ********** EQUALS E HASHCODE **********
 	 ***************************************/

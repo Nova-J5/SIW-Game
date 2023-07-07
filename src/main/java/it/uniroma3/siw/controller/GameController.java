@@ -33,11 +33,6 @@ public class GameController {
 	@Autowired
 	PlatformRepository platformRepository;
 	
-	@GetMapping("/")
-	public String index() {
-		return "index.html";
-	}
-	
 	@GetMapping("/formNewGame")
 	public String formNewGame(Model model) {
 		model.addAttribute("game", new Game());

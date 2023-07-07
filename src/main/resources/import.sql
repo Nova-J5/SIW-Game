@@ -4,7 +4,7 @@
 insert into game values (nextval('game_seq'), 'gioco bello', 'super mario', 2000);
 insert into game values (nextval('game_seq'), 'gioco brutto', 'pokemon scarlatto', 2022);
 insert into game values (nextval('game_seq'), 'gioco meraviglioso', 'zelda', 2018);
-insert into platform values (nextval('platform_seq'), 'descrizione console', 'nintendo', 1800);
+insert into platform (id,carousel_description,description,name,year_of_release) values (nextval('platform_seq'),'Grande casa di produzione videoludica nipponica' ,'descrizione console', 'nintendo', 1800);
 
 
 

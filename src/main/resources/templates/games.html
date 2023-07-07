@@ -1,14 +1,6 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<link 
-			href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" 
-			rel="stylesheet" 
-			integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" 
-			crossorigin="anonymous">
-		 <link
-	     	rel="stylesheet" 
-	    	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
 		<title>
 			Lista Giochi
 		</title>
@@ -32,10 +24,10 @@
 						<div class="card border-0" style="width: 18rem;">
 							<a th:href="@{'/game/' + ${game.id}}">   
 								<div th:if="${game.image} != null" class="card-img-top">
-									<img th:src="@{'/display/image/' + ${game.image.id}}" width="150px" height="120px"/>
+									<img th:src="@{'/display/image/' + ${game.image.id}}" width="150px" height="120px" class="d-block w-100"/>
 								</div>
 								<div th:if="${game.image} == null" class="card-img-top" >
-									<img src="/images/image-not-available.jpeg" width="150px" height="120px" />
+									<img src="/images/image-not-available.jpeg" width="150px" height="120px" class="d-block w-100" />
 								</div>
 							</a>
 							<div class="card-body">
@@ -46,5 +38,6 @@
 				</ul>
 			</li>
 		</ul>
+		<div th:replace="fragments/footer :: footer"></div>
 	</body>
 </html>

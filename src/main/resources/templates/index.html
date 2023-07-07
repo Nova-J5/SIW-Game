@@ -11,31 +11,39 @@
 	<body>		
 		<div th:replace="fragments/navbar :: navbar"></div>
 
-		<div class="blocco-carosello rounded-3">
+		<div class="blocco-carosello rounded-3" th:if="${!platforms.isEmpty() || platformActive!=null}">
 			<div class="carosello">
 				<div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel" data-bs-interval="false">
 					<div class="carousel-inner">
-						  <div class="carousel-item active">
-							<img src="/images/nintendo logo lungo.png" class="d-block w-100" alt="...">
+						<div class="carousel-item active">
+							<a th:href="@{'/platform/' + ${platformActive.id}}"> 
+								<div th:if="${platformActive.image} != null">
+									<img th:src="@{'/display/image/' + ${platform.image.id}}" class="d-block w-100" />
+								</div>
+								<div th:if="${platformActive.image} == null">
+									<img src="/images/image-not-available.jpeg" class="d-block w-100" />
+								</div> 
+							</a>
 							<div class="carousel-caption d-none d-md-block">
-								<h5>Nintendo</h5>
-								<p> Breve descrizione </p>
+								<h5 th:text="${platformActive.name}">Piattaforma</h5>
+								<p th:text="${platformActive.carouselDescription}"> Breve descrizione </p>
 							</div>
-						  </div>
-						  <div class="carousel-item ">
-							<img src="/images/xbox lofo grande.jpg" class="d-block w-100" alt="...">
+						</div>
+
+						<div th:each="platform : ${platforms}" class="carousel-item">
+							<a th:href="@{'/platform/' + ${platform.id}}"> 
+								<div th:if="${platform.image} != null">
+									<img th:src="@{'/display/image/' + ${platform.image.id}}" class="d-block w-100" />
+								</div>
+								<div th:if="${platform.image} == null">
+									<img src="/images/image-not-available.jpeg" class="d-block w-100" />
+								</div> 
+							</a>
 							<div class="carousel-caption d-none d-md-block">
-								<h5>Xbox</h5>
-								<p> Breve descrizione </p>
+								<h5 th:text="${platform.name}">Piattaforma</h5>
+								<p th:text="${platform.carouselDescription}"> Breve descrizione </p>
 							</div>
-						  </div>
-						  <div class="carousel-item">
-							<img src="/images/playstation logo.jpg" class="d-block w-100" alt="...">
-							<div class="carousel-caption d-none d-md-block">
-								<h5>Playstation</h5>
-								<p> Breve descrizione </p>
-							</div>
-						  </div>
+						</div>
 					</div>
 					<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
 					  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -48,7 +56,7 @@
 				  </div>
 			</div>
 		</div>
-	    
+	    <div th:replace="fragments/footer :: footer"></div>
 	</body>
 </html>
 

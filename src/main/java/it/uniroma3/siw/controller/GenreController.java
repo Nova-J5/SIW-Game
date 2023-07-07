@@ -14,15 +14,17 @@ public class GenreController {
 	@Autowired
 	private GenreRepository genreRepository;
 	
-	@GetMapping("/genres")
-	public String showGames(Model model) {
-		model.addAttribute("genres", this.genreRepository.findAll());
-		return "genres.html";
-	}
 	@GetMapping("/genre/{id}")
 	public String getGenre(@PathVariable("id") Long id, Model model) {
 		model.addAttribute("genre", this.genreRepository.findById(id).get());
 		return "genre.html";
 	}
+	
+	@GetMapping("/genres")
+	public String showGames(Model model) {
+		model.addAttribute("genres", this.genreRepository.findAll());
+		return "genres.html";
+	}
+	
 	
 }

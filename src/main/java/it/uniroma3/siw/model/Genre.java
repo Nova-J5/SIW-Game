@@ -19,7 +19,10 @@ public class Genre {
 	private String description;
 	
 	@OneToOne
-	private Image image;
+	private Image backgroundImage;
+	
+	@OneToOne
+	private Image iconImage;
 	
 	@ManyToMany
 	private List<Game> games;
@@ -53,12 +56,20 @@ public class Genre {
 		this.description = description;
 	}
 
-	public Image getImage() {
-		return image;
+	public Image getBackgroundImage() {
+		return backgroundImage;
 	}
 
-	public void setImage(Image image) {
-		this.image = image;
+	public void setBackgroundImage(Image backgroundImage) {
+		this.backgroundImage = backgroundImage;
+	}
+
+	public Image getIconImage() {
+		return iconImage;
+	}
+
+	public void setIconImage(Image iconImage) {
+		this.iconImage = iconImage;
 	}
 
 	public List<Game> getGames() {

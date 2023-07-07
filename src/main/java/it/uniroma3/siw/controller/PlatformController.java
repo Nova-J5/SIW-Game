@@ -55,7 +55,7 @@ public class PlatformController {
 	public String newPlatform(@ModelAttribute("platform") Platform platform, 
 			@RequestParam("developerId") Long developerId, Model model) {
 		if (!platformRepository.existsByNameAndYearOfRelease(platform.getName(), platform.getYearOfRelease())) {
-			platform.setDeveloper(this.developerService.getDeveloper(developerId));
+			platform.setDeveloper(this.developerService.getDeveloperById(developerId));
 			this.platformService.savePlatform(platform);
 			model.addAttribute("platform", platform);
 			return "platform.html";

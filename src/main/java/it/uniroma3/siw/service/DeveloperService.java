@@ -23,7 +23,7 @@ public class DeveloperService {
 	}
 	
 	@Transactional
-    public Developer getDeveloper(Long id) {
+    public Developer getDeveloperById(Long id) {
         Optional<Developer> result = this.developerRepository.findById(id);
         return result.orElse(null);
     }

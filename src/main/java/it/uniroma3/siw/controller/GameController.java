@@ -102,10 +102,11 @@ public class GameController {
 	}
 	
 	@PostMapping("/admin/newGame")
-	public String newGame(@Valid @ModelAttribute("game") Game game, BindingResult bindingResult, Model model) {
+	public String newGame(@Valid @ModelAttribute("game") Game game, BindingResult bindingResult, Model model,
+			@RequestParam Long developerId) {
 		this.gameValidator.validate(game, bindingResult);
 		if (!bindingResult.hasErrors()) {
-			//game.setDeveloper(this.developerService.getDeveloper(developerId));
+			game.setDeveloper(this.developerService.getDeveloperById(developerId));
 			this.gameService.saveGame(game);
 			model.addAttribute("game", game);
 			return "game.html";

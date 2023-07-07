@@ -31,14 +31,15 @@
 			        </div>
 			    </div>
 			    <div class="row">
-			       <!-- <div class="col-md-6 mb-3">
+			        <div class="col-md-6 mb-3">
 			            <label for="developer" class="form-label"><b>Sviluppatore:</b></label>
-			            <select class="form-select" id="developer" th:field="${game.developer}">
+			            <select class="form-select" id="developer" name="developerId">
 			                <option value="" disabled selected>Scegli uno sviluppatore</option>
 			                <option th:each="developer : ${developers}" th:value="${developer.id}" th:text="${developer.name}"></option>
 			            </select>
 			            <div class="invalid-feedback" th:if="${#fields.hasErrors('developer')}" th:errors="*{developer}"></div>
 			        </div>
+					<!--
 			         <div class="col-md-6 mb-3">
 			            <label for="image" class="form-label"><b>Immagine:</b></label>
 			            <input type="file" class="form-control" id="image" th:field="${game.image}">

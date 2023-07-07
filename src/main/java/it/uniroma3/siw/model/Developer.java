@@ -22,23 +22,26 @@ public class Developer {
 	@Column(length = 2000)
 	private String description;
 	
+	@OneToOne
+	private Image image;
+	
 	@OneToMany(mappedBy = "developer")
 	private List<Game> gamesProduced;
 	
 	@OneToMany(mappedBy = "developer")
 	private List<Platform> platformsProduced;
 	
+	
 	public Developer() {
 		this.gamesProduced = new ArrayList<>();
 		this.platformsProduced = new ArrayList<>();
 	}
 	
+	
 	/*************************************
 	 ********** GETTER E SETTER **********
 	 *************************************/
 
-	
-	
 	public Long getId() {
 		return Id;
 	}
@@ -77,6 +80,15 @@ public class Developer {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+	
+	public Image getImage() {
+		return image;
+	}
+
+
+	public void setImage(Image image) {
+		this.image = image;
 	}
 
 	public List<Game> getGames() {
@@ -117,5 +129,4 @@ public class Developer {
 		return Objects.equals(Id, other.Id) && Objects.equals(yearOfFoundation, other.yearOfFoundation);
 	}
 
-	
 }

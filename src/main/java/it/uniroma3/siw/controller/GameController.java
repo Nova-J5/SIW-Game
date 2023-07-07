@@ -113,6 +113,7 @@ public class GameController {
 			@RequestParam Long developerId, @RequestParam("file") MultipartFile file) throws IOException {
 		
 		//se volete inserire un immagine in un form aggiungete questo if nel controller e il file come argomento
+		//in html va messo nella riga di input type="file" name="file" e nella riga del form enctype="multipart/form-data"
 		if (!file.isEmpty()) {
 			Image img = new Image(file.getBytes());
 			this.imageService.save(img);

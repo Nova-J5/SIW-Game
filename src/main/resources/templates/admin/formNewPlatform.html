@@ -17,7 +17,7 @@
 			    <span class="ms-2">Nuova Piattaforma</span>
 			</h1>
 			
-			<form th:action="@{/admin/newPlatform}" method="POST" th:object="${platform}" class="mb-4">
+			<form th:action="@{/admin/newPlatform}" method="POST" th:object="${platform}" enctype="multipart/form-data" class="mb-4">
 			    <div class="row">
 			        <div class="col-md-6 mb-3">
 			            <label for="name" class="form-label"><b>Nome:</b></label>
@@ -33,7 +33,7 @@
 			    <div class="row">
 			        <div class="col-md-6 mb-3">
 			            <label for="developer" class="form-label"><b>Sviluppatore:</b></label>
-			            <select class="form-select" id="developer" th:field="${platform.developer}">
+			            <select class="form-select" id="developer" name="developerId">
 			                <option value="" disabled selected>Scegli uno sviluppatore</option>
 			                <option th:each="developer : ${developers}" th:value="${developer.id}" th:text="${developer.name}"></option>
 			            </select>
@@ -41,7 +41,7 @@
 			        </div>
 			        <div class="col-md-6 mb-3">
 			            <label for="image" class="form-label"><b>Immagine:</b></label>
-			            <input type="file" class="form-control" id="image" th:field="${platform.image}">
+			            <input type="file" name="image" class="form-control" id="image">
 			            <div class="invalid-feedback" th:if="${#fields.hasErrors('image')}" th:errors="*{image}"></div>
 			        </div>
 			    </div>

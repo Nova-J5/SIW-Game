@@ -1,16 +1,24 @@
 package it.uniroma3.siw.controller;
 
+import java.io.IOException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+
 import it.uniroma3.siw.model.Genre;
+import it.uniroma3.siw.model.Image;
 import it.uniroma3.siw.repository.GenreRepository;
 import it.uniroma3.siw.service.GenreService;
+import it.uniroma3.siw.service.ImageService;
 
 @Controller
 public class GenreController {
@@ -20,6 +28,9 @@ public class GenreController {
 	
 	@Autowired
 	private GenreService genreService;
+
+	@Autowired
+	private ImageService imageService;
 	
 	
 	@GetMapping("/genre/{id}")
@@ -41,13 +52,27 @@ public class GenreController {
 	}
 	
 	@PostMapping("/admin/newGenre")
-	public String newGenre(@ModelAttribute("genre") Genre genre, Model model) {
-		if (!genreRepository.existsByName(genre.getName())) {
+	public String newGenre(@ModelAttribute("genre") Genre genre, BindingResult bindingResult, Model model, @RequestParam("icon") MultipartFile icon,
+			@RequestParam("background") MultipartFile background) throws IOException {
+		
+		if (!icon.isEmpty()) {
+			Image img = new Image(icon.getBytes());
+			this.imageService.save(img);
+			genre.setIconImage(img);
+		}
+		
+		if (!background.isEmpty()) {
+			Image img = new Image(background.getBytes());
+			this.imageService.save(img);
+			genre.setIconImage(img);
+		}	
+		
+		//qui va creata la classe validator
+		if (!genreRepository.existsByName(genre.getName()) && !bindingResult.hasErrors()) {
 			this.genreService.saveGenre(genre);
 			model.addAttribute("genre", genre);
 			return "genre.html";
 		} else {
-			model.addAttribute("messaggioErrore", "Questo genere esiste già");
 			return "admin/formNewGenre.html"; 
 		}
 	}

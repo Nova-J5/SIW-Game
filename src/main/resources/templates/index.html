@@ -9,8 +9,10 @@
 	</head>
 	
 	<body>	
-		<a href="/admin/formNewGame">Crea un nuovo gioco (per i test)</a>	
 		<div th:replace="fragments/navbar :: navbar"></div>
+		<a href="/admin/formNewGame">Crea un nuovo gioco (per i test)</a>	
+		<a href="/admin/formNewGenre">Crea un nuovo genere (per i test)</a>	
+		<a href="/admin/formNewPlatform">Crea una nuova piattaforma (per i test)</a>	
 
 		<div class="blocco-carosello rounded-3" th:if="${!platforms.isEmpty() || platformActive!=null}">
 			<div class="carosello">

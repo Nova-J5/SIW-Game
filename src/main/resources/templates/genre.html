@@ -25,10 +25,17 @@
 				</li>
 	    	</span>
 	    	
-	   	 	<div th:if="${genre.image} != null">
-				<img th:src="@{'/display/image/' + ${genre.image.id}}" width=50% />
+	   	 	<div th:if="${genre.backgroundImage} != null">
+				<img th:src="@{'/display/image/' + ${genre.backgroundImage.id}}" width=50% />
 	        </div>
-	        <div th:if="${genre.image} == null">
+	        <div th:if="${genre.backgroundImage} == null">
+	        	<img src="/images/image-not-available.jpeg" />
+	      	</div>
+	      	
+	      	<div th:if="${genre.iconImage} != null">
+				<img th:src="@{'/display/image/' + ${genre.iconImage.id}}" width=50% />
+	        </div>
+	        <div th:if="${genre.iconImage} == null">
 	        	<img src="/images/image-not-available.jpeg" />
 	      	</div>
 	    	

@@ -21,19 +21,19 @@
 			    <div class="row">
 			        <div class="col-md-6 mb-3">
 			            <label for="name" class="form-label"><b>Nome:</b></label>
-			            <input type="text" class="form-control" id="name" th:field="${platform.name}">
+			            <input required type="text" class="form-control" id="name" th:field="${platform.name}">
 			            <div class="invalid-feedback" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
 			        </div>
 			        <div class="col-md-6 mb-3">
 			            <label for="yearOfRelease" class="form-label"><b>Anno di rilascio:</b></label>
-			            <input type="text" class="form-control" id="yearOfRelease" th:field="${platform.yearOfRelease}">
+			            <input required type="text" class="form-control" id="yearOfRelease" th:field="${platform.yearOfRelease}">
 			            <div class="invalid-feedback" th:if="${#fields.hasErrors('yearOfRelease')}" th:errors="*{yearOfRelease}"></div>
 			        </div>
 			    </div>
 			    <div class="row">
 			        <div class="col-md-6 mb-3">
 			            <label for="developer" class="form-label"><b>Sviluppatore:</b></label>
-			            <select class="form-select" id="developer" name="developerId">
+			            <select required class="form-select" id="developer" name="developerId">
 			                <option value="" disabled selected>Scegli uno sviluppatore</option>
 			                <option th:each="developer : ${developers}" th:value="${developer.id}" th:text="${developer.name}"></option>
 			            </select>
@@ -42,13 +42,13 @@
 			        </div>
 			        <div class="col-md-6 mb-3">
 			            <label for="image" class="form-label"><b>Immagine:</b></label>
-			            <input type="file" name="image" class="form-control" id="image">
+			            <input required type="file" name="file" class="form-control" id="image">
 			            <div class="invalid-feedback" th:if="${#fields.hasErrors('image')}" th:errors="*{image}"></div>
 			        </div>
 			    </div>
 			    <div class="mb-3">
 			        <label for="description" class="form-label"><b>Descrizione:</b></label>
-			        <textarea class="form-control" id="description" rows="5" th:field="${platform.description}"></textarea>
+			        <textarea required class="form-control" id="description" rows="5" th:field="${platform.description}"></textarea>
 			    </div>
 			    <div>
 			        <button type="submit" class="btn btn-primary">Conferma</button>

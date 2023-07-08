@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import it.uniroma3.siw.model.Developer;
 import it.uniroma3.siw.model.Image;
 import it.uniroma3.siw.model.Platform;
 import it.uniroma3.siw.repository.DeveloperRepository;
@@ -40,6 +41,10 @@ public class PlatformController {
 	@Autowired
 	private ImageService imageService;
 	
+	
+	// ********************************************** //
+	// CONTROLLER PER RICHIESTE DI UN UTENTE GENERICO
+	//********************************************** //
 
 	@GetMapping("/platform/{id}")
 	public String getPlatform(@PathVariable("id") Long id, Model model) {
@@ -52,6 +57,11 @@ public class PlatformController {
 		model.addAttribute("platforms", this.platformRepository.findAll());
 		return "platforms.html";
 	}
+	
+	
+	//************************************* //
+	// CONTROLLER PER RICHIESTE DI UN ADMIN
+	//************************************* //
 	
 	@GetMapping("/admin/formNewPlatform")
 	public String formNewPlatform(Model model) {
@@ -73,7 +83,11 @@ public class PlatformController {
 		
 		//da aggiungere il validator
 		if (!platformRepository.existsByNameAndYearOfRelease(platform.getName(), platform.getYearOfRelease()) && !bindingResult.hasErrors()) {
-			platform.setDeveloper(this.developerService.getDeveloperById(developerId));
+			Developer developer = this.developerService.getDeveloperById(developerId);
+			
+			this.platformService.inizializePlatform(platform,developer);
+			
+			this.developerService.saveDeveloper(developer);
 			this.platformService.savePlatform(platform);
 			model.addAttribute("platform", platform);
 			return "platform.html";

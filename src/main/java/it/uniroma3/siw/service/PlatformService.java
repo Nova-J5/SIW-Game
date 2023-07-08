@@ -6,9 +6,11 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import it.uniroma3.siw.model.Developer;
+import it.uniroma3.siw.model.Game;
 import it.uniroma3.siw.model.Platform;
 import it.uniroma3.siw.repository.PlatformRepository;
 import jakarta.transaction.Transactional;
+import jakarta.validation.Valid;
 
 @Service
 public class PlatformService {
@@ -64,6 +66,16 @@ public class PlatformService {
 	@Transactional
 	public boolean alreadyExists(Platform platform) {
 		return this.platformRepository.existsByNameAndYearOfRelease(platform.getName(), platform.getYearOfRelease());
+	}
+
+	public List<Platform> getAllPlatformsNotInGame(@Valid Game game) {
+		return this.platformRepository.findPlatformNotInGame(game);
+	}
+
+	public void inizializePlatform(Platform platform, Developer developer) {
+		platform.setDeveloper(developer);
+		developer.getPlatformsProduced().add(platform);
+		
 	}
 
 }

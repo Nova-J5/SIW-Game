@@ -7,8 +7,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import it.uniroma3.siw.model.Developer;
 import it.uniroma3.siw.model.Game;
+import it.uniroma3.siw.model.Genre;
+import it.uniroma3.siw.model.Platform;
+import it.uniroma3.siw.model.Review;
 import it.uniroma3.siw.repository.GameRepository;
 import jakarta.transaction.Transactional;
+import jakarta.validation.Valid;
 
 @Service
 public class GameService {
@@ -22,7 +26,7 @@ public class GameService {
 	}
 	
 	@Transactional
-    public Game getGame(Long id) {
+    public Game getGameById(Long id) {
         Optional<Game> result = this.gameRepository.findById(id);
         return result.orElse(null);
     }
@@ -65,5 +69,13 @@ public class GameService {
 	public boolean alreadyExists(Game game) {
 		return this.gameRepository.existsByTitleAndYear(game.getTitle(), game.getYear());
 	}
+
+	public void inizializeGame(@Valid Game game, Developer developer) {
+		game.setDeveloper(developer);
+		developer.getGames().add(game);
+	}
+
+
+
 
 }

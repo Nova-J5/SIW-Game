@@ -9,6 +9,7 @@ import it.uniroma3.siw.model.Game;
 import it.uniroma3.siw.model.Genre;
 import it.uniroma3.siw.repository.GenreRepository;
 import jakarta.transaction.Transactional;
+import jakarta.validation.Valid;
 
 @Service
 public class GenreService {
@@ -55,5 +56,9 @@ public class GenreService {
 	public boolean alreadyExists(Genre genre) {
 		return this.genreRepository.existsByName(genre.getName());
 	}
-	
+
+	public List<Genre> getAllGenresNotInGame(@Valid Game game) {
+		return this.genreRepository.findGenreNotInGame(game);
+	}
+
 }

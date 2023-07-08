@@ -42,7 +42,7 @@
 			        </div>
 			        <div class="col-md-6 mb-3">
 			            <label for="image" class="form-label"><b>Immagine:</b></label>
-			            <input required type="file" name="file" class="form-control" id="image">
+			            <input required type="file" name="file" class="form-control" id="file" accept="file/png, file/jpeg, file/jpg">
 			            <div class="invalid-feedback" th:if="${#fields.hasErrors('image')}" th:errors="*{image}"></div>
 			        </div>
 			    </div>

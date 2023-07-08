@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>
+			Aggiungi piattaforme e generi
+		</title>
+		<div th:replace="fragments/css :: css-dep"></div>
+		<link rel="stylesheet" href="/css/add_games_to_platform_style.css" />		
+	</head>
+
+	<body>
+		<div th:replace="fragments/navbar :: navbar"></div>
+		
+		<div class="container">
+			
+			<h1 class="mb-4">
+			    <span class="ms-2">Aggiungi le piattaforme e i generi di <span th:text="${game.title}"> Gioco </span> </span>
+			</h1>
+			
+			<div class="form-actors rounded-2">
+                <div class="text-attori-selezionati"> piattaforme selezionate</div>
+                <ul th:if="${!platformInGame.isEmpty()}" class="artist-list-in-form ">
+                    <li class="h6 mt-1" th:each="platform : ${platformInGame}"> 
+                        <div class="flexbox-form">
+                            <span th:text="${platform.name}"> Nome piattaforma</span> 
+                            <a class="btn-close btn btn-close-form-movie" th:href="@{'/admin/removePlatform/' + ${game.id} + '/' + ${platform.id}}"></a>
+                        </div>
+                        
+                    </li>
+                </ul>
+                <div th:if="${platformInGame.isEmpty()}" class="artist-list-in-form">
+                    <ul>
+                        <li class="h6 mt-1">
+                            Nessuna
+                        </li>
+                    </ul>
+                </div>
+                <div class="dropdown dropdown-actors">
+                    <button class="btn dropdown-toggle btn-attori" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="btn text-attori text-start"> Tutte le piattaforme </span>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-actors" th:if="${!platformNotInGame.isEmpty()}">
+                        <li th:each="platform : ${platformNotInGame}" ><a class="dropdown-item" th:text="${platform.name}" th:href="@{'/admin/addPlatform/' + ${game.id} + '/' + ${platform.id}}"> Nome piattaforma</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="form-actors rounded-2">
+                <div class="text-attori-selezionati"> Generi selezionati</div>
+                <ul th:if="${!genresInGame.isEmpty()}" class="artist-list-in-form ">
+                    <li class="h6 mt-1" th:each="genre : ${genresInGame}"> 
+                        <div class="flexbox-form">
+                            <span th:text="${genre.name}"> Nome genere</span> 
+                            <a class="btn-close btn btn-close-form-movie" th:href="@{'/admin/removeGenre/' + ${game.id} + '/' + ${genre.id}}"></a>
+                        </div>
+                        
+                    </li>
+                </ul>
+                <div th:if="${genresInGame.isEmpty()}" class="artist-list-in-form">
+                    <ul>
+                        <li class="h6 mt-1">
+                            Nessuno
+                        </li>
+                    </ul>
+                </div>
+                <div class="dropdown dropdown-actors">
+                    <button class="btn dropdown-toggle btn-attori" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="btn text-attori text-start"> Tutti i generi </span>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-actors" th:if="${!genresNotInGame.isEmpty()}">
+                        <li th:each="genre : ${genresNotInGame}" ><a class="dropdown-item" th:text="${genre.name}" th:href="@{'/admin/addGenre/' + ${game.id} + '/' + ${genre.id}}"> Nome piattaforma</a></li>
+                    </ul>
+                </div>
+                <a class="btn btn-primary btn-conferm-actor-form" th:href="@{'/game' + '/' + ${game.id}}"> Conferma</a>
+            </div>
+	</body>
+</html>

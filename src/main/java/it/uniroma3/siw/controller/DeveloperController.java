@@ -33,6 +33,11 @@ public class DeveloperController {
 	@Autowired
 	private DeveloperValidator developerValidator;	
 	
+	// ********************************************** //
+	// CONTROLLER PER RICHIESTE DI UN UTENTE GENERICO
+	//********************************************** //
+	
+	
 	@GetMapping("/developer/{id}")
 	public String getDeveloper(@PathVariable("id") Long id, Model model) {
 		model.addAttribute("developer", this.developerService.getDeveloperById(id));
@@ -45,6 +50,11 @@ public class DeveloperController {
 		return "developers.html";
 	}
 	
+	
+	//************************************* //
+	// CONTROLLER PER RICHIESTE DI UN ADMIN
+	//************************************* //
+	
 	@GetMapping("/admin/formNewDeveloper")
 	public String formNewDeveloper(Model model) {
 		model.addAttribute("developer", new Developer());		
@@ -55,15 +65,16 @@ public class DeveloperController {
 	public String newDeveloper(@Valid @ModelAttribute("developer") Developer developer, BindingResult bindingResult, Model model,
 			@RequestParam("file") MultipartFile file) throws IOException {
 		
-		if (!file.isEmpty()) {
-			Image img = new Image(file.getBytes());
-			this.imageService.save(img);
-			developer.setImage(img);
-		}		
-		
 		this.developerValidator.validate(developer, bindingResult);
 		
 		if (!bindingResult.hasErrors()) {
+			
+			if (!file.isEmpty()) {
+				Image img = new Image(file.getBytes());
+				this.imageService.save(img);
+				developer.setImage(img);
+			}	
+			
 			this.developerService.saveDeveloper(developer);
 			model.addAttribute("developer", developer);
 			return "developer.html";

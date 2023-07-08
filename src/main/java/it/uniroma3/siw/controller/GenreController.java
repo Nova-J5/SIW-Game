@@ -32,6 +32,9 @@ public class GenreController {
 	@Autowired
 	private ImageService imageService;
 	
+	// ********************************************** //
+	// CONTROLLER PER RICHIESTE DI UN UTENTE GENERICO
+	//********************************************** //
 	
 	@GetMapping("/genre/{id}")
 	public String getGenre(@PathVariable("id") Long id, Model model) {
@@ -45,6 +48,12 @@ public class GenreController {
 		return "genres.html";
 	}
 	
+	
+	//************************************* //
+	// CONTROLLER PER RICHIESTE DI UN ADMIN
+	//************************************* //
+	
+	
 	@GetMapping("/admin/formNewGenre")
 	public String formNewGenre(Model model) {
 		model.addAttribute("genre", new Genre());
@@ -55,20 +64,21 @@ public class GenreController {
 	public String newGenre(@ModelAttribute("genre") Genre genre, BindingResult bindingResult, Model model, @RequestParam("icon") MultipartFile icon,
 			@RequestParam("background") MultipartFile background) throws IOException {
 		
-		if (!icon.isEmpty()) {
-			Image img = new Image(icon.getBytes());
-			this.imageService.save(img);
-			genre.setIconImage(img);
-		}
-		
-		if (!background.isEmpty()) {
-			Image img = new Image(background.getBytes());
-			this.imageService.save(img);
-			genre.setIconImage(img);
-		}	
-		
 		//qui va creata la classe validator
 		if (!genreRepository.existsByName(genre.getName()) && !bindingResult.hasErrors()) {
+			
+			if (!icon.isEmpty()) {
+				Image img = new Image(icon.getBytes());
+				this.imageService.save(img);
+				genre.setIconImage(img);
+			}
+			
+			if (!background.isEmpty()) {
+				Image img = new Image(background.getBytes());
+				this.imageService.save(img);
+				genre.setIconImage(img);
+			}	
+			
 			this.genreService.saveGenre(genre);
 			model.addAttribute("genre", genre);
 			return "genre.html";

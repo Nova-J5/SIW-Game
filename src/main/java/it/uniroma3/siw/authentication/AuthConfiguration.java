@@ -1,6 +1,5 @@
 package it.uniroma3.siw.authentication;
 
-/*
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -26,9 +25,6 @@ import javax.sql.DataSource;
 
     @Autowired
     private DataSource dataSource;
-    
-    @Autowired
-    private CustomOAuth2UserService userService;
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth)
@@ -48,7 +44,6 @@ import javax.sql.DataSource;
     public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception{
         return authenticationConfiguration.getAuthenticationManager();
     }
-    
 
     @Bean
     protected SecurityFilterChain configure(final HttpSecurity httpSecurity) throws Exception{
@@ -57,9 +52,14 @@ import javax.sql.DataSource;
                 .authorizeHttpRequests()
 //                .requestMatchers("/**").permitAll()
                 // chiunque (autenticato o no) può accedere alle pagine index, login, register, ai css e alle immagini
-                .requestMatchers(HttpMethod.GET,"/","/index","/register","/css/**", "/images/**", "favicon.ico").permitAll()
+                .requestMatchers(HttpMethod.GET,"/", "/index", "/formRegisterUser",
+                		"/developer/{id}", "/developers", 
+                		"/game/{id}", "/games",
+                		"/genre/{id}", "/genres",
+                		"/platform/{id}", "/platforms", 
+                		"/css/**", "/images/**", "/messages/**", "favicon.ico").permitAll()
         		// chiunque (autenticato o no) può mandare richieste POST al punto di accesso per login e register 
-                .requestMatchers(HttpMethod.POST,"/register", "/login").permitAll()
+                .requestMatchers(HttpMethod.POST,"/register", "/login", "/searchGames").permitAll()
                 .requestMatchers(HttpMethod.GET,"/admin/**").hasAnyAuthority(ADMIN_ROLE)
                 .requestMatchers(HttpMethod.POST,"/admin/**").hasAnyAuthority(ADMIN_ROLE)
         		// tutti gli utenti autenticati possono accere alle pagine rimanenti 
@@ -67,11 +67,6 @@ import javax.sql.DataSource;
                 // LOGIN: qui definiamo il login
                 .and().formLogin()
                 .loginPage("/login")
-                .and()
-            	.oauth2Login()
-                	.loginPage("/login")
-                	.userInfoEndpoint()
-                    	.userService(userService)
                 .permitAll()
                 .defaultSuccessUrl("/success", true)
                 .failureUrl("/login?error=true")
@@ -89,4 +84,3 @@ import javax.sql.DataSource;
         return httpSecurity.build();
     }
 }
-*/

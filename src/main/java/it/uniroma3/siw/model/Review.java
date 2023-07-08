@@ -31,6 +31,9 @@ public class Review {
 	@ManyToOne
 	private Credentials credentials;
 	
+	@ManyToOne 
+	private User user;
+	
 	@ManyToOne
 	private Game game;
 
@@ -82,6 +85,5 @@ public class Review {
 	public void setGame(Game game) {
 		this.game = game;
 	}
-	
 	
 }

@@ -11,34 +11,35 @@
 	<body>
 		
 		<div th:replace="fragments/navbar :: navbar"></div>
-
 		
+		<div class"container">
+		    <div th:if="${genre}">
+			    <h1 th:text="${genre.name}"></h1>
+			    <h5 th:text="${genre.description}"></h5>
+			    
+		        <span th:if= "${!genre.games.isEmpty()}">
+		        	<h2>Giochi</h2>
+		        	<li th:each="game : ${genre.games}">
+				        <a th:href="@{'/game/' + ${game.id}}" th:text="${game.title}"></a>   	
+					</li>
+		    	</span>
+		    	
+		   	 	<div th:if="${genre.backgroundImage} != null">
+					<img th:src="@{'/display/image/' + ${genre.backgroundImage.id}}" width=50% />
+		        </div>
+		        <div th:if="${genre.backgroundImage} == null">
+		        	<img src="/images/image-not-available.jpeg" />
+		      	</div>
+		      	
+		      	<div th:if="${genre.iconImage} != null">
+					<img th:src="@{'/display/image/' + ${genre.iconImage.id}}" width=50% />
+		        </div>
+		        <div th:if="${genre.iconImage} == null">
+		        	<img src="/images/image-not-available.jpeg" />
+		      	</div>
+		    	
+		    <div th:unless="${genre}">Non esiste</div>
+		</div>
 
-	    <div th:if="${genre}">
-		    <h1 th:text="${genre.name}"></h1>
-		    <h5 th:text="${genre.description}"></h5>
-		    
-	        <span th:if= "${!genre.games.isEmpty()}">
-	        	<h2>Giochi</h2>
-	        	<li th:each="game : ${genre.games}">
-			        <a th:href="@{'/game/' + ${game.id}}" th:text="${game.title}"></a>   	
-				</li>
-	    	</span>
-	    	
-	   	 	<div th:if="${genre.backgroundImage} != null">
-				<img th:src="@{'/display/image/' + ${genre.backgroundImage.id}}" width=50% />
-	        </div>
-	        <div th:if="${genre.backgroundImage} == null">
-	        	<img src="/images/image-not-available.jpeg" />
-	      	</div>
-	      	
-	      	<div th:if="${genre.iconImage} != null">
-				<img th:src="@{'/display/image/' + ${genre.iconImage.id}}" width=50% />
-	        </div>
-	        <div th:if="${genre.iconImage} == null">
-	        	<img src="/images/image-not-available.jpeg" />
-	      	</div>
-	    	
-	    <div th:unless="${genre}">Non esiste</div>
 	 </body>
 </html>

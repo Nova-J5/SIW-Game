@@ -1,6 +1,5 @@
 package it.uniroma3.siw.model;
 
-import java.util.List;
 import java.util.Objects;
 import jakarta.persistence.*;
 
@@ -26,9 +25,8 @@ public class Credentials {
 	@OneToOne(cascade = CascadeType.ALL)
 	private User user;
 	
-	@OneToMany(mappedBy = "credentials")
-	private List<Review> reviews;
 
+	
 	public Long getId() {
 		return id;
 	}
@@ -61,14 +59,6 @@ public class Credentials {
 		this.role = role;
 	}
 
-	public List<Review> getReviews() {
-		return reviews;
-	}
-
-	public void setReviews(List<Review> reviews) {
-		this.reviews = reviews;
-	}
-
 	public User getUser() {
 		return user;
 	}
@@ -81,6 +71,5 @@ public class Credentials {
 	public int hashCode() {
 		return Objects.hash(id, password, role, user, username);
 	}
-	
 	
 }

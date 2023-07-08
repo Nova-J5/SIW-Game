@@ -11,33 +11,36 @@
 	<body>
 		<div th:replace="fragments/navbar :: navbar"></div>
 		
-		<ul class="list-group list-group-flush">
-			<li th:each="genre : ${genres}" class="list-group-item">
-				<div class="h1 fw-bolder" th:text="${genre.name}"> 
-					Genere
-				</div>
-				<div class="h3" th:if="${genre.games == null || genre.games.isEmpty()}">
-					Non ci sono giochi per questo genere
-				</div>
-				<ul class="d-flex flex-row flex-nowrap overflow-auto list-group list-group-horizontal" th:if="${!genre.games.isEmpty()}">
-					<li class="list-group-item border-0" th:each="game : ${genre.games}">
-						<div class="card border-0" style="width: 18rem;">
-							<a th:href="@{'/game/' + ${game.id}}">   
-								<div th:if="${game.image} != null" class="card-img-top">
-									<img th:src="@{'/display/image/' + ${game.image.id}}" width="150px" height="120px" class="d-block w-100"/>
+		<div class="container">
+			<ul class="list-group list-group-flush">
+				<li th:each="genre : ${genres}" class="list-group-item">
+					<div class="h1 fw-bolder" th:text="${genre.name}"> 
+						Genere
+					</div>
+					<div class="h3" th:if="${genre.games == null || genre.games.isEmpty()}">
+						Non ci sono giochi per questo genere
+					</div>
+					<ul class="d-flex flex-row flex-nowrap overflow-auto list-group list-group-horizontal" th:if="${!genre.games.isEmpty()}">
+						<li class="list-group-item border-0" th:each="game : ${genre.games}">
+							<div class="card border-0" style="width: 18rem;">
+								<a th:href="@{'/game/' + ${game.id}}">   
+									<div th:if="${game.image} != null" class="card-img-top">
+										<img th:src="@{'/display/image/' + ${game.image.id}}" width="150px" height="120px" class="d-block w-100"/>
+									</div>
+									<div th:if="${game.image} == null" class="card-img-top" >
+										<img src="/images/image-not-available.jpeg" width="150px" height="120px" class="d-block w-100" />
+									</div>
+								</a>
+								<div class="card-body">
+								  <h5 class="card-text" th:text="${game.title}">Nome</h5>
 								</div>
-								<div th:if="${game.image} == null" class="card-img-top" >
-									<img src="/images/image-not-available.jpeg" width="150px" height="120px" class="d-block w-100" />
-								</div>
-							</a>
-							<div class="card-body">
-							  <h5 class="card-text" th:text="${game.title}">Nome</h5>
 							</div>
-						</div>
-					</li>
-				</ul>
-			</li>
-		</ul>
+						</li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+		
 		<div th:replace="fragments/footer :: footer"></div>
 	</body>
 </html>

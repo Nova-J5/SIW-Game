@@ -10,48 +10,49 @@
 
 	<body>
 		<div th:replace="fragments/navbar :: navbar"></div>
-	
-	    <div th:if="${game}">
-		    <h1 th:text="${game.title}"></h1>
-		    <h5 th:text="${game.description}"></h5>
-	        <div>Anno di rilascio: <span th:text="'(' + ${game.year} + ')'"></span></div>
-	        <span th:if= "${!game.genres.isEmpty()}">
-		        <h2>Generi</h2>
-	        	<li th:each="genre : ${game.genres}">
-			        <a th:href="@{'/genre/' + ${genre.id}}" th:text="${genre.name}"> Genere </a>   	
-				</li>
-	    	</span>
-	    	<span th:if= "${!game.platforms.isEmpty()}">
-		        <h2>Piattaforme</h2>
-	        	<li th:each="platform : ${game.platforms}">
-			        <a th:href="@{'/platform/' + ${platform.id}}" th:text="${platform.name}"> Piattaforma </a>   	
-				</li>
-	    	</span>
-	    	<span th:if= "${game.developer != null}">
-		        <h1>Sviluppatore</h1>
-			        <a th:href="@{'/developer/' + ${game.developer.id}}" th:text="${game.developer.name}"> Sviluppatore </a>   	
-	    	</span>
-	    	
-	    	<div th:if="${game.image} != null">
-				<img th:src="@{'/display/image/' + ${game.image.id}}" width=50% />
-	        </div>
-	        <div th:if="${game.image} == null">
-	        	<img src="/images/image-not-available.jpeg" />
-	        </div>
-	    	
-	    	<div th:if="${!game.reviews.isEmpty()}" >
-				<h3 class="mt-5"> Recensioni: </h3>
-				<li th:each="review: ${game.reviews}" th:remove="tag">
-					<div class="border rounded bg-light text-dark p-3 my-3" style="width: 1000px">
-					<h5 th:text="${review.credentials.user.name} + ' ' + ${review.credentials.user.surname} + ' (' + ${review.credentials.username} + ')'"> </h5>
-                        <span th:each="i : ${#numbers.sequence(1, review.score)}">&#9733;</span>
-					
-					<span class="h5" th:text="${review.title}"></span>
-					<div th:text="${review.body}" ></div>
+		
+		<div class="container">
+		    <div th:if="${game}">
+			    <h1 th:text="${game.title}"></h1>
+			    <h5 th:text="${game.description}"></h5>
+		        <div>Anno di rilascio: <span th:text="'(' + ${game.year} + ')'"></span></div>
+		        <span th:if= "${!game.genres.isEmpty()}">
+			        <h2>Generi</h2>
+		        	<li th:each="genre : ${game.genres}">
+				        <a th:href="@{'/genre/' + ${genre.id}}" th:text="${genre.name}"> Genere </a>   	
+					</li>
+		    	</span>
+		    	<span th:if= "${!game.platforms.isEmpty()}">
+			        <h2>Piattaforme</h2>
+		        	<li th:each="platform : ${game.platforms}">
+				        <a th:href="@{'/platform/' + ${platform.id}}" th:text="${platform.name}"> Piattaforma </a>   	
+					</li>
+		    	</span>
+		    	<span th:if= "${game.developer != null}">
+			        <h1>Sviluppatore</h1>
+				        <a th:href="@{'/developer/' + ${game.developer.id}}" th:text="${game.developer.name}"> Sviluppatore </a>   	
+		    	</span>
+		    	
+		    	<div th:if="${game.image} != null">
+					<img th:src="@{'/display/image/' + ${game.image.id}}" width=50% />
+		        </div>
+		        <div th:if="${game.image} == null">
+		        	<img src="/images/image-not-available.jpeg" />
+		        </div>
+		    	
+		    	<div th:if="${!game.reviews.isEmpty()}" >
+					<h3 class="mt-5"> Recensioni: </h3>
+					<li th:each="review: ${game.reviews}" th:remove="tag">
+						<div class="border rounded bg-light text-dark p-3 my-3" style="width: 1000px">
+						<h5 th:text="${review.user.name} + ' ' + ${review.user.surname} + ' (' + ${review.user.credentials.username} + ')'"> </h5>
+	                        <span th:each="i : ${#numbers.sequence(1, review.score)}">&#9733;</span>
+						
+						<span class="h5" th:text="${review.title}"></span>
+						<div th:text="${review.body}" ></div>
+					</div>
+					</li>
 				</div>
-				</li>
-			</div>
-			
-	    <div th:unless="${game}">Non esiste</div>
+		    <div th:unless="${game}">Non esiste</div>
+		</div>
 	 </body>
 </html>

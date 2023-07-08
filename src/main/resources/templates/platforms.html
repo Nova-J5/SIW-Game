@@ -11,14 +11,16 @@
 	<body>
 		<div th:replace="fragments/navbar :: navbar"></div>
 		
-		<h1>Piattaforme</h1>
-		<div th:if="${platforms==null || platforms.isEmpty()}">Non ci sono piattaforme nel sistema</div>
-		<ul>
-			<li th:each="platform : ${platforms}">
-				<a th:href="@{'/platform' + '/' + ${platform.id}}"
-					th:text="${platform.name} + ' (' + ${platform.yearOfRelease} + ')'">Up! (2000)</a>
-			</li>
-		</ul>
+		<div class="container">
+			<h1>Piattaforme</h1>
+			<div th:if="${platforms==null || platforms.isEmpty()}">Non ci sono piattaforme nel sistema</div>
+			<ul>
+				<li th:each="platform : ${platforms}">
+					<a th:href="@{'/platform' + '/' + ${platform.id}}"
+						th:text="${platform.name} + ' (' + ${platform.yearOfRelease} + ')'">Up! (2000)</a>
+				</li>
+			</ul>
+		</div>
 		
 	</body>
 	

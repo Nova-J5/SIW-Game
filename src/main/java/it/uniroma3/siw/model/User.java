@@ -2,7 +2,6 @@ package it.uniroma3.siw.model;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import jakarta.persistence.*;
 
 @Entity
@@ -31,11 +30,20 @@ public class User {
 	@OneToMany
 	private List<Game> played;
 	
+	@OneToMany(mappedBy = "user")
+	private List<Review> reviews;
+	
+	@OneToOne
+	private Credentials credentials;
+	
+	
 	public User() {
 		this.currentlyPlaying = new ArrayList<>();
 		this.played = new ArrayList<>();
+		this.reviews = new ArrayList<>();
 	}
 
+	
 	public Long getId() {
 		return id;
 	}
@@ -89,6 +97,26 @@ public class User {
 
 	public void setPlayed(List<Game> played) {
 		this.played = played;
+	}
+
+
+	public List<Review> getReviews() {
+		return reviews;
+	}
+
+
+	public void setReviews(List<Review> reviews) {
+		this.reviews = reviews;
+	}
+
+
+	public Credentials getCredentials() {
+		return credentials;
+	}
+
+
+	public void setCredentials(Credentials credentials) {
+		this.credentials = credentials;
 	}
 	
 }

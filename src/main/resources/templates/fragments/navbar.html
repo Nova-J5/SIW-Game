@@ -13,7 +13,7 @@
 		            <img class="logo" src="/images/navbar-logo.png" width="40%" alt="logo" />
 		        </a>		    
 		        <div class="collapse navbar-collapse" id="navbarCollapse">
-					<form class="d-flex justify-content-center" style="width: 25%;" role="search" th:action="@{/searchGames}" method="post">
+					<form class="d-flex justify-content-center" style="width: 35%;" role="search" th:action="@{/searchGames}" method="post">
                 		<input class="form-control me-2" type="text" name="str" placeholder="Cerca gioco per nome, piattaforma o genere" aria-label="Search">
                 		<button class="btn btn-outline-success" type="submit">
  							<i class="fas fa-search"></i>						
@@ -33,17 +33,15 @@
 		                    <a class="nav-link" href="/developers">Sviluppatori</a>
 		                </li>	
 		                <li class="nav-item" th:if="${userDetails}">
-		                    <a class="nav-link">
-		                        <span th:text="${userDetails.username}">
-									<a th:href="@{'/user' + '/' + ${userDetails.id}}"></a>
-								</span>
+		                    <a th:href="@{'/user' + '/' + ${currentUser.id}}" class="nav-link">
+		                        <b><span th:text="${userDetails.username}"></span></b>
 		                    </a>
 		                </li>
 		                <li class="nav-item" th:if="${userDetails}">
-							<a class="nav-link" href="/logout">Logout</a>
+							<a class="nav-link" href="/logout"><b>Logout</b></a>
 		                </li>
-		                <li class="nav-item" th:unless="${user}">
-		                    <a class="nav-link" href="/login">Login</a>
+		                <li class="nav-item" th:if="!${userDetails}">
+		                    <a class="nav-link" href="/login"><b>Login</b></a>
 		                </li>	
 		            </ul>
 		        </div>

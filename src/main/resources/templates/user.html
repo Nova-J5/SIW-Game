@@ -25,7 +25,7 @@
 					        </div>
 			              <button type="button" class="btn btn-outline-dark" data-mdb-ripple-color="dark"
 			                style="z-index: 1;">
-			                <a th:href="@{/formUpdateUser}">Modifica Profilo</a>
+			                <a th:href="@{'/formUpdateUser/' + ${user.id}}">Modifica Profilo</a>
 			              </button>
 			            </div>
 			            <div class="ms-3" style="margin-top: 130px;">
@@ -97,7 +97,6 @@
 								</div>
 							</li>
 						</ul>
-			           
 			          </div>
 			        </div>
 			      </div>

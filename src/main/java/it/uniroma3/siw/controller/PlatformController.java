@@ -37,6 +37,7 @@ public class PlatformController {
 	@Autowired
 	private DeveloperService developerService;
 
+	@Autowired
 	private ImageService imageService;
 	
 

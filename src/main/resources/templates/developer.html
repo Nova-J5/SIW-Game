@@ -15,13 +15,20 @@
 		    <h1 th:text="${developer.name}"></h1>
 		    <p th:text="${developer.description}"></p>
 	        <div>Anno di fondazione: <span th:text="'(' + ${developer.yearOfFoundation} + ')'"></span></div>
-	    <div th:unless="${developer}">Non esiste</div>
 	    
-	    <span th:if= "${!developer.gamesProduced.isEmpty()}">
+	   	 	<div th:if="${developer.image} != null">
+				<img th:src="@{'/display/image/' + ${developer.image.id}}" width=50% />
+	        	</div>
+	        	<div th:if="${developer.image} == null">
+	        	<img src="/images/image-not-available.jpeg" />
+	        </div>
+	        
+	    	<span th:if= "${!developer.gamesProduced.isEmpty()}">
 		        <h2>Giochi</h2>
 	        	<li th:each="game : ${developer.gamesProduced}">
 			        <a th:href="@{'/game/' + ${game.id}}" th:text="${game.title}"> gioco </a>   	
 				</li>
-	    </span>
+	   	 	</span>
+	    <div th:unless="${developer}">Non esiste</div>
 	 </body>
 </html>

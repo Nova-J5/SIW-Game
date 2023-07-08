@@ -61,8 +61,8 @@ public class PlatformController {
 	}
 	
 	@PostMapping("/admin/newPlatform")
-	public String newPlatform(@ModelAttribute("platform") Platform platform, BindingResult bindingResult, 
-			@RequestParam("developerId") Long developerId, Model model, @RequestParam("file") MultipartFile file) throws IOException {
+	public String newPlatform(@ModelAttribute("platform") Platform platform, BindingResult bindingResult, Model model,
+			@RequestParam("developerId") Long developerId, @RequestParam("file") MultipartFile file) throws IOException {
 		
 		if (!file.isEmpty()) {
 			Image img = new Image(file.getBytes());

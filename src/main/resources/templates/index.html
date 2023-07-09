@@ -25,7 +25,7 @@
 							<div class="carousel-item active">
 								<a th:href="@{'/platform/' + ${platformActive.id}}"> 
 									<div th:if="${platformActive.image} != null">
-										<img th:src="@{'/display/image/' + ${platform.image.id}}" class="d-block w-100" />
+										<img th:src="@{'/display/image/' + ${platformActive.image.id}}" class="d-block w-100" />
 									</div>
 									<div th:if="${platformActive.image} == null">
 										<img src="/images/image-not-available.jpeg" class="d-block w-100" />

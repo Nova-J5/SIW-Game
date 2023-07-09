@@ -26,16 +26,35 @@
 		    	
 		   	 	<div th:if="${genre.backgroundImage} != null">
 					<img th:src="@{'/display/image/' + ${genre.backgroundImage.id}}" width=50% />
+					<div th:if="${currentUser != null && currentUser.isAdmin()}">
+						<a th:href="@{'/admin/removeBackgroundImageFromGenre/' + ${genre.id}}"><button type="button" class="btn btn-success my-3"> Rimuovi sfondo </button></a>
+					</div>
 		        </div>
 		        <div th:if="${genre.backgroundImage} == null">
 		        	<img src="/images/image-not-available.jpeg" />
+		        	<div th:if="${currentUser != null && currentUser.isAdmin()}">
+						<div>Aggiungi una foto dello sfondo</div>
+				        	<form method="POST" enctype="multipart/form-data" th:action="@{'/admin/addBackgroundImageToGenre/' + ${genre.id}}">
+				        	<input type="file" name="file" class="my-2 form-control" style="max-width: 280px;" required />
+			        	<button type="submit" class="btn btn-success">Aggiungi sfondo</button>
+			        	</form>
+			        </div>	
 		      	</div>
 		      	
 		      	<div th:if="${genre.iconImage} != null">
 					<img th:src="@{'/display/image/' + ${genre.iconImage.id}}" width=50% />
+					<div th:if="${currentUser != null && currentUser.isAdmin()}">
+						<a th:href="@{'/admin/removeIconImageFromGenre/' + ${genre.id}}"><button type="button" class="btn btn-success my-3"> Rimuovi icon </button></a>
+					</div>
 		        </div>
 		        <div th:if="${genre.iconImage} == null">
 		        	<img src="/images/image-not-available.jpeg" />
+		        	<div th:if="${currentUser != null && currentUser.isAdmin()}">
+						<div>Aggiungi una foto dell'icon</div>
+				        	<form method="POST" enctype="multipart/form-data" th:action="@{'/admin/addIconImageToGenre/' + ${genre.id}}">
+				        	<input type="file" name="file" class="my-2 form-control" style="max-width: 280px;" required />
+			        	<button type="submit" class="btn btn-success">Aggiungi icon</button>
+			        	</form>
 		      	</div>
 		    	
 		    <div th:unless="${genre}">Non esiste</div>

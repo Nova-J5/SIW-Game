@@ -132,8 +132,6 @@ public class GameController {
 	public String formNewGame(Model model) {
 		model.addAttribute("game", new Game());
 		model.addAttribute("developers", this.developerService.getAllDevelopers());
-		//model.addAttribute("genres", this.genreRepository.findAll());
-		//model.addAttribute("platforms", this.platformRepository.findAll());
 		
 		return "admin/formNewGame.html";
 	}
@@ -171,7 +169,7 @@ public class GameController {
 			@PathVariable("platformId") Long platformId) {
 		
 		Game game = this.gameService.getGameById(gameId);
-		Platform platform = this.platformService.getPlatform(platformId);
+		Platform platform = this.platformService.getPlatformById(platformId);
 		game.getPlatforms().remove(platform);
 		platform.getGames().remove(game);
 		
@@ -187,7 +185,7 @@ public class GameController {
 			@PathVariable("platformId") Long platformId) {
 		
 		Game game = this.gameService.getGameById(gameId);
-		Platform platform = this.platformService.getPlatform(platformId);
+		Platform platform = this.platformService.getPlatformById(platformId);
 		game.getPlatforms().add(platform);
 		platform.getGames().add(game);
 		
@@ -203,7 +201,7 @@ public class GameController {
 			@PathVariable("genreId") Long genreId) {
 		
 		Game game = this.gameService.getGameById(gameId);
-		Genre genre = this.genreService.getGenre(genreId);
+		Genre genre = this.genreService.getGenreById(genreId);
 		game.getGenres().remove(genre);
 		genre.getGames().remove(game);
 		
@@ -219,7 +217,7 @@ public class GameController {
 			@PathVariable("genreId") Long genreId) {
 		
 		Game game = this.gameService.getGameById(gameId);
-		Genre genre = this.genreService.getGenre(genreId);
+		Genre genre = this.genreService.getGenreById(genreId);
 		game.getGenres().add(genre);
 		genre.getGames().add(game);
 		
@@ -241,17 +239,17 @@ public class GameController {
 	public String formUpdateTitleAndDesc(Model model, @PathVariable("gameId") Long gameId) {
 		model.addAttribute("game", this.gameService.getGameById(gameId));
 		model.addAttribute("developers", this.developerService.getAllDevelopers());
-		//model.addAttribute("genres", this.genreRepository.findAll());
-		//model.addAttribute("platforms", this.platformRepository.findAll());
 		
 		return "admin/updateTitleAndDesc.html";
 	}
 	
 	@PostMapping("/admin/saveTitleAndDesc/{gameId}")
-	public String updateTitleAndDesc(Model model, @PathVariable("gameId") Long gameId, @PathVariable("developerId") Long developerId) {
-		Developer dev = this.developerService.getDeveloperById(developerId);
+	public String updateTitleAndDesc(Model model, @PathVariable("gameId") Long gameId, @RequestParam("title") String title,
+			@RequestParam("year") Integer year, @RequestParam("developerId") Long developerId,
+			@RequestParam("description") String description){
 		Game game = this.gameService.getGameById(gameId);
-		game.setDeveloper(dev);
+		this.gameService.modifyGame(game, title, year, description, this.developerService.getDeveloperById(developerId));
+		this.gameService.saveGame(game);
 		model.addAttribute("game", game);
 		return "game.html";
 	}

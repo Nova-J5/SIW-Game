@@ -12,10 +12,13 @@
 		
 		<div th:replace="fragments/navbar :: navbar"></div>
 		
-		<div class"container">
+		<div class="container">
 		    <div th:if="${genre}">
 			    <h1 th:text="${genre.name}"></h1>
 			    <h5 th:text="${genre.description}"></h5>
+				<div th:if="${currentUser != null && currentUser.isAdmin()}">
+					<a th:href="@{'/admin/updateGenre/' + ${genre.id}}" >modifica dati del genere </a><br>
+				</div>
 			    
 		        <span th:if= "${!genre.games.isEmpty()}">
 		        	<h2>Giochi</h2>

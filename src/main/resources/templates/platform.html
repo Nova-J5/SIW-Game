@@ -16,6 +16,9 @@
 			<span th:if="${platform}">
 				    <h1 th:text="${platform.name}">Titolo Piattaforma</h1>
 				    <h5 th:text="${platform.description}"></h5>
+					<div th:if="${currentUser != null && currentUser.isAdmin()}">
+						<a th:href="@{'/admin/updatePlatform/' + ${platform.id}}" >modifica dati piattaforma </a><br>
+					</div>
 				    
 			        <div>Anno: <span th:text="'(' + ${platform.yearOfRelease} + ')'">2000</span></div>
 			    <div th:unless="${platform}">Non esiste</div>

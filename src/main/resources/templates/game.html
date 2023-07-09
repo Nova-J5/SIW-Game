@@ -16,7 +16,7 @@
 			    <h1 th:text="${game.title}"></h1>
 			    <h5 th:text="${game.description}"></h5>
 			    <div th:if="${currentUser != null && currentUser.isAdmin()}">
-			    	<a th:href="@{'/admin/updateTitleAndDesc/' + ${game.id}}" >modifica titoloe descrizione</a><br>
+			    	<a th:href="@{'/admin/updateTitleAndDesc/' + ${game.id}}" >modifica titolo e descrizione</a><br>
 			    	<a th:href="@{'/admin/updatePlatAndGen/' + ${game.id}}">modifica generi e piattaforme</a>
 			    </div>
 		        <div>Anno di rilascio: <span th:text="'(' + ${game.year} + ')'"></span></div>

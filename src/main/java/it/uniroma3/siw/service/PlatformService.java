@@ -24,7 +24,7 @@ public class PlatformService {
 	}
 	
 	@Transactional
-    public Platform getPlatform(Long id) {
+    public Platform getPlatformById(Long id) {
         Optional<Platform> result = this.platformRepository.findById(id);
         return result.orElse(null);
     }
@@ -68,18 +68,27 @@ public class PlatformService {
 		return this.platformRepository.existsByNameAndYearOfRelease(platform.getName(), platform.getYearOfRelease());
 	}
 
+	@Transactional
 	public List<Platform> getAllPlatformsNotInGame(@Valid Game game) {
 		return this.platformRepository.findPlatformNotInGame(game);
 	}
 
+	@Transactional
 	public void inizializePlatform(Platform platform, Developer developer) {
 		platform.setDeveloper(developer);
 		developer.getPlatformsProduced().add(platform);
 		
 	}
+	@Transactional
+	public void modifyPlatform(Platform platform, String name, Integer year, String description,
+			String carouselDescription, Developer developer) {
 
-	public Platform getPlatformById(Long platformId) {
-		return this.platformRepository.findById(platformId).get();
+		platform.setName(name);
+		platform.setYearOfRelease(year);
+		platform.setDescription(description);
+		platform.setCarouselDescription(carouselDescription);
+		platform.setDeveloper(developer);
+		
 	}
 
 }

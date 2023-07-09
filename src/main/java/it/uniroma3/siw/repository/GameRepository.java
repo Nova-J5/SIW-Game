@@ -4,7 +4,6 @@ import java.util.List;
 import org.springframework.data.repository.CrudRepository;
 import it.uniroma3.siw.model.Developer;
 import it.uniroma3.siw.model.Game;
-import it.uniroma3.siw.model.User;
 
 public interface GameRepository extends CrudRepository<Game, Long> {
 	

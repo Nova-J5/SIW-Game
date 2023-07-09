@@ -23,7 +23,7 @@ public class GenreService {
 	}
 	
 	@Transactional
-    public Genre getGenre(Long id) {
+    public Genre getGenreById(Long id) {
         Optional<Genre> result = this.genreRepository.findById(id);
         return result.orElse(null);
     }
@@ -57,12 +57,16 @@ public class GenreService {
 		return this.genreRepository.existsByName(genre.getName());
 	}
 
+	@Transactional
 	public List<Genre> getAllGenresNotInGame(@Valid Game game) {
 		return this.genreRepository.findGenreNotInGame(game);
 	}
 
-	public Genre getGenreById(Long genreId) {
-		return this.genreRepository.findById(genreId).get();
+	public void modifyGenre(Genre genre, String name, String description) {
+
+		genre.setName(name);
+		genre.setDescription(description);
+		
 	}
 
 }

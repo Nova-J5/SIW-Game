@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import it.uniroma3.siw.model.Developer;
+import it.uniroma3.siw.model.Game;
 import it.uniroma3.siw.model.Image;
 import it.uniroma3.siw.service.DeveloperService;
 import it.uniroma3.siw.service.ImageService;
@@ -81,6 +82,23 @@ public class DeveloperController {
 		} else {
 			return "admin/formNewDeveloper.html"; 
 		}
+	}
+	
+	@GetMapping("/admin/updateDeveloper/{developerId}")
+	public String updateDeveloper(Model model, @PathVariable("developerId") Long developerId) {
+		model.addAttribute("developer", this.developerService.getDeveloperById(developerId));
+		
+		return "admin/updateDeveloper.html";
+	}
+	
+	@PostMapping("/admin/modifyDeveloper/{developerId}")
+	public String modifyDeveloper(Model model, @PathVariable("developerId") Long developerId, @RequestParam("name") String name,
+			@RequestParam("year") Integer year, @RequestParam("description") String description){
+		Developer developer  = this.developerService.getDeveloperById(developerId);
+		this.developerService.modifyDeveloper(developer, name, year, description);
+		this.developerService.saveDeveloper(developer);
+		model.addAttribute("developer", developer);
+		return "developer.html";
 	}
 	
 }

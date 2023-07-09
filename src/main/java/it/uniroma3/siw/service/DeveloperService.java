@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 import it.uniroma3.siw.model.Developer;
 import it.uniroma3.siw.repository.DeveloperRepository;
 import jakarta.transaction.Transactional;
-import jakarta.validation.Valid;
 
 @Service
 public class DeveloperService {
@@ -61,6 +60,15 @@ public class DeveloperService {
 	@Transactional
 	public boolean alreadyExists(Developer developer) {
 		return this.developerRepository.existsByNameAndYearOfFoundation(developer.getName(), developer.getYearOfFoundation());
+	}
+
+	@Transactional
+	public void modifyDeveloper(Developer developer, String name, Integer year, String description) {
+		
+		developer.setName(name);
+		developer.setYearOfFoundation(year);
+		developer.setDescription(description);
+		
 	}
 
 	

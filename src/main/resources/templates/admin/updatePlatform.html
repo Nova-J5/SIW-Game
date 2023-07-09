@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<title>
-			Modifica gioco
+			Modifica piattaforma
 		</title>
 		<div th:replace="fragments/css :: css-dep"></div>
 		<link rel="stylesheet" href="/css/form_new_game_style.css" />		
@@ -14,18 +14,18 @@
 		<div class="container">
 			
 			<h1 class="mb-4">
-			    <span class="ms-2">Modifica dati di <span th:text="${game.title}"> </span> </span>
+			    <span class="ms-2">Modifica dati di <span th:text="${platform.name}"> </span> </span>
 			</h1>
 			
-			<form th:action="@{'/admin/saveTitleAndDesc/' + ${game.id}}" method="POST" class="mb-4">
+			<form th:action="@{'/admin/modifyPlatform/' + ${platform.id}}" method="POST" class="mb-4">
 			    <div class="row">
 			        <div class="col-md-6 mb-3">
-			            <label for="title" class="form-label"><b>Titolo:</b></label>
-			            <input required type="text" class="form-control" id="title" name="title" th:value="${game.title}">
+			            <label for="name" class="form-label"><b>Nome:</b></label>
+			            <input required type="text" class="form-control" id="name" name="name" th:value="${platform.name}">
 			        </div>
 			        <div class="col-md-6 mb-3">
-			            <label for="year" class="form-label"><b>Anno di uscita:</b></label>
-			            <input required type="number" min="1958" max="2023" class="form-control" id="year" name="year" th:value="${game.year}">
+			            <label for="year" class="form-label"><b>Anno di rilascio:</b></label>
+			            <input required type="number" max="2023" class="form-control" id="year" name="year" th:value="${platform.yearOfRelease}">
 			        </div>
 			    </div>
 			    <div class="row">
@@ -33,14 +33,18 @@
 			            <label for="developer" class="form-label"><b>Sviluppatore:</b></label>
 			            <select required class="form-select" id="developer" name="developerId">
 			                <option value="" disabled >Scegli uno sviluppatore</option>
-							<option th:if="${game.developer}" th:value="${game.developer.id}" th:text="${game.developer.name}" selected></option>
+							<option th:if="${platform.developer}" th:value="${platform.developer.id}" th:text="${game.developer.name}" selected></option>
 			                <option th:each="developer : ${developers}" th:value="${developer.id}" th:text="${developer.name}"></option>
 			            </select>
 			        </div>
 			    </div>
 			    <div class="mb-3">
 			        <label for="description" class="form-label"><b>Descrizione:</b></label>
-			        <textarea required class="form-control" id="description" rows="5" name="description" th:value="${game.description}"></textarea>
+			        <textarea required class="form-control" id="description" rows="5" name="description" th:value="${platform.description}"></textarea>
+			    </div>
+                <div class="mb-3">
+			        <label for="description" class="form-label"><b>Descrizione nel carosello:</b></label>
+			        <textarea required class="form-control" id="description" rows="5" name="carouselDescription" th:value="${platform.carouselDescription}"></textarea>
 			    </div>
 			    <div>
 			        <button type="submit" class="btn btn-success">Conferma</button>

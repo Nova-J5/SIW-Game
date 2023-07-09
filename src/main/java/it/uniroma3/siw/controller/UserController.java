@@ -50,7 +50,7 @@ public class UserController {
 		model.addAttribute("user", user);
 		model.addAttribute("currentlyPlaying", user.getCurrentlyPlaying());
 		model.addAttribute("played", user.getPlayed());
-		model.addAttribute("reviews", this.reviewService.getReviewsByUser(user));
+		//model.addAttribute("reviews", this.reviewService.getReviewsByUser(user));
 		
 		return "user.html";
 	}

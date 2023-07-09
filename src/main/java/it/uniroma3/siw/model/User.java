@@ -33,7 +33,7 @@ public class User {
 	@OneToMany(mappedBy = "user")
 	private List<Review> reviews;
 	
-	@OneToOne
+	@OneToOne (mappedBy="user")
 	private Credentials credentials;
 	
 	
@@ -43,6 +43,9 @@ public class User {
 		this.reviews = new ArrayList<>();
 	}
 
+	public boolean isAdmin() {
+		return this.getCredentials().getRole().equals("ADMIN");
+	}
 	
 	public Long getId() {
 		return id;

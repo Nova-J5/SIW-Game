@@ -28,9 +28,6 @@ public class Review {
 	@Max(5)
 	private Integer score;
 	
-	@ManyToOne
-	private Credentials credentials;
-	
 	@ManyToOne 
 	private User user;
 	
@@ -68,14 +65,6 @@ public class Review {
 
 	public void setScore(Integer score) {
 		this.score = score;
-	}
-
-	public Credentials getCredentials() {
-		return credentials;
-	}
-
-	public void setCredentials(Credentials credentials) {
-		this.credentials = credentials;
 	}
 
 	public Game getGame() {

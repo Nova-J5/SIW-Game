@@ -57,7 +57,7 @@ import javax.sql.DataSource;
                 		"/game/{id}", "/games",
                 		"/genre/{id}", "/genres",
                 		"/platform/{id}", "/platforms", 
-                		"/css/**", "/images/**", "/messages/**", "favicon.ico").permitAll()
+                		"/css/**", "/images/**", "/messages/**", "favicon.ico", "/display/**").permitAll()
         		// chiunque (autenticato o no) può mandare richieste POST al punto di accesso per login e register 
                 .requestMatchers(HttpMethod.POST,"/register", "/login", "/searchGames").permitAll()
                 .requestMatchers(HttpMethod.GET,"/admin/**").hasAnyAuthority(ADMIN_ROLE)

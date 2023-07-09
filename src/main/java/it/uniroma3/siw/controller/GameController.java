@@ -215,5 +215,12 @@ public class GameController {
 		this.inzializeAddPlatformsAndGenres(model,game);
 		return "admin/addPlatformsAndGenres.html";
 	}
+	
+	@GetMapping("/editGame/{id}")
+	public String editGame(Model model, @PathVariable("id") Long id) {
+		Game game = this.gameService.getGameById(id);
+		this.inzializeAddPlatformsAndGenres(model,game);
+		return "admin/addPlatformsAndGenres.html";
+	}
 }
 	

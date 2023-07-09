@@ -17,40 +17,38 @@
 		        <div class="main main-raised">
 		            <div class="profile-content">
 		                <div class="container">
-		                    <div class="row">
-		                        <div class="col-md-6 ml-auto mr-auto">
-		                            <div class="profile">
-		                                <div th:if="${user.image} != null" class="avatar">
-		                                    <img th:src="@{'/display/image/' + ${user.image.id}}" alt="Circle Image" class="img-raised rounded-circle img-fluid">
-		                                </div>
-		                                <div th:if="${user.image} == null" class="avatar">
-		                                    <img src="https://cdn.pixabay.com/photo/2012/04/26/19/43/profile-42914_1280.png" alt="Circle Image" class="img-raised rounded-circle img-fluid">
-		                                </div>
-		                                <div class="name">
-		                                    <h3 class="title" th:text="${user.name} + ' ' + ${user.surname}"></h3>
-		                                    <h6 th:text="'@' + ${userDetails.username}"></h6>
-		                                    <a class="btn btn-just-icon btn-link btn-github"><i class="fa fa-github"></i></a>
-		                                    <a class="btn btn-just-icon btn-link btn-twitter"><i class="fa fa-twitter"></i></a>
-		                                    <a class="btn btn-just-icon btn-link btn-linkedin"><i class="fa fa-linkedin"></i></a>
-		                                </div>
-		                                <div class="p-4 text-black rounded" style="background-color: #f8f9fa;">
-		                                    <div class="d-flex">
-		                                        <div>
-		                                            <strong class="mb-1 h5 ml-4" th:text="${#lists.size(currentlyPlaying)}"></strong>
-		                                            <p class="small text-muted mb-0">Numero di giochi correnti</p>
-		                                        </div>
-		                                        <div>
-		                                            <strong class="mb-1 h5 mr-4" th:text="${#lists.size(played)}"></strong>
-		                                            <p class="small text-muted mb-0">Numero di giochi terminati</p>
-		                                        </div>
-		                                    </div>
-		                                </div>
-		                            </div>
-									<button type="button" class="btn btn-info mt-4 mb-4" style="display: block; margin: 0 auto;">
-									  <a th:href="@{'/formUpdateUser/' + ${user.id}}">Modifica Profilo</a>
-									</button>
-		                        </div>
-		                    </div>
+							<div class="row">
+							  <div class="col-md-6 ml-auto mr-auto">
+							    <div class="profile">
+							      <div th:if="${user.image} != null" class="avatar">
+							        <img th:src="@{'/display/image/' + ${user.image.id}}" alt="Circle Image" class="img-raised rounded-circle img-fluid">
+							      </div>
+							      <div th:if="${user.image} == null" class="avatar">
+							        <img src="https://cdn.pixabay.com/photo/2012/04/26/19/43/profile-42914_1280.png" alt="Circle Image" class="img-raised rounded-circle img-fluid">
+							      </div>
+							      <div class="name">
+							        <h3 class="title" th:text="${user.name} + ' ' + ${user.surname}"></h3>
+							        <h5 th:text="'@' + ${userDetails.username}"></h5>
+							        <div class="buttons-container">
+							          <a class="btn btn-warning btn-sm" th:href="@{'/formUpdateUser/' + ${user.id}}">Modifica Profilo</a>
+							        </div>
+							      </div>
+									<div class="p-4 text-black rounded" style="background-color: #f8f9fa;">
+									  <div class="d-flex justify-content-center space-between">
+									    <div>
+									      <strong class="mb-1 mr-3 h5" th:text="${#lists.size(currentlyPlaying)}"></strong>
+									      <p class="small text-muted mb-0">Giochi correnti</p>
+									    </div>
+									    <div>
+									      <strong class="mb-1 ml-3 h5" th:text="${#lists.size(played)}"></strong>
+									      <p class="small text-muted mb-0">Giochi terminati</p>
+									    </div>
+									  </div>
+									</div>
+							    </div>
+							  </div>
+							</div>
+
 		                    <div class="description text-center">
 		                        <p>Descrizione che probabilmente non metteremo mai e che alla fine toglieremo</p>
 		                    </div>

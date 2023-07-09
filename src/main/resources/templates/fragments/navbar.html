@@ -31,22 +31,31 @@
 		                </li> 
 		                <li class="nav-item">
 		                    <a class="nav-link" href="/developers">Sviluppatori</a>
-		                </li>	
-		                <li class="nav-item" th:if="${userDetails}">
-		                    <a th:href="@{'/user' + '/' + ${currentUser.id}}" class="nav-link">
-		                        <b><span th:text="${userDetails.username}"></span></b>
-		                    </a>
 		                </li>
-		                <li class="nav-item" th:if="${userDetails}">
-							<a class="nav-link" href="/logout"><b>Logout</b></a>
-		                </li>
-		                <li class="nav-item" th:if="!${userDetails}">
-		                    <a class="nav-link" href="/login"><b>Login</b></a>
-		                </li>	
+						<li class="dropdown" th:if="${userDetails}">
+						  <button
+						    class="btn btn-primary dropdown-toggle"
+						    type="button"
+						    id="dropdownMenuButton"
+						    data-toggle="dropdown"
+						    aria-expanded="false">
+						    <i class="fas fa-user"></i>
+						    <b><span th:text="${userDetails.username}"></span></b>
+						  </button>
+						  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+						    <li><a class="dropdown-item" th:href="@{'/user' + '/' + ${currentUser.id}}"><i class="fas fa-user-circle"></i> Profilo</a></li>
+						    <li><a class="dropdown-item" href="/logout"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+						  </ul>
+						</li>
+						<li th:if="!${userDetails}">
+							<a class="btn btn-primary" href="/login" role="button">
+								<i class="fa-solid fa-right-to-bracket"></i>
+								<b>Login</b>
+							</a>
+						</li>
 		            </ul>
 		        </div>
 		    </div>
 		</nav>
-		
 	</th:block>
 </html>

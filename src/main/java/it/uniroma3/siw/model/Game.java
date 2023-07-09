@@ -42,6 +42,18 @@ public class Game {
 		this.platforms = new ArrayList<>();
 		this.reviews = new ArrayList<>();
 	}
+
+	public int intAvgScore() {
+		return (int)this.avgScore();
+	}
+	
+	public float avgScore() {
+		float media=0;
+		for(Review r: this.reviews) {
+			media += r.getScore();
+		}
+		return (float)media/reviews.size();
+	}
 	
 	/*************************************
 	 ********** GETTER E SETTER **********

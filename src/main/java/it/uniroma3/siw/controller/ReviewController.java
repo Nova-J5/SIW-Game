@@ -11,8 +11,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import it.uniroma3.siw.model.Game;
 import it.uniroma3.siw.model.Review;
+import it.uniroma3.siw.model.User;
 import it.uniroma3.siw.service.GameService;
 import it.uniroma3.siw.service.ReviewService;
+import it.uniroma3.siw.service.UserService;
 
 @Controller
 public class ReviewController {
@@ -23,6 +25,8 @@ public class ReviewController {
 	private GameService gameService;
 	@Autowired
 	private GlobalController globalController;
+	@Autowired
+	private UserService userService;
 	
 	@GetMapping("/default/formNewReview/{gameId}")
 	public String formNewReview(@PathVariable("gameId") Long gameId, Model model) {
@@ -47,5 +51,12 @@ public class ReviewController {
 		} else {
 			return "default/formNewReview.html";
 		}
+	}
+	
+	@GetMapping("/reviews/{id}")
+	private String getReviewedGames(@PathVariable("id") Long id, Model model) {
+		User user =  this.userService.findUserById(id);
+		model.addAttribute("reviews", this.reviewService.getReviewsByUser(user));
+		return "reviewedGames.html";
 	}
 }

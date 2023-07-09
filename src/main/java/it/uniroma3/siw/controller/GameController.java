@@ -1,6 +1,7 @@
 package it.uniroma3.siw.controller;
 
 import java.io.IOException;
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,18 +19,16 @@ import org.springframework.web.multipart.MultipartFile;
 
 import it.uniroma3.siw.model.Developer;
 import it.uniroma3.siw.model.Game;
-import it.uniroma3.siw.repository.DeveloperRepository;
-import it.uniroma3.siw.repository.GameRepository;
+
 import it.uniroma3.siw.model.Genre;
 import it.uniroma3.siw.model.Image;
 import it.uniroma3.siw.model.Platform;
-import it.uniroma3.siw.repository.GenreRepository;
-import it.uniroma3.siw.repository.PlatformRepository;
 import it.uniroma3.siw.service.DeveloperService;
 import it.uniroma3.siw.service.GameService;
 import it.uniroma3.siw.service.GenreService;
 import it.uniroma3.siw.service.ImageService;
 import it.uniroma3.siw.service.PlatformService;
+import it.uniroma3.siw.service.UserService;
 import it.uniroma3.siw.validator.GameValidator;
 import jakarta.validation.Valid;
 
@@ -55,6 +54,9 @@ public class GameController {
 	@Autowired
 	private GenreService genreService;
 	
+	@Autowired
+	private UserService userService;
+	
 	
 	private void inzializeAddPlatformsAndGenres(Model model, Game game) {
 		model.addAttribute("game", game);
@@ -78,6 +80,18 @@ public class GameController {
 	public String showGames(Model model) {
 		model.addAttribute("genres", this.genreService.getAllGenres());
 		return "games.html";
+	}
+	
+	@GetMapping("/currentlyPlaying/{id}")
+	private String getCurrentlyPlayingGames(@PathVariable("id") Long id, Model model) {
+		model.addAttribute("games", this.userService.findUserById(id).getCurrentlyPlaying());
+		return "userGames.html";
+	}
+	
+	@GetMapping("/played/{id}")
+	private String getPlayedGames(@PathVariable("id") Long id, Model model) {
+		model.addAttribute("games", this.userService.findUserById(id).getPlayed());
+		return "userGames.html";
 	}
 
 	@PostMapping("/searchGames")

@@ -14,6 +14,11 @@ footer {
     bottom: auto;
 }
 
+.container {
+	margin: 0;
+	padding: 0;
+}
+
 
 .elemento-lista-header{
     margin-left: -2.9%;

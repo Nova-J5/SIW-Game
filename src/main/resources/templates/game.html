@@ -15,6 +15,9 @@
 		    <div th:if="${game}">
 			    <h1 th:text="${game.title}"></h1>
 			    <h5 th:text="${game.description}"></h5>
+			    <div th:if="${currentUser != null && currentUser.isAdmin()}">
+			    	<a th:href="@{'/editGame/' + ${game.id}}">modifica generi e piattaforme</a>
+			    </div>
 		        <div>Anno di rilascio: <span th:text="'(' + ${game.year} + ')'"></span></div>
 		        <span th:if= "${!game.genres.isEmpty()}">
 			        <h2>Generi</h2>
@@ -52,6 +55,9 @@
 					</div>
 					</li>
 				</div>
+				<div th:if="${currentUser != null && currentUser.isAuth()}">
+			    	<a th:href="@{'/default/formNewReview/' + ${game.id}}">Aggiungi recensione</a>
+			    </div>
 		    <div th:unless="${game}">Non esiste</div>
 		</div>
 	 </body>

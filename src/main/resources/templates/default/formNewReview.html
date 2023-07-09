@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>
+			Nuovo Sviluppatore
+		</title>
+		<div th:replace="fragments/css :: css-dep"></div>
+		<link rel="stylesheet" href="/css/form_new_developer_style.css" />		
+	</head>
+
+	<body>
+		<div th:replace="fragments/navbar :: navbar"></div>
+		
+		<div class="container">
+			
+			<h1 class="mb-4">
+			    <span class="ms-2">Nuova Recensione </span>
+			</h1>
+			
+			<form th:action="@{'/default/newReview/' + ${gameId}}" method="POST" th:object="${review}" class="mb-4">
+			    <div class="row">
+			    	<div class="mb-3">
+			       		 <label for="score" class="form-label"><b>Valutazione:</b></label>
+			       		 <input type="number" required min="1" max="5" class="form-control" id="score"  th:field="${review.score}">
+			   		 </div>
+			        <div class="col-md-6 mb-3">
+			            <label for="name" class="form-label"><b>Titolo:</b></label>
+			            <input required type="text" class="form-control" id="title" th:field="${review.title}">
+			            <div class="invalid-feedback" th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></div>
+			        </div>
+			        <div class="col-md-6 mb-3">
+			            <label for="yearOfFoundation" class="form-label"><b>Recensione:</b></label>
+			            <textarea required type="text" rows="5" class="form-control" id="body" th:field="${review.body}"></textarea>
+			            <div class="invalid-feedback" th:if="${#fields.hasErrors('body')}" th:errors="*{body}"></div>
+			        </div>
+			        <button type="submit" class="btn btn-primary">Conferma</button>
+			    </div>
+			</form>
+		</div>
+	</body>
+</html>

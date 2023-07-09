@@ -46,9 +46,9 @@
 		                                    </div>
 		                                </div>
 		                            </div>
-		                            <button type="button" class="btn btn-outline-dark" style="z-index: 1;">
-		                                <a th:href="@{'/formUpdateUser/' + ${user.id}}">Modifica Profilo</a>
-		                            </button>
+									<button type="button" class="btn btn-info mt-4 mb-4" style="display: block; margin: 0 auto;">
+									  <a th:href="@{'/formUpdateUser/' + ${user.id}}">Modifica Profilo</a>
+									</button>
 		                        </div>
 		                    </div>
 		                    <div class="description text-center">
@@ -84,7 +84,7 @@
 		                    <div class="tab-content tab-space">
 		                        <div class="tab-pane active text-center gallery" id="playing">
 		                            <div class="row">
-		                                <div th:if="${currentlyPlaying} == null">
+		                                <div th:if="${currentlyPlaying==null}">
 		                                    L'utente non sta ancora giocando a nessun gioco
 		                                </div>
 		                                <div th:if="${currentlyPlaying} != null" class="d-flex justify-content-between align-items-center mb-4">
@@ -113,7 +113,7 @@
 		    
 		                        <div class="tab-pane text-center gallery" id="played">
 		                            <div class="row">
-		                                <div th:if="${played} == null">
+		                                <div th:if="${played==null}">
 		                                    L'utente non ha ancora finito nessun gioco
 		                                </div>
 		                                <div th:if="${played} != null" class="d-flex justify-content-between align-items-center mb-4">
@@ -141,26 +141,26 @@
 		                        </div>
 		                        <div class="tab-pane text-center gallery" id="reviews">
 		                            <div class="row">
-		                                <div th:if="${played} == null">
-		                                    L'utente non ha ancora finito nessun gioco
+		                                <div th:if="${reviews==null}">
+		                                    <strong>L'utente non ha ancora scritto recensioni</strong>
 		                                </div>
-		                                <div th:if="${played} != null" class="d-flex justify-content-between align-items-center mb-4">
-		                                    <p class="lead fw-normal mb-0 ml-4">Giochi che l'utente ha finito</p>
-		                                    <p class="mb-0"><a th:href="@{'/played/' + ${user.id}}" class="text-muted">Mostra tutti</a></p>
+		                                <div th:if="${reviews} != null" class="d-flex justify-content-between align-items-center mb-4">
+		                                    <p class="lead fw-normal mb-0 ml-4">Giochi per i quali l'utente ha scritto recensioni</p>
+		                                    <p class="mb-0"><a th:href="@{'/reviews/' + ${user.id}}" class="text-muted">Mostra tutti</a></p>
 		                                </div>
-		                                <ul th:if="${played} != null" class="d-flex flex-row flex-nowrap overflow-auto list-group list-group-horizontal">
-		                                    <li class="list-group-item border-0" th:each="game : ${played}">
+		                                <ul th:if="${reviews} != null" class="d-flex flex-row flex-nowrap overflow-auto list-group list-group-horizontal">
+		                                    <li class="list-group-item border-0" th:each="review : ${reviews}">
 		                                        <div class="card border-0" style="width: 18rem;">
-		                                            <a th:href="@{'/game/' + ${game.id}}">
-		                                                <div th:if="${game.image} != null" class="card-img-top">
-		                                                    <img th:src="@{'/display/image/' + ${game.image.id}}" width="150px" height="120px" alt="Game Image"/>
+		                                            <a th:href="@{'/game/' + ${review.game.id}}">
+		                                                <div th:if="${review.game.image} != null" class="card-img-top">
+		                                                    <img th:src="@{'/display/image/' + ${review.game.image.id}}" width="150px" height="120px" alt="Game Image"/>
 		                                                </div>
-		                                                <div th:if="${game.image} == null" class="card-img-top">
+		                                                <div th:if="${review.game.image} == null" class="card-img-top">
 		                                                    <img src="/images/image-not-available.jpeg" width="150px" height="120px" alt="Image not available"/>
 		                                                </div>
 		                                            </a>
 		                                            <div class="card-body">
-		                                                <h5 class="card-text" th:text="${game.title}">Nome</h5>
+		                                                <h5 class="card-text" th:text="${review.game.title}">Nome</h5>
 		                                            </div>
 		                                        </div>
 		                                    </li>

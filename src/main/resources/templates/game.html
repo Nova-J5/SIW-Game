@@ -15,6 +15,7 @@
 		    <div th:if="${game}">
 			    <h1 th:text="${game.title}"></h1>
 			    <div>
+					<span> Voto : </span>
 			    	<span th:text="${game.avgScore()}"></span>
 			    	<span th:each="i : ${#numbers.sequence(1, game.intAvgScore())}">&#9733;</span>
 			    	<span th:each="i : ${#numbers.sequence(1, 5-game.intAvgScore())}">&#9734;</span>

@@ -48,11 +48,13 @@ public class Game {
 	}
 	
 	public float avgScore() {
-		float media=0;
+		float mediaSommata=0;
 		for(Review r: this.reviews) {
-			media += r.getScore();
+			mediaSommata += r.getScore();
 		}
-		return (float)media/reviews.size();
+		Float media =  (float)mediaSommata/reviews.size();
+		return (Math.round(media*10)/10f);
+				
 	}
 	
 	/*************************************

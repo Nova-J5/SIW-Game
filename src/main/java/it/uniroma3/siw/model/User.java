@@ -44,7 +44,11 @@ public class User {
 	}
 
 	public boolean isAdmin() {
-		return this.getCredentials().getRole().equals("ADMIN");
+		return this.getCredentials().getRole().equals(Credentials.ADMIN_ROLE);
+	}
+	
+	public boolean isAuth() {
+		return this.getCredentials().getRole().equals(Credentials.ADMIN_ROLE) || this.getCredentials().getRole().equals(Credentials.DEFAULT_ROLE);
 	}
 	
 	public Long getId() {

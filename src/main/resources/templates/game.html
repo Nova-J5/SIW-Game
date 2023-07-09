@@ -55,6 +55,9 @@
 					</div>
 					</li>
 				</div>
+				<div th:if="${currentUser != null && currentUser.isAuth()}">
+			    	<a th:href="@{'/default/formNewReview/' + ${game.id}}">Aggiungi recensione</a>
+			    </div>
 		    <div th:unless="${game}">Non esiste</div>
 		</div>
 	 </body>

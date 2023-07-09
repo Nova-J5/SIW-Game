@@ -67,6 +67,14 @@ public class Review {
 		this.score = score;
 	}
 
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
 	public Game getGame() {
 		return game;
 	}

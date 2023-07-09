@@ -78,4 +78,8 @@ public class PlatformService {
 		
 	}
 
+	public Platform getPlatformById(Long platformId) {
+		return this.platformRepository.findById(platformId).get();
+	}
+
 }

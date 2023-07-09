@@ -39,9 +39,19 @@
 		    	
 		    	<div th:if="${game.image} != null">
 					<img th:src="@{'/display/image/' + ${game.image.id}}" width=50% />
+					<div th:if="${currentUser != null && currentUser.isAdmin()}">
+						<a th:href="@{'/admin/removeImageFromGame/' + ${game.id}}"><button type="button" class="btn btn-success my-3"> Rimuovi immagine </button></a>
+					</div>
 		        </div>
 		        <div th:if="${game.image} == null">
 		        	<img src="/images/image-not-available.jpeg" />
+		        	<div th:if="${currentUser != null && currentUser.isAdmin()}">
+						<div>Aggiungi una foto del gioco</div>
+				        	<form method="POST" enctype="multipart/form-data" th:action="@{'/admin/addImageToGame/' + ${game.id}}">
+				        	<input type="file" name="file" class="my-2 form-control" style="max-width: 280px;" required />
+			        	<button type="submit" class="btn btn-success">Aggiungi immagine</button>
+			        	</form>
+					</div>
 		        </div>
 		    	
 		    	<div th:if="${!game.reviews.isEmpty()}" >

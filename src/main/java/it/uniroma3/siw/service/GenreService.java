@@ -61,4 +61,8 @@ public class GenreService {
 		return this.genreRepository.findGenreNotInGame(game);
 	}
 
+	public Genre getGenreById(Long genreId) {
+		return this.genreRepository.findById(genreId).get();
+	}
+
 }

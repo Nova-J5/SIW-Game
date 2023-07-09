@@ -18,9 +18,20 @@
 	    
 	   	 	<div th:if="${developer.image} != null">
 				<img th:src="@{'/display/image/' + ${developer.image.id}}" width=50% />
-	        	</div>
+				<div th:if="${currentUser != null && currentUser.isAdmin()}">
+						<a th:href="@{'/admin/removeImageFromDeveloper/' + ${developer.id}}"><button type="button" class="btn btn-success my-3"> Rimuovi immagine </button></a>
+				</div>
+	        </div>
+	        	
 	        	<div th:if="${developer.image} == null">
 	        	<img src="/images/image-not-available.jpeg" />
+	        	<div th:if="${currentUser != null && currentUser.isAdmin()}">
+					<div>Aggiungi un immagine dello sviluppatore</div>
+			        	<form method="POST" enctype="multipart/form-data" th:action="@{'/admin/addImageToDeveloper/' + ${developer.id}}">
+			        	<input type="file" name="file" class="my-2 form-control" style="max-width: 280px;" required />
+		        	<button type="submit" class="btn btn-success">Aggiungi immagine</button>
+		        	</form>
+				</div>
 	        </div>
 	        
 	    	<span th:if= "${!developer.gamesProduced.isEmpty()}">

@@ -35,17 +35,21 @@ public class ReviewController {
 		return "default/formNewReview.html";
 	}
 	
-	@PostMapping("/default/newReview/{gameId}")
-	public String newReview(@ModelAttribute("review") Review review, @PathVariable("gameId") Long gameId, BindingResult bindingResult, Model model) {
+	@PostMapping("/default/newReview/{gameId}/{userId}")
+	public String newReview(@ModelAttribute("review") Review review, 
+			@PathVariable("gameId") Long gameId, @PathVariable("userId") Long userId,
+			BindingResult bindingResult, Model model) {
 		if(!bindingResult.hasErrors()) {
 			Game game = this.gameService.getGameById(gameId);
+			User user = this.userService.findUserById(userId);
 			
 			review.setGame(game);
-			review.setUser(globalController.getCurrentUser());
+			review.setUser(user);
+			game.getReviews().add(review);
+			user.getReviews().add(review);
 			this.reviewService.saveReview(review);
 			
 			model.addAttribute("game", game);
-			game.getReviews().add(review);
 			this.gameService.saveGame(game);
 			return "game.html";
 		} else {

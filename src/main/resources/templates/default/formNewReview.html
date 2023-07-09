@@ -17,7 +17,7 @@
 			    <span class="ms-2">Nuova Recensione </span>
 			</h1>
 			
-			<form th:action="@{'/default/newReview/' + ${gameId}}" method="POST" th:object="${review}" class="mb-4">
+			<form th:action="@{'/default/newReview/' + ${gameId} + '/' + ${currentUser.id}}" method="POST" th:object="${review}" class="mb-4">
 			    <div class="row">
 			    	<div class="mb-3">
 			       		 <label for="score" class="form-label"><b>Valutazione:</b></label>

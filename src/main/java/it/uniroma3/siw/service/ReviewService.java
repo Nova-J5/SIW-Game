@@ -1,6 +1,7 @@
 package it.uniroma3.siw.service;
 
 import java.util.ArrayList;
+
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +35,11 @@ public class ReviewService {
 	@Transactional
 	public List<Review> getReviewsByGame(Game game) {
 		return this.reviewRepository.findByGame(game);
+	}
+	
+	@Transactional
+	public List<Review> getReviewsByUser(User user) {
+		return this.reviewRepository.findByUser(user);
 	}
 	
 	@Transactional

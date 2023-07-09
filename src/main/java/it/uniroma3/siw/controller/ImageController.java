@@ -15,10 +15,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import it.uniroma3.siw.service.DeveloperService;
 import it.uniroma3.siw.service.GameService;
 import it.uniroma3.siw.service.GenreService;
 import it.uniroma3.siw.service.ImageService;
 import it.uniroma3.siw.service.PlatformService;
+import it.uniroma3.siw.model.Developer;
 import it.uniroma3.siw.model.Game;
 import it.uniroma3.siw.model.Genre;
 import it.uniroma3.siw.model.Image;
@@ -34,6 +36,8 @@ public class ImageController {
 	private GenreService genreService;
 	@Autowired
 	private PlatformService platformService;
+	@Autowired
+	private DeveloperService developerService;
 
     @GetMapping("/display/image/{id}")
     public ResponseEntity<byte[]> displayItemImage(@PathVariable("id") Long id) {
@@ -147,5 +151,32 @@ public class ImageController {
 			return "platform.html";
 		
 		}
+		
+		//************************************* //
+	    // CONTROLLER PER IMMAGINI DELLO SVULUPPATORE
+	    //************************************* //
+		    
+		    @PostMapping("/admin/addImageToDeveloper/{developerId}")
+			public String addImageToDeveloper(Model model, @PathVariable Long developerId, @RequestParam("file") MultipartFile file) throws IOException {
+				Developer developer = developerService.getDeveloperById(developerId);
+				if (!file.isEmpty()) {
+					Image img = new Image(file.getBytes());
+					this.imageService.save(img);
+					developer.setImage(img);
+					this.developerService.saveDeveloper(developer);
+				}
+				model.addAttribute("developer", developer);
+				return "developer.html";
+			}
+			
+			@GetMapping("/admin/removeImageFromDeveloper/{developerId}")
+			public String removeImageFromDeveloper(@PathVariable Long developerId, Model model) {
+				Developer developer = this.developerService.getDeveloperById(developerId);
+				developer.setImage(null);
+				this.developerService.saveDeveloper(developer);
+				model.addAttribute("developer", developer);
+				return "developer.html";
+			
+			}
 	
 }

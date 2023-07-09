@@ -17,8 +17,8 @@
 			    <div>
 					<span> Voto : </span>
 			    	<span th:text="${game.avgScore()}"></span>
-			    	<span th:each="i : ${#numbers.sequence(1, game.intAvgScore())}">&#9733;</span>
-			    	<span th:each="i : ${#numbers.sequence(1, 5-game.intAvgScore())}">&#9734;</span>
+			    	<span th:utext="${game.printStars(game.intAvgScore())}"></span>
+			    	
 			    </div>
 			    <h5 th:text="${game.description}"></h5>
 			    <div th:if="${currentUser != null && currentUser.isAdmin()}">
@@ -65,8 +65,8 @@
 					<li th:each="review: ${game.reviews}" th:remove="tag">
 						<div class="border rounded bg-light text-dark p-3 my-3" style="width: 1000px">
 						<h5 th:text="${review.user.name} + ' ' + ${review.user.surname} + ' (' + ${review.user.credentials.username} + ')'"> </h5>
-	                        <span th:each="i : ${#numbers.sequence(1, review.score)}">&#9733;</span>
-	                        <span th:each="i : ${#numbers.sequence(1, 5-review.score)}">&#9734;</span>
+	                        <span th:utext="${game.printStars(review.score)}"></span>
+	                  
 						
 						<span class="h5" th:text="${review.title}"></span>
 						<div th:text="${review.body}" ></div>

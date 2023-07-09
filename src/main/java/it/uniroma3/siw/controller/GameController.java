@@ -216,11 +216,30 @@ public class GameController {
 		return "admin/addPlatformsAndGenres.html";
 	}
 	
-	@GetMapping("/editGame/{id}")
+	@GetMapping("/admin/updatePlatAndGen/{id}")
 	public String editGame(Model model, @PathVariable("id") Long id) {
 		Game game = this.gameService.getGameById(id);
 		this.inzializeAddPlatformsAndGenres(model,game);
 		return "admin/addPlatformsAndGenres.html";
+	}
+	
+	@GetMapping("/admin/updateTitleAndDesc/{gameId}")
+	public String formUpdateTitleAndDesc(Model model, @PathVariable("gameId") Long gameId) {
+		model.addAttribute("game", this.gameService.getGameById(gameId));
+		model.addAttribute("developers", this.developerService.getAllDevelopers());
+		//model.addAttribute("genres", this.genreRepository.findAll());
+		//model.addAttribute("platforms", this.platformRepository.findAll());
+		
+		return "admin/updateTitleAndDesc.html";
+	}
+	
+	@PostMapping("/admin/saveTitleAndDesc/{gameId}")
+	public String updateTitleAndDesc(Model model, @PathVariable("gameId") Long gameId, @PathVariable("developerId") Long developerId) {
+		Developer dev = this.developerService.getDeveloperById(developerId);
+		Game game = this.gameService.getGameById(gameId);
+		game.setDeveloper(dev);
+		model.addAttribute("game", game);
+		return "game.html";
 	}
 }
 	

@@ -7,6 +7,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import it.uniroma3.siw.controller.GlobalController;
 import it.uniroma3.siw.model.Game;
 import it.uniroma3.siw.model.Review;
 import it.uniroma3.siw.model.User;
@@ -19,7 +20,6 @@ public class ReviewService {
 
 	@Autowired
 	private ReviewRepository reviewRepository;
-	
 	
 	@Transactional
 	public Review saveReview(Review review) {
@@ -54,6 +54,10 @@ public class ReviewService {
 	@Transactional
 	public void deleteReview(Long id) {
 		reviewRepository.deleteById(id);
+	}
+
+	public List<Review> findByUser(User user) {
+		return reviewRepository.findByUser(user);
 	}
 	
 }

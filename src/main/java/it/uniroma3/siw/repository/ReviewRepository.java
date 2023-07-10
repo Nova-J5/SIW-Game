@@ -13,5 +13,5 @@ public interface ReviewRepository extends CrudRepository<Review, Long>{
 	public List<Review> findByGame(Game game);
 	
 	public List<Review> findByUser(User user);
-		
+	
 }

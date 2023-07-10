@@ -15,6 +15,8 @@ import it.uniroma3.siw.model.User;
 import it.uniroma3.siw.service.GameService;
 import it.uniroma3.siw.service.ReviewService;
 import it.uniroma3.siw.service.UserService;
+import it.uniroma3.siw.validator.ReviewValidator;
+import jakarta.validation.Valid;
 
 @Controller
 public class ReviewController {
@@ -24,9 +26,9 @@ public class ReviewController {
 	@Autowired
 	private GameService gameService;
 	@Autowired
-	private GlobalController globalController;
-	@Autowired
 	private UserService userService;
+	@Autowired
+	private ReviewValidator reviewValidator;
 	
 	@GetMapping("/default/formNewReview/{gameId}")
 	public String formNewReview(@PathVariable("gameId") Long gameId, Model model) {
@@ -36,17 +38,20 @@ public class ReviewController {
 	}
 	
 	@PostMapping("/default/newReview/{gameId}/{userId}")
-	public String newReview(@ModelAttribute("review") Review review, 
+	public String newReview(@Valid @ModelAttribute("review") Review review, 
 			@PathVariable("gameId") Long gameId, @PathVariable("userId") Long userId,
 			BindingResult bindingResult, Model model) {
+		
+		Game game = this.gameService.getGameById(gameId);
+		review.setGame(game);
+		
+		this.reviewValidator.validate(review, bindingResult);
 		if(!bindingResult.hasErrors()) {
-			Game game = this.gameService.getGameById(gameId);
 			User user = this.userService.findUserById(userId);
 			
-			review.setGame(game);
 			review.setUser(user);
-			game.getReviews().add(review);
-			user.getReviews().add(review);
+			//game.getReviews().add(review);
+			//user.getReviews().add(review);
 			this.reviewService.saveReview(review);
 			
 			model.addAttribute("game", game);

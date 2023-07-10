@@ -14,7 +14,8 @@
 		<div class="container">
 		    <div th:if="${game}">
 			    <h1 th:text="${game.title}"></h1>
-			    <div>
+			    
+			    <div th:if="${game.avgScore()}">
 					<span> Voto : </span>
 			    	<span th:text="${game.avgScore()}"></span>
 			    	<span th:utext="${game.printStars(game.intAvgScore())}"></span>

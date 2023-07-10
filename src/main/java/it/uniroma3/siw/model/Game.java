@@ -43,6 +43,19 @@ public class Game {
 		this.reviews = new ArrayList<>();
 	}
 
+	public String printStars(int score) {
+		String s = "";
+		for(int i=0; i<score; i++) {
+			if (i==0)
+				s="&#9733";
+			else
+				s = s + "&#9733";
+		}
+		for(int i=score; i<5; i++)
+			s = s + "&#9734" ;
+		return s;
+	}
+	
 	public int intAvgScore() {
 		return (int)this.avgScore();
 	}

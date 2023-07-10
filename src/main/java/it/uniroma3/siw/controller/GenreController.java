@@ -20,6 +20,8 @@ import it.uniroma3.siw.model.Image;
 import it.uniroma3.siw.repository.GenreRepository;
 import it.uniroma3.siw.service.GenreService;
 import it.uniroma3.siw.service.ImageService;
+import it.uniroma3.siw.validator.GenreValidator;
+import jakarta.validation.Valid;
 
 @Controller
 public class GenreController {
@@ -32,6 +34,9 @@ public class GenreController {
 
 	@Autowired
 	private ImageService imageService;
+
+	@Autowired
+	private GenreValidator genreValidator;
 	
 	// ********************************************** //
 	// CONTROLLER PER RICHIESTE DI UN UTENTE GENERICO
@@ -62,11 +67,11 @@ public class GenreController {
 	}
 	
 	@PostMapping("/admin/newGenre")
-	public String newGenre(@ModelAttribute("genre") Genre genre, BindingResult bindingResult, Model model, @RequestParam("icon") MultipartFile icon,
+	public String newGenre(@Valid @ModelAttribute("genre") Genre genre, BindingResult bindingResult, Model model, @RequestParam("icon") MultipartFile icon,
 			@RequestParam("background") MultipartFile background) throws IOException {
 		
-		//qui va creata la classe validator
-		if (!genreRepository.existsByName(genre.getName()) && !bindingResult.hasErrors()) {
+		this.genreValidator.validate(genre, bindingResult);
+		if (!bindingResult.hasErrors()) {
 			
 			if (!icon.isEmpty()) {
 				Image img = new Image(icon.getBytes());
@@ -77,7 +82,7 @@ public class GenreController {
 			if (!background.isEmpty()) {
 				Image img = new Image(background.getBytes());
 				this.imageService.save(img);
-				genre.setIconImage(img);
+				genre.setBackgroundImage(img);
 			}	
 			
 			this.genreService.saveGenre(genre);

@@ -22,6 +22,8 @@ import it.uniroma3.siw.repository.PlatformRepository;
 import it.uniroma3.siw.service.DeveloperService;
 import it.uniroma3.siw.service.ImageService;
 import it.uniroma3.siw.service.PlatformService;
+import it.uniroma3.siw.validator.PlatformValidator;
+import jakarta.validation.Valid;
 
 @Controller
 public class PlatformController {
@@ -40,6 +42,9 @@ public class PlatformController {
 
 	@Autowired
 	private ImageService imageService;
+
+	@Autowired
+	private PlatformValidator platformValidator;
 	
 	
 	// ********************************************** //
@@ -72,7 +77,7 @@ public class PlatformController {
 	}
 	
 	@PostMapping("/admin/newPlatform")
-	public String newPlatform(@ModelAttribute("platform") Platform platform, BindingResult bindingResult, Model model,
+	public String newPlatform(@Valid @ModelAttribute("platform") Platform platform, BindingResult bindingResult, Model model,
 			@RequestParam("developerId") Long developerId, @RequestParam("file") MultipartFile file) throws IOException {
 		
 		if (!file.isEmpty()) {
@@ -81,8 +86,8 @@ public class PlatformController {
 			platform.setImage(img);
 		}
 		
-		//da aggiungere il validator
-		if (!platformRepository.existsByNameAndYearOfRelease(platform.getName(), platform.getYearOfRelease()) && !bindingResult.hasErrors()) {
+		this.platformValidator.validate(platform, bindingResult);
+		if (!bindingResult.hasErrors()) {
 			Developer developer = this.developerService.getDeveloperById(developerId);
 			
 			this.platformService.inizializePlatform(platform,developer);

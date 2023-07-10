@@ -22,6 +22,7 @@ import it.uniroma3.siw.model.User;
 import it.uniroma3.siw.service.CredentialsService;
 import it.uniroma3.siw.service.ImageService;
 import it.uniroma3.siw.service.UserService;
+import it.uniroma3.siw.validator.CredentialsValidator;
 import jakarta.validation.Valid;
 
 @Controller
@@ -35,6 +36,9 @@ public class AuthenticationController {
     
     @Autowired
     private ImageService imageService;
+
+    @Autowired
+	private CredentialsValidator credentialsValidator;
 
 	
 	@GetMapping("/formRegisterUser") 
@@ -63,9 +67,10 @@ public class AuthenticationController {
 	@PostMapping("/register")
 	public String registerUser(
 			@ModelAttribute("user") User user, BindingResult userBindingResult,
-            @ModelAttribute("credentials") Credentials credentials, BindingResult credentialsBindingResult,
+            @Valid @ModelAttribute("credentials") Credentials credentials, BindingResult credentialsBindingResult,
             @RequestParam("file") MultipartFile file, Model model) throws IOException {
 		
+		this.credentialsValidator.validate(credentials, credentialsBindingResult);
 		if (!userBindingResult.hasErrors() && !credentialsBindingResult.hasErrors()) {
 			if (!file.isEmpty()) {
 				Image img = new Image(file.getBytes());

@@ -47,38 +47,65 @@ public class UserController {
 		List<Review> reviews = this.reviewService.getReviewsByUser(user);
 		model.addAttribute("reviews", reviews);
 		
-		if(played.isEmpty() == false) {
-			if(played.get(0) != null) 
-				model.addAttribute("firstCurrentlyPlaying", played.get(0));
-			if(played.get(1) != null) 
-				model.addAttribute("secondCurrentlyPlaying", played.get(1));
-			if(played.get(2) != null) 
-				model.addAttribute("thirdCurrentlyPlaying", played.get(2));
-			if(played.get(3) != null) 
-				model.addAttribute("fourthCurrentlyPlaying", played.get(3));
-		}
-			
-
-		if(currentlyPlaying.isEmpty() == false) {
-			if(currentlyPlaying.get(0) != null) 
-				model.addAttribute("firstPlayed", played.get(0));
-			if(currentlyPlaying.get(1) != null) 
-				model.addAttribute("secondPlayed", played.get(1));
-			if(currentlyPlaying.get(2) != null) 
-				model.addAttribute("thirdPlayed", played.get(2));
-			if(currentlyPlaying.get(3) != null) 
-				model.addAttribute("fourthPlayed", played.get(3));
+		if (!played.isEmpty()) {
+		    int maxElements = Math.min(4, played.size());
+		    for (int i = 0; i < maxElements; i++) {
+		        if (played.get(i) != null) {
+		            String attributeName;
+		            if (i == 1) {
+		                attributeName = "secondCurrentlyPlaying";
+		            } else if (i == 2) {
+		                attributeName = "thirdCurrentlyPlaying";
+		            } else if (i == 3) {
+		                attributeName = "fourthCurrentlyPlaying";
+		            } else {
+		                attributeName = "firstCurrentlyPlaying";
+		            }
+		            model.addAttribute(attributeName, played.get(i));
+		        }
+		    }
 		}
 		
-		if(reviews.isEmpty() == false) {
-			if(reviews.get(0) != null) 
-				model.addAttribute("firstReviewed", reviews.get(0));
-			if(reviews.get(1) != null) 
-				model.addAttribute("secondReviewed", reviews.get(1));
-			if(reviews.get(2) != null) 
-				model.addAttribute("thirdReviewed", reviews.get(2));
-			if(reviews.get(3) != null) 
-				model.addAttribute("fourthReviewed", reviews.get(3));
+		if (!currentlyPlaying.isEmpty()) {
+		    int maxElements = Math.min(4, currentlyPlaying.size());
+
+		    for (int i = 0; i < maxElements; i++) {
+		        if (currentlyPlaying.get(i) != null) {
+		            String attributeName;
+		            
+		            if (i == 1) {
+		                attributeName = "secondPlayed";
+		            } else if (i == 2) {
+		                attributeName = "thirdPlayed";
+		            } else if (i == 3) {
+		                attributeName = "fourthPlayed";
+		            } else {
+		                attributeName = "firstPlayed";
+		            }
+		            model.addAttribute(attributeName, currentlyPlaying.get(i));
+		        }
+		    }
+		}
+		
+		if (!reviews.isEmpty()) {
+		    int maxElements = Math.min(4, reviews.size());
+		    for (int i = 0; i < maxElements; i++) {
+		        if (reviews.get(i) != null) {
+		            String attributeName;
+		            
+		            if (i == 1) {
+		                attributeName = "secondReviewed";
+		            } else if (i == 2) {
+		                attributeName = "thirdReviewed";
+		            } else if (i == 3) {
+		                attributeName = "fourthReviewed";
+		            } else {
+		                attributeName = "firstReviewed";
+		            }
+		            
+		            model.addAttribute(attributeName, reviews.get(i));
+		        }
+		    }
 		}
 
 		return "user.html";

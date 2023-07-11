@@ -13,8 +13,12 @@
 
 .blocco-carosello{
     margin-top: 3%;
-    background-color: #c8c8c8;
-    margin-left: 20%;
-    margin-right: 20%;
+    background-color: #ffffff;
+    margin-left: 15%;
+    margin-right: 15%;
     padding: 2%;
+}
+
+body{
+    background-color: #eee;
 }

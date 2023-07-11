@@ -53,7 +53,7 @@ public class ImageController {
   //************************************* //
     
     @PostMapping("/admin/addImageToGame/{gameId}")
-	public String addImageToGame(Model model, @PathVariable Long gameId, @RequestParam("file") MultipartFile file) throws IOException {
+	public String addImageForGameToGame(Model model, @PathVariable Long gameId, @RequestParam("file") MultipartFile file) throws IOException {
 		Game game = gameService.getGameById(gameId);
 		if (!file.isEmpty()) {
 			Image img = new Image(file.getBytes());
@@ -66,7 +66,7 @@ public class ImageController {
 	}
 	
 	@GetMapping("/admin/removeImageFromGame/{gameId}")
-	public String removeImageFromGame(@PathVariable Long gameId, Model model) {
+	public String removeImageForGameFromGame(@PathVariable Long gameId, Model model) {
 		Game game = this.gameService.getGameById(gameId);
 		game.setImage(null);
 		this.gameService.saveGame(game);
@@ -74,6 +74,29 @@ public class ImageController {
 		return "game.html";
 	
 	}
+	
+	 @PostMapping("/admin/addImageForGamesToGame/{gameId}")
+		public String addImageForGamesToGame(Model model, @PathVariable Long gameId, @RequestParam("file") MultipartFile file) throws IOException {
+			Game game = gameService.getGameById(gameId);
+			if (!file.isEmpty()) {
+				Image img = new Image(file.getBytes());
+				this.imageService.save(img);
+				game.setImageForGames(img);
+				this.gameService.saveGame(game);
+			}
+			model.addAttribute("game", game);
+			return "game.html";
+		}
+	 
+	 @GetMapping("/admin/removeImageForGamesFromGame/{gameId}")
+		public String removeImageForGamesFromGame(@PathVariable Long gameId, Model model) {
+			Game game = this.gameService.getGameById(gameId);
+			game.setImageForGames(null);
+			this.gameService.saveGame(game);
+			model.addAttribute("game", game);
+			return "game.html";
+		
+		}
 	
 	//************************************* //
 	// CONTROLLER PER IMMAGINI DEL GENERE

@@ -138,7 +138,8 @@ public class GameController {
 	
 	@PostMapping("/admin/newGame")
 	public String newGame(@Valid @ModelAttribute("game") Game game, BindingResult bindingResult, Model model,
-			@RequestParam Long developerId, @RequestParam("file") MultipartFile file) throws IOException {
+			@RequestParam Long developerId, @RequestParam("file") MultipartFile imageForGame ,
+			@RequestParam("file2") MultipartFile imageForGames) throws IOException {
 		
 		this.gameValidator.validate(game, bindingResult);
 		
@@ -146,11 +147,18 @@ public class GameController {
 				
 			//se volete inserire un immagine in un form aggiungete questo if nel controller e il file come argomento
 			//in html va messo nella riga di input type="file" name="file" e nella riga del form enctype="multipart/form-data"
-			if (!file.isEmpty()) {
-				Image img = new Image(file.getBytes());
+			if (!imageForGame.isEmpty()) {
+				Image img = new Image(imageForGame.getBytes());
 				this.imageService.save(img);
 				game.setImage(img);
 			}	
+			
+			if (!imageForGames.isEmpty()) {
+				Image img = new Image(imageForGames.getBytes());
+				this.imageService.save(img);
+				game.setImageForGames(img);
+			}	
+			
 			Developer developer = this.developerService.getDeveloperById(developerId);
 			this.gameService.inizializeGame(game,developer);
 			this.developerService.saveDeveloper(developer);

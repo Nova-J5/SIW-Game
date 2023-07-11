@@ -39,12 +39,19 @@
 			            </select>
 			            <div class="invalid-feedback" th:if="${#fields.hasErrors('developer')}" th:errors="*{developer}"></div>
 			        </div>
-			         <div class="col-md-6 mb-3">
-			            <label for="image" class="form-label"><b>Immagine:</b></label>
-			            <input required type="file" name="file" class="form-control" id="file" accept="file/png, file/jpeg, file/jpg">
+				</div>
+				<div class="row">
+					<div class="col-md-6 mb-3">
+			            <label for="image" class="form-label"><b>Immagine per la pagina del singolo gioco (verticale):</b></label>
+			            <input required type="file" name="file" class="form-control" id="image" accept="file/png, file/jpeg, file/jpg">
 			            <div class="invalid-feedback" th:if="${#fields.hasErrors('image')}" th:errors="*{image}"></div>
 			        </div>
-			    </div>
+					<div class="col-md-6 mb-3">
+			            <label for="image2" class="form-label"><b>Immagine per la pagina con tutti i giochi (orizzontale):</b></label>
+			            <input required type="file" name="file2" class="form-control" id="image2" accept="file/png, file/jpeg, file/jpg">
+			            <div class="invalid-feedback" th:if="${#fields.hasErrors('image')}" th:errors="*{image}"></div>
+			        </div>
+				</div>
 				<div class="mt-2 mb-2">Non trovi lo sviluppatore? <a href="/admin/formNewDeveloper"><u>Creane uno nuovo</u></a></div>
 			    <div class="mt-4 mb-3">
 			        <label for="description" class="form-label"><b>Descrizione:</b></label>

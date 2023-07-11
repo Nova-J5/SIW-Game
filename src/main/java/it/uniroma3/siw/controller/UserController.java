@@ -47,32 +47,39 @@ public class UserController {
 		List<Review> reviews = this.reviewService.getReviewsByUser(user);
 		model.addAttribute("reviews", reviews);
 		
-		if(played.get(0) != null) 
-			model.addAttribute("firstCurrentlyPlaying", played.get(0));
-		if(played.get(1) != null) 
-			model.addAttribute("secondCurrentlyPlaying", played.get(1));
-		if(played.get(2) != null) 
-			model.addAttribute("thirdCurrentlyPlaying", played.get(2));
-		if(played.get(3) != null) 
-			model.addAttribute("fourthCurrentlyPlaying", played.get(3));
+		if(played.isEmpty() == false) {
+			if(played.get(0) != null) 
+				model.addAttribute("firstCurrentlyPlaying", played.get(0));
+			if(played.get(1) != null) 
+				model.addAttribute("secondCurrentlyPlaying", played.get(1));
+			if(played.get(2) != null) 
+				model.addAttribute("thirdCurrentlyPlaying", played.get(2));
+			if(played.get(3) != null) 
+				model.addAttribute("fourthCurrentlyPlaying", played.get(3));
+		}
+			
+
+		if(currentlyPlaying.isEmpty() == false) {
+			if(currentlyPlaying.get(0) != null) 
+				model.addAttribute("firstPlayed", played.get(0));
+			if(currentlyPlaying.get(1) != null) 
+				model.addAttribute("secondPlayed", played.get(1));
+			if(currentlyPlaying.get(2) != null) 
+				model.addAttribute("thirdPlayed", played.get(2));
+			if(currentlyPlaying.get(3) != null) 
+				model.addAttribute("fourthPlayed", played.get(3));
+		}
 		
-		if(currentlyPlaying.get(0) != null) 
-			model.addAttribute("firstPlayed", played.get(0));
-		if(currentlyPlaying.get(1) != null) 
-			model.addAttribute("secondPlayed", played.get(1));
-		if(currentlyPlaying.get(2) != null) 
-			model.addAttribute("thirdPlayed", played.get(2));
-		if(currentlyPlaying.get(3) != null) 
-			model.addAttribute("fourthPlayed", played.get(3));
-		
-		if(reviews.get(0) != null) 
-			model.addAttribute("firstReviewed", reviews.get(0));
-		if(reviews.get(1) != null) 
-			model.addAttribute("secondReviewed", reviews.get(1));
-		if(reviews.get(2) != null) 
-			model.addAttribute("thirdReviewed", reviews.get(2));
-		if(reviews.get(3) != null) 
-			model.addAttribute("fourthReviewed", reviews.get(3));
+		if(reviews.isEmpty() == false) {
+			if(reviews.get(0) != null) 
+				model.addAttribute("firstReviewed", reviews.get(0));
+			if(reviews.get(1) != null) 
+				model.addAttribute("secondReviewed", reviews.get(1));
+			if(reviews.get(2) != null) 
+				model.addAttribute("thirdReviewed", reviews.get(2));
+			if(reviews.get(3) != null) 
+				model.addAttribute("fourthReviewed", reviews.get(3));
+		}
 
 		return "user.html";
 	}

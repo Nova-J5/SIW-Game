@@ -5,7 +5,7 @@ insert into game values (nextval('game_seq'), 'gioco bello', 'super mario', 2000
 insert into game values (nextval('game_seq'), 'gioco brutto', 'pokemon scarlatto', 2022);
 insert into game values (nextval('game_seq'), 'gioco meraviglioso', 'zelda', 2018);
 
-insert into platform values (nextval('platform_seq'), 'descrizione carosello', 'descrizione console', 'nintendo', 1800);
+insert into platform values (nextval('platform_seq'), 'descrizione carosello', 'descrizione console', 'nintendo switch', 1800);
 
 
 

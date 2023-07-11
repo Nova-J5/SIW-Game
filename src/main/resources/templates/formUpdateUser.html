@@ -23,11 +23,11 @@
 							<div class="mb-3">
 							    <div th:if="${user.image} != null" class="d-flex justify-content-center mb-4">
 							        <img th:src="@{'/display/image/' + ${user.image.id}}"
-							        class="rounded-circle mt-5" alt="example placeholder" style="width: 150px;" />
+							        class="img-fluid img-thumbnail mt-4 mb-2" alt="example placeholder" style="width: 150px;" />
 							    </div>
 								<div th:if="${user.image} == null" class="d-flex justify-content-center mb-4">
 							        <img src="https://cdn.pixabay.com/photo/2012/04/26/19/43/profile-42914_1280.png"
-							        class="rounded-circle mt-5" alt="example placeholder" style="width: 150px;" />
+							        class="img-fluid img-thumbnail mt-4 mb-2" alt="example placeholder" style="width: 150px;" />
 							    </div>
 							    <div class="d-flex justify-content-center">
 							        <div class="btn btn-primary btn-rounded">

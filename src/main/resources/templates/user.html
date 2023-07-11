@@ -5,171 +5,135 @@
 			Utente
 		</title>
 		<div th:replace="fragments/css :: css-dep"></div>
-		<link rel="stylesheet" href="/css/user_style.css" />		
+		<!-- <link rel="stylesheet" href="/css/user_style.css" /> -->		
 	</head>
 	<body>
 		
 		<div th:replace="fragments/navbar :: navbar"></div>
 		
-			
-		<div class="profile-page">
-			<div class="page-header header-filter" data-parallax="true" style="background-image:url('');"></div>
-		        <div class="main main-raised">
-		            <div class="profile-content">
-		                <div class="container">
-							<div class="row">
-							  <div class="col-md-6 ml-auto mr-auto">
-							    <div class="profile">
-							      <div th:if="${user.image} != null" class="avatar">
-							        <img th:src="@{'/display/image/' + ${user.image.id}}" alt="Circle Image" class="img-raised rounded-circle img-fluid">
-							      </div>
-							      <div th:if="${user.image} == null" class="avatar">
-							        <img src="https://cdn.pixabay.com/photo/2012/04/26/19/43/profile-42914_1280.png" alt="Circle Image" class="img-raised rounded-circle img-fluid">
-							      </div>
-							      <div class="name">
-							        <h3 class="title" th:text="${user.name} + ' ' + ${user.surname}"></h3>
-							        <h5 th:text="'@' + ${userDetails.username}"></h5>
-							        <div class="buttons-container">
-							          <a class="btn btn-warning btn-sm" th:href="@{'/formUpdateUser/' + ${user.id}}">Modifica Profilo</a>
-							        </div>
-							      </div>
-									<div class="p-4 text-black rounded" style="background-color: #f8f9fa;">
-									  <div class="d-flex justify-content-center space-between">
-									    <div>
-									      <strong class="mb-1 mr-3 h5" th:text="${#lists.size(currentlyPlaying)}"></strong>
-									      <p class="small text-muted mb-0">Giochi correnti</p>
-									    </div>
-									    <div>
-									      <strong class="mb-1 ml-3 h5" th:text="${#lists.size(played)}"></strong>
-									      <p class="small text-muted mb-0">Giochi terminati</p>
-									    </div>
-									  </div>
-									</div>
-							    </div>
-							  </div>
-							</div>
-
-		                    <div class="description text-center">
-		                        <p>Descrizione che probabilmente non metteremo mai e che alla fine toglieremo</p>
+		<div class="container">
+		    <div class="row d-flex justify-content-center align-items-center">
+		        <div class="col col-lg-9 col-xl-7">
+		            <div class="card">
+		                <div class="rounded-top text-white d-flex flex-row" style="background-color: #000; height:200px;">
+		                    <div class="ms-4 mt-5 d-flex flex-column" style="width: 150px;">
+		                        <div th:if="${user.image} != null">
+		                            <img th:src="@{'/display/image/' + ${user.image.id}}" class="img-fluid img-thumbnail mt-4 mb-2" style="width: 150px; z-index: 1">
+		                        </div>
+		                        <div th:if="${user.image} == null">
+		                            <img src="https://cdn.pixabay.com/photo/2012/04/26/19/43/profile-42914_1280.png" class="img-fluid img-thumbnail mt-4 mb-2" style="width: 150px; z-index: 1">
+		                        </div>
+		                        <button type="button" class="btn btn-dark" data-mdb-ripple-color="dark" style="z-index: 1;">
+		                            <a class="text-white text-decoration-none" th:href="@{'/formUpdateUser/' + ${user.id}}">Modifica Profilo</a>
+		                        </button>
 		                    </div>
-		                    <div class="row">
-		                        <div class="col-md-6 ml-auto mr-auto">
-		                            <div class="profile-tabs">
-		                                <ul class="nav nav-pills nav-pills-icons justify-content-center" role="tablist">
-		                                    <li class="nav-item">
-		                                        <a class="nav-link active" href="#playing" role="tab" data-toggle="tab">
-		                                            <i class="fa-sharp fa-solid fa-joystick"></i>
-		                                            Giocando
-		                                        </a>
-		                                    </li>
-		                                    <li class="nav-item">
-		                                        <a class="nav-link" href="#played" role="tab" data-toggle="tab">
-		                                            <i class="fa-solid fa-alien-8bit"></i>
-		                                            Giocati
-		                                        </a>
-		                                    </li>
-		                                    <li class="nav-item">
-		                                        <a class="nav-link" href="#reviews" role="tab" data-toggle="tab">
-		                                            <i class="fa-solid fa-star-sharp"></i>
-		                                            Recensioni
-		                                        </a>
-		                                    </li>
-		                                </ul>
-		                            </div>
-		                        </div>
+		                    <div class="ms-3" style="margin-top: 130px;">
+		                        <h5 th:text="${user.name} + ' ' + ${user.surname}"></h5>
+		                        <p th:text="'@' + ${userDetails.username}"></p>
 		                    </div>
-		    
-		                    <div class="tab-content tab-space">
-		                        <div class="tab-pane active text-center gallery" id="playing">
-		                            <div class="row">
-		                                <div th:if="${currentlyPlaying==null}">
-		                                    L'utente non sta ancora giocando a nessun gioco
-		                                </div>
-		                                <div th:if="${currentlyPlaying} != null" class="d-flex justify-content-between align-items-center mb-4">
-		                                    <p class="lead fw-normal mb-0 ml-4">Giochi a cui l'utente sta giocando</p>
-		                                    <p class="mb-0"><a th:href="@{'/currentlyPlaying/' + ${user.id}}" class="text-muted">Mostra tutti</a></p>
-		                                </div>
-		                                <ul th:if="${currentlyPlaying} != null" class="d-flex flex-row flex-nowrap overflow-auto list-group list-group-horizontal">
-		                                    <li class="list-group-item border-0" th:each="game : ${currentlyPlaying}">
-		                                        <div class="card border-0" style="width: 18rem;">
-		                                            <a th:href="@{'/game/' + ${game.id}}">
-		                                                <div th:if="${game.image} != null" class="card-img-top">
-		                                                    <img th:src="@{'/display/image/' + ${game.image.id}}" width="150px" height="120px" alt="Game Image"/>
-		                                                </div>
-		                                                <div th:if="${game.image} == null" class="card-img-top">
-		                                                    <img src="/images/image-not-available.jpeg" width="150px" height="120px" alt="Image not available"/>
-		                                                </div>
-		                                            </a>
-		                                            <div class="card-body">
-		                                                <h5 class="card-text" th:text="${game.title}">Nome</h5>
-		                                            </div>
-		                                        </div>
-		                                    </li>
-		                                </ul>
-		                            </div>
+		                </div>
+		                <div class="p-4 text-black" style="background-color: #f8f9fa;">
+		                    <div class="d-flex justify-content-end text-center py-1">
+		                        <div>
+		                            <p class="mb-1 h5" th:text="${#lists.size(currentlyPlaying)}"></p>
+		                            <p class="small text-muted mb-0">Giochi terminati</p>
 		                        </div>
-		    
-		                        <div class="tab-pane text-center gallery" id="played">
-		                            <div class="row">
-		                                <div th:if="${played==null}">
-		                                    L'utente non ha ancora finito nessun gioco
-		                                </div>
-		                                <div th:if="${played} != null" class="d-flex justify-content-between align-items-center mb-4">
-		                                    <p class="lead fw-normal mb-0 ml-4">Giochi che l'utente ha finito</p>
-		                                    <p class="mb-0"><a th:href="@{'/played/' + ${user.id}}" class="text-muted">Mostra tutti</a></p>
-		                                </div>
-		                                <ul th:if="${played} != null" class="d-flex flex-row flex-nowrap overflow-auto list-group list-group-horizontal">
-		                                    <li class="list-group-item border-0" th:each="game : ${played}">
-		                                        <div class="card border-0" style="width: 18rem;">
-		                                            <a th:href="@{'/game/' + ${game.id}}">
-		                                                <div th:if="${game.image} != null" class="card-img-top">
-		                                                    <img th:src="@{'/display/image/' + ${game.image.id}}" width="150px" height="120px" alt="Game Image"/>
-		                                                </div>
-		                                                <div th:if="${game.image} == null" class="card-img-top">
-		                                                    <img src="/images/image-not-available.jpeg" width="150px" height="120px" alt="Image not available"/>
-		                                                </div>
-		                                            </a>
-		                                            <div class="card-body">
-		                                                <h5 class="card-text" th:text="${game.title}">Nome</h5>
-		                                            </div>
-		                                        </div>
-		                                    </li>
-		                                </ul>
-		                            </div>
+		                        <div class="px-3">
+		                            <p class="mb-1 h5" th:text="${#lists.size(played)}"></p>
+		                            <p class="small text-muted mb-0">Giochi correnti</p>
 		                        </div>
-		                        <div class="tab-pane text-center gallery" id="reviews">
-		                            <div class="row">
-		                                <div th:if="${reviews==null}">
-		                                    <strong>L'utente non ha ancora scritto recensioni</strong>
-		                                </div>
-		                                <div th:if="${reviews} != null" class="d-flex justify-content-between align-items-center mb-4">
-		                                    <p class="lead fw-normal mb-0 ml-4">Giochi per i quali l'utente ha scritto recensioni</p>
-		                                    <p class="mb-0"><a th:href="@{'/reviews/' + ${user.id}}" class="text-muted">Mostra tutti</a></p>
-		                                </div>
-		                                <ul th:if="${reviews} != null" class="d-flex flex-row flex-nowrap overflow-auto list-group list-group-horizontal">
-		                                    <li class="list-group-item border-0" th:each="review : ${reviews}">
-		                                        <div class="card border-0" style="width: 18rem;">
-		                                            <a th:href="@{'/game/' + ${review.game.id}}">
-		                                                <div th:if="${review.game.image} != null" class="card-img-top">
-		                                                    <img th:src="@{'/display/image/' + ${review.game.image.id}}" width="150px" height="120px" alt="Game Image"/>
-		                                                </div>
-		                                                <div th:if="${review.game.image} == null" class="card-img-top">
-		                                                    <img src="/images/image-not-available.jpeg" width="150px" height="120px" alt="Image not available"/>
-		                                                </div>
-		                                            </a>
-		                                            <div class="card-body">
-		                                                <h5 class="card-text" th:text="${review.game.title}">Nome</h5>
-		                                            </div>
-		                                        </div>
-		                                    </li>
-		                                </ul>
-		                            </div>
+		                        <div>
+		                            <p class="mb-1 h5" th:text="${#lists.size(reviews)}"></p>
+		                            <p class="small text-muted mb-0">Recensioni</p>
 		                        </div>
 		                    </div>
 		                </div>
+		                
+		                <div class="card-body p-4 text-black">
+		                    <div class="d-flex justify-content-between align-items-center mb-4">
+		                        <p class="lead fw-normal mb-0">Giochi completati</p>
+		                        <p class="mb-0"><a th:href="@{'/played/' + ${user.id}}" class="text-muted">Mostra tutti</a></p>
+		                    </div>
+		                    <div class="row g-2">
+		                        <div class="col mb-2">
+		                            <img src="https://mdbcdn.b-cdn.net/img/Photos/Lightbox/Original/img%20(112).webp"
+		                                alt="image 1" class="w-100 rounded-3">
+		                        </div>
+		                        <div class="col mb-2">
+		                            <img src="https://mdbcdn.b-cdn.net/img/Photos/Lightbox/Original/img%20(107).webp"
+		                                alt="image 1" class="w-100 rounded-3">
+		                        </div>
+		                    </div>
+		                    <div class="row g-2">
+		                        <div class="col">
+		                            <img src="https://mdbcdn.b-cdn.net/img/Photos/Lightbox/Original/img%20(108).webp"
+		                                alt="image 1" class="w-100 rounded-3">
+		                        </div>
+		                        <div class="col">
+		                            <img src="https://mdbcdn.b-cdn.net/img/Photos/Lightbox/Original/img%20(114).webp"
+		                                alt="image 1" class="w-100 rounded-3">
+		                        </div>
+		                    </div>
+		                </div>
+		                
+						<div class="card-body p-4 text-black">
+		                    <div class="d-flex justify-content-between align-items-center mb-4">
+		                        <p class="lead fw-normal mb-0">Giochi correnti</p>
+		                        <p class="mb-0"><a th:href="@{'/currentlyPlaying/' + ${user.id}}" class="text-muted">Mostra tutti</a></p>
+		                    </div>
+		                    <div class="row g-2">
+		                        <div class="col mb-2">
+		                            <img src="https://mdbcdn.b-cdn.net/img/Photos/Lightbox/Original/img%20(112).webp"
+		                                alt="image 1" class="w-100 rounded-3">
+		                        </div>
+		                        <div class="col mb-2">
+		                            <img src="https://mdbcdn.b-cdn.net/img/Photos/Lightbox/Original/img%20(107).webp"
+		                                alt="image 1" class="w-100 rounded-3">
+		                        </div>
+		                    </div>
+		                    <div class="row g-2">
+		                        <div class="col">
+		                            <img src="https://mdbcdn.b-cdn.net/img/Photos/Lightbox/Original/img%20(108).webp"
+		                                alt="image 1" class="w-100 rounded-3">
+		                        </div>
+		                        <div class="col">
+		                            <img src="https://mdbcdn.b-cdn.net/img/Photos/Lightbox/Original/img%20(114).webp"
+		                                alt="image 1" class="w-100 rounded-3">
+		                        </div>
+		                    </div>
+		                </div>
+		                
+						<div class="card-body p-4 text-black">
+		                    <div class="d-flex justify-content-between align-items-center mb-4">
+		                        <p class="lead fw-normal mb-0">Giochi recensiti</p>
+		                        <p class="mb-0"><a th:href="@{'/reviews/' + ${user.id}}" class="text-muted">Mostra tutti</a></p>
+		                    </div>
+		                    <div class="row g-2">
+		                        <div class="col mb-2">
+		                            <img src="https://mdbcdn.b-cdn.net/img/Photos/Lightbox/Original/img%20(112).webp"
+		                                alt="image 1" class="w-100 rounded-3">
+		                        </div>
+		                        <div class="col mb-2">
+		                            <img src="https://mdbcdn.b-cdn.net/img/Photos/Lightbox/Original/img%20(107).webp"
+		                                alt="image 1" class="w-100 rounded-3">
+		                        </div>
+		                    </div>
+		                    <div class="row g-2">
+		                        <div class="col">
+		                            <img src="https://mdbcdn.b-cdn.net/img/Photos/Lightbox/Original/img%20(108).webp"
+		                                alt="image 1" class="w-100 rounded-3">
+		                        </div>
+		                        <div class="col">
+		                            <img src="https://mdbcdn.b-cdn.net/img/Photos/Lightbox/Original/img%20(114).webp"
+		                                alt="image 1" class="w-100 rounded-3">
+		                        </div>
+		                    </div>
+		                </div>
+		                
 		            </div>
 		        </div>
 		    </div>
+		</div>
 	    
 		<div th:replace="fragments/footer :: footer"></div>
 

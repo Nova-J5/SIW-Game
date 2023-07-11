@@ -12,47 +12,41 @@
 		<div th:replace="fragments/navbar :: navbar"></div>
 		
 		<div class="container">
+			<!-- Lista recensioni vuota -->
 			<div th:if="${reviews==null || reviews.isEmpty()}"><h1 class="mt-5 mb-5">Non ci sono giochi recensiti dall'utente</h1></div>
-			<ul>
-				<li th:each="review : ${reviews}" class="game-card">
-					<div class="game-header">
-				    	<div th:if="${review.game.image} != null">
-							<img th:src="@{'/display/image/' + ${review.game.image.id}}" width=50% />
-				        </div>
-				        <div th:if="${review.game.image} == null">
-				        	<img src="/images/image-not-available.jpeg" />
-				        </div>
-					</div> <!--game-header-->
-					<div class="game-content">
-						<div class="game-content-header">
-							<a th:href="@{'/game' + '/' + ${review.game.id}}">
-								<h3 class="game-title" th:text="${review.game.title}"></h3>
-							</a>
-						</div>
-						<div class="game-info">
-							<div class="info-section">
-								<label>Anno di uscita</label>
-								<span th:text="${review.game.year}"></span>
-							</div><!--date,time-->
-							<div class="info-section">
-								<label>Screen</label>
-								<span>03</span>
-							</div><!--screen-->
-							<div class="info-section">
-								<label>Row</label>
-								<span>F</span>
-							</div><!--row-->
-							<div class="info-section">
-								<label>Seat</label>
-								<span>21,22</span>
-							</div><!--seat-->
-						</div>
-					</div> <!--game-content-->
-				</li> <!--game-card-->
-			</ul>
-		</div> <!--container-->
+			<!-- Lista recensioni non vuota -->
+			<div class="row row-cols-1 row-cols-md-2" th:if="${reviews!=null && !reviews.isEmpty()}">
+				<!-- Scorro la lista delle recensioni -->
+			    <div class="col mb-4" th:each="review : ${reviews}">
+			      <!-- Inizio carta -->
+			      <div class="card">
+			        <!-- Immagine del gioco -->
+			        <div class="view overlay">
+			          <div th:if="${review.game.image} != null">
+			            <a th:href="@{'/game' + '/' + ${review.game.id}}" class="mask rgba-white-slight">
+			                <img class="card-img-top" th:src="@{'/display/image/' + ${review.game.image.id}}" width=50% />
+			            </a>
+			          </div>
+			          <div th:if="${review.game.image} == null">
+			            <a th:href="@{'/game' + '/' + ${review.game.id}}" class="mask rgba-white-slight">
+			                <img class="card-img-top" src="/images/image-not-available.jpeg" />
+			            </a>
+			          </div>
+			        </div>
+			        <!-- Contenuto della carta -->
+			        <div class="card-body">
+			          <!--Titolo recensione -->
+			          <span th:utext="${review.game.printStars(review.score)}"></span>
+			          <h4 class="card-title" th:text="${review.title}"></h4>
+			          <!-- Testo recensione -->
+			          <p class="card-text" th:text="${review.body}" ></p>
+			        </div>
+			      </div>
+			      <!-- Fine carta -->
+			    </div>
+			</div>
+		</div> <!-- Container -->
 		
 		<div th:replace="fragments/footer :: footer"></div>
-
 	</body>
 </html>

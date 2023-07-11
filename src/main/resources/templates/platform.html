@@ -13,44 +13,68 @@
 		<div th:replace="fragments/navbar :: navbar"></div>
 		
 		<div class="container">
-			<span th:if="${platform}">
-				    <h1 th:text="${platform.name}">Titolo Piattaforma</h1>
-				    <h5 th:text="${platform.description}"></h5>
-					<div th:if="${currentUser != null && currentUser.isAdmin()}">
-						<a th:href="@{'/admin/updatePlatform/' + ${platform.id}}" >modifica dati piattaforma </a><br>
-					</div>
-				    
-			        <div>Anno: <span th:text="'(' + ${platform.yearOfRelease} + ')'">2000</span></div>
-			    <div th:unless="${platform}">Non esiste</div>
-			    
-			    <span th:if= "${!platform.games.isEmpty()}">
-				        <h2>Giochi</h2>
-			        	<li th:each="game : ${platform.games}">
-					        <a th:href="@{'/game/' + ${game.id}}" th:text="${game.title}"> Gioco </a>   	
-						</li>
-			    	</span>
-			    	<span th:if= "${platform.developer != null}">
-				        <h1>Sviluppatore</h1>
-					        <a th:href="@{'/developer/' + ${platform.developer.id}}" th:text="${platform.developer.name}"> Sviluppatore </a>   	
-			    	</span>
-			    	
-			    	 <div th:if="${platform.image} != null">
-						<img th:src="@{'/display/image/' + ${platform.image.id}}" width=50% />
-			        	<div th:if="${currentUser != null && currentUser.isAdmin()}">
-							<a th:href="@{'/admin/removeImageFromPlatform/' + ${platform.id}}"><button type="button" class="btn btn-success my-3"> Rimuovi immagine </button></a>
-						</div>
-			        </div>
-			        <div th:if="${platform.image} == null">
-			        	<img src="/images/image-not-available.jpeg" />
+			<div th:if="${platform}">
+				<div class="row">
+					    <h1 class="mt-2" th:text="${platform.name}">Titolo Piattaforma</h1>
+				        <div>Anno di rilascio: <b><span th:text="${platform.yearOfRelease}">2000</span></b></div>
+				    	 <div class="mt-2" th:if="${platform.image} != null">
+							<img th:src="@{'/display/image/' + ${platform.image.id}}" width=50% />
+				        	<div th:if="${currentUser != null && currentUser.isAdmin()}">
+								<a th:href="@{'/admin/removeImageFromPlatform/' + ${platform.id}}"><button type="button" class="btn btn-warning my-3"> Rimuovi immagine </button></a>
+							</div>
+				        </div>
+				        <div class="mt-2" th:if="${platform.image} == null">
+				        	<img src="/images/image-not-available.jpeg" />
+							<div th:if="${currentUser != null && currentUser.isAdmin()}">
+								<div>Aggiungi una foto della piattaforma</div>
+					        	<form method="POST" enctype="multipart/form-data" th:action="@{'/admin/addImageToPlatform/' + ${platform.id}}">
+					        		<input type="file" name="file" class="my-2 form-control" style="max-width: 280px;" required />
+				        			<button type="submit" class="btn btn-success">Aggiungi immagine</button>
+				        		</form>
+							</div>
+				        </div>
+					    <p class="mt-2" th:text="${platform.description}"></p>
 						<div th:if="${currentUser != null && currentUser.isAdmin()}">
-							<div>Aggiungi una foto della piattaforma</div>
-				        	<form method="POST" enctype="multipart/form-data" th:action="@{'/admin/addImageToPlatform/' + ${platform.id}}">
-				        		<input type="file" name="file" class="my-2 form-control" style="max-width: 280px;" required />
-			        			<button type="submit" class="btn btn-success">Aggiungi immagine</button>
-			        		</form>
+							<a th:href="@{'/admin/updatePlatform/' + ${platform.id}}" >modifica dati piattaforma </a><br>
 						</div>
-			        </div>
+					    
+						<span th:if= "${platform.developer != null}">
+							<p><b>Sviluppatore: </b><a th:href="@{'/developer/' + ${platform.developer.id}}" th:text="${platform.developer.name}"></a></p>	
+				    	</span>
+				</div>
+				<div class="row">
+					<h2 class="mb-3 mt-3">Giochi</h2>
+				</div>
+				<div class="row">
+					<div class=" d-flex row row-cols-1 row-cols-md-3" th:if= "${!platform.games.isEmpty()}">
+					    <div class="col mb-4" th:each="game : ${platform.games}">
+					        <!-- Carta -->
+					        <div class="card">
+					            <!-- Immagine-->
+					            <div class="view overlay">
+									<a th:href="@{'/game/' + ${game.id}}">   
+										<div th:if="${game.image} != null">
+											<img th:src="@{'/display/image/' + ${game.image.id}}" class="card-img-top"/>
+										</div>
+										<div th:if="${game.image} == null">
+											<img src="/images/image-not-available.jpeg" class="card-img-top" />
+										</div>
+									</a>
+					            </div>
+					            <!-- Contenuto della carta -->
+					            <div class="card-body">
+					                <!-- Titolo -->
+					                <h4 class="card-title"  th:text="${game.title} + ' (' + ${platform.yearOfRelease} + ')'"></h4>
+					                <!-- Descrizione -->
+					                <p class="card-text" th:text="${game.description}"></p>
+					            </div>
+					        </div>
+					        <!-- Fine carta -->
+					    </div>
+					</div>
+				</div>
+			</div>
+			<div th:unless="${platform}">Non esiste</div>
 		</div>
-	    	
 	 </body>
 </html>

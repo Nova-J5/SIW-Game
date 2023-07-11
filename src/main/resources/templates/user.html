@@ -21,7 +21,7 @@
 		                            <img th:src="@{'/display/image/' + ${user.image.id}}" class="img-fluid img-thumbnail mt-4 mb-2" style="width: 150px; z-index: 1">
 		                        </div>
 		                        <div th:if="${user.image} == null">
-		                            <img src="https://cdn.pixabay.com/photo/2012/04/26/19/43/profile-42914_1280.png" class="img-fluid img-thumbnail mt-4 mb-2" style="width: 150px; z-index: 1">
+		                            <img src="https://cdn.pixabay.com/photo/2012/04/26/19/43/profile-42914_1280.png" class="img-fluid img-thumbnail mt-4" style="width: 150px; z-index: 1">
 		                        </div>
 		                        <button type="button" class="btn btn-dark" data-mdb-ripple-color="dark" style="z-index: 1;">
 		                            <a class="text-white text-decoration-none" th:href="@{'/formUpdateUser/' + ${user.id}}">Modifica Profilo</a>
@@ -56,22 +56,38 @@
 		                    </div>
 		                    <div class="row g-2">
 		                        <div class="col mb-2">
-		                            <img src="https://mdbcdn.b-cdn.net/img/Photos/Lightbox/Original/img%20(112).webp"
-		                                alt="image 1" class="w-100 rounded-3">
+		                            <div th:if="${firstPlayed.image} != null">
+		                              <img th:src="@{'/display/image/' + ${firstPlayed.image.id}}" class="w-100 rounded-3"/>
+		                            </div>
+		                            <div th:if="${firstPlayed.image} == null" >
+		                                <img src="/images/image-not-available.jpeg" class="w-100 rounded-3"/>
+		                            </div>
 		                        </div>
 		                        <div class="col mb-2">
-		                            <img src="https://mdbcdn.b-cdn.net/img/Photos/Lightbox/Original/img%20(107).webp"
-		                                alt="image 1" class="w-100 rounded-3">
+		                            <div th:if="${secondPlayed.image} != null">
+		                              <img th:src="@{'/display/image/' + ${secondPlayed.image.id}}" class="w-100 rounded-3"/>
+		                            </div>
+		                            <div th:if="${secondPlayed.image} == null" >
+		                                <img src="/images/image-not-available.jpeg" class="w-100 rounded-3"/>
+		                            </div>
 		                        </div>
 		                    </div>
 		                    <div class="row g-2">
 		                        <div class="col">
-		                            <img src="https://mdbcdn.b-cdn.net/img/Photos/Lightbox/Original/img%20(108).webp"
-		                                alt="image 1" class="w-100 rounded-3">
+		                            <div th:if="${thirdPlayed.image} != null">
+		                              <img th:src="@{'/display/image/' + ${thirdPlayed.image.id}}" class="w-100 rounded-3"/>
+		                            </div>
+		                            <div th:if="${thirdPlayed.image} == null" >
+		                                <img src="/images/image-not-available.jpeg" class="w-100 rounded-3"/>
+		                            </div>
 		                        </div>
 		                        <div class="col">
-		                            <img src="https://mdbcdn.b-cdn.net/img/Photos/Lightbox/Original/img%20(114).webp"
-		                                alt="image 1" class="w-100 rounded-3">
+		                            <div th:if="${fourthPlayed.image} != null">
+		                              <img th:src="@{'/display/image/' + ${fourthPlayedimage.id}}" class="w-100 rounded-3"/>
+		                            </div>
+		                            <div th:if="${fourthPlayed.image} == null" >
+		                                <img src="/images/image-not-available.jpeg" class="w-100 rounded-3"/>
+		                            </div>
 		                        </div>
 		                    </div>
 		                </div>
@@ -83,22 +99,38 @@
 		                    </div>
 		                    <div class="row g-2">
 		                        <div class="col mb-2">
-		                            <img src="https://mdbcdn.b-cdn.net/img/Photos/Lightbox/Original/img%20(112).webp"
-		                                alt="image 1" class="w-100 rounded-3">
+		                            <div th:if="${firstCurrentlyPlaying.image} != null">
+		                              <img th:src="@{'/display/image/' + ${firstCurrentlyPlaying.image.id}}" class="w-100 rounded-3"/>
+		                            </div>
+		                            <div th:if="${firstCurrentlyPlaying.image} == null" >
+		                                <img src="/images/image-not-available.jpeg" class="w-100 rounded-3"/>
+		                            </div>
 		                        </div>
 		                        <div class="col mb-2">
-		                            <img src="https://mdbcdn.b-cdn.net/img/Photos/Lightbox/Original/img%20(107).webp"
-		                                alt="image 1" class="w-100 rounded-3">
+		                            <div th:if="${secondCurrentlyPlaying.image} != null">
+		                              <img th:src="@{'/display/image/' + ${secondCurrentlyPlaying.image.id}}" class="w-100 rounded-3"/>
+		                            </div>
+		                            <div th:if="${secondCurrentlyPlaying.image} == null" >
+		                                <img src="/images/image-not-available.jpeg" class="w-100 rounded-3"/>
+		                            </div>
 		                        </div>
 		                    </div>
 		                    <div class="row g-2">
 		                        <div class="col">
-		                            <img src="https://mdbcdn.b-cdn.net/img/Photos/Lightbox/Original/img%20(108).webp"
-		                                alt="image 1" class="w-100 rounded-3">
+		                            <div th:if="${thirdCurrentlyPlaying.image} != null">
+		                              <img th:src="@{'/display/image/' + ${thirdCurrentlyPlaying.image.id}}" class="w-100 rounded-3"/>
+		                            </div>
+		                            <div th:if="${thirdCurrentlyPlaying.image} == null" >
+		                                <img src="/images/image-not-available.jpeg" class="w-100 rounded-3"/>
+		                            </div>
 		                        </div>
 		                        <div class="col">
-		                            <img src="https://mdbcdn.b-cdn.net/img/Photos/Lightbox/Original/img%20(114).webp"
-		                                alt="image 1" class="w-100 rounded-3">
+		                            <div th:if="${fourthCurrentlyPlaying.image} != null">
+		                              <img th:src="@{'/display/image/' + ${fourthCurrentlyPlaying.image.id}}" class="w-100 rounded-3"/>
+		                            </div>
+		                            <div th:if="${fourthCurrentlyPlaying.image} == null" >
+		                                <img src="/images/image-not-available.jpeg" class="w-100 rounded-3"/>
+		                            </div>
 		                        </div>
 		                    </div>
 		                </div>
@@ -110,22 +142,38 @@
 		                    </div>
 		                    <div class="row g-2">
 		                        <div class="col mb-2">
-		                            <img src="https://mdbcdn.b-cdn.net/img/Photos/Lightbox/Original/img%20(112).webp"
-		                                alt="image 1" class="w-100 rounded-3">
+		                            <div th:if="${firstReviewed.image} != null">
+		                              <img th:src="@{'/display/image/' + ${firstReviewed.image.id}}" class="w-100 rounded-3"/>
+		                            </div>
+		                            <div th:if="${firstReviewed.image} == null" >
+		                                <img src="/images/image-not-available.jpeg" class="w-100 rounded-3"/>
+		                            </div>
 		                        </div>
 		                        <div class="col mb-2">
-		                            <img src="https://mdbcdn.b-cdn.net/img/Photos/Lightbox/Original/img%20(107).webp"
-		                                alt="image 1" class="w-100 rounded-3">
+		                            <div th:if="${secondReviewed.image} != null">
+		                              <img th:src="@{'/display/image/' + ${secondReviewed.image.id}}" class="w-100 rounded-3"/>
+		                            </div>
+		                            <div th:if="${secondReviewed.image} == null" >
+		                                <img src="/images/image-not-available.jpeg" class="w-100 rounded-3"/>
+		                            </div>
 		                        </div>
 		                    </div>
 		                    <div class="row g-2">
 		                        <div class="col">
-		                            <img src="https://mdbcdn.b-cdn.net/img/Photos/Lightbox/Original/img%20(108).webp"
-		                                alt="image 1" class="w-100 rounded-3">
+		                            <div th:if="${thirdReviewed.image} != null">
+		                              <img th:src="@{'/display/image/' + ${thirdReviewed.image.id}}" class="w-100 rounded-3"/>
+		                            </div>
+		                            <div th:if="${thirdReviewed.image} == null" >
+		                                <img src="/images/image-not-available.jpeg" class="w-100 rounded-3"/>
+		                            </div>
 		                        </div>
 		                        <div class="col">
-		                            <img src="https://mdbcdn.b-cdn.net/img/Photos/Lightbox/Original/img%20(114).webp"
-		                                alt="image 1" class="w-100 rounded-3">
+		                            <div th:if="${fourthReviewed.image} != null">
+		                              <img th:src="@{'/display/image/' + ${fourthReviewed.image.id}}" class="w-100 rounded-3"/>
+		                            </div>
+		                            <div th:if="${fourthReviewed.image} == null" >
+		                                <img src="/images/image-not-available.jpeg" class="w-100 rounded-3"/>
+		                            </div>
 		                        </div>
 		                    </div>
 		                </div>

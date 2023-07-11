@@ -13,8 +13,13 @@
 		
 		<div class="container">
 			<!-- Lista recensioni vuota -->
-			<div th:if="${reviews==null || reviews.isEmpty()}"><h1 class="mt-5 mb-5">Non ci sono giochi recensiti dall'utente</h1></div>
+			<div th:if="${reviews==null || reviews.isEmpty()}">
+				<h1 class="mt-5 mb-5">Non ci sono giochi recensiti dall'utente</h1>
+			</div>
 			<!-- Lista recensioni non vuota -->
+			<div class="mt-2 mb-2" th:if="${reviews!=null && !reviews.isEmpty()}">
+				<h1>Giochi recensiti da <span th:text="${currentUser.name} + ':'"></span></h1>
+			</div>
 			<div class="row row-cols-1 row-cols-md-2" th:if="${reviews!=null && !reviews.isEmpty()}">
 				<!-- Scorro la lista delle recensioni -->
 			    <div class="col mb-4" th:each="review : ${reviews}">

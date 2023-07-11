@@ -59,7 +59,7 @@ public class PlatformController {
 
 	@GetMapping("/platforms")
 	public String showPlatforms(Model model) {
-		model.addAttribute("platforms", this.platformRepository.findAll());
+		model.addAttribute("developers", this.developerRepository.findAll());
 		return "platforms.html";
 	}
 	

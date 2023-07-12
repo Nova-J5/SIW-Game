@@ -23,6 +23,7 @@ import it.uniroma3.siw.model.Game;
 import it.uniroma3.siw.model.Genre;
 import it.uniroma3.siw.model.Image;
 import it.uniroma3.siw.model.Platform;
+import it.uniroma3.siw.model.User;
 import it.uniroma3.siw.service.DeveloperService;
 import it.uniroma3.siw.service.GameService;
 import it.uniroma3.siw.service.GenreService;
@@ -35,6 +36,9 @@ import jakarta.validation.Valid;
 
 @Controller
 public class GameController {
+	
+	@Autowired
+	private GlobalController globalController;
 	
 	@Autowired
 	private DeveloperService developerService;
@@ -122,6 +126,23 @@ public class GameController {
 		return "foundGames.html";
 	}
 	
+	@GetMapping("/addPlayed/{id}")
+	public String addPlayedGame(@PathVariable("id") Long id, Model model) {
+		Game game = this.gameService.getGameById(id);
+		User user = this.globalController.getCurrentUser();
+		user.getPlayed().add(game);
+		this.userService.saveUser(user);
+		model.addAttribute("game", game);
+		return "game.html";
+	}
+	
+	@GetMapping("/addCurrentlyPlaying/{id}")
+	public String addCurrentlyPlayingGame(@PathVariable("id") Long id, Model model) {
+		Game game = this.gameService.getGameById(id);
+		this.globalController.getCurrentUser().getCurrentlyPlaying().add(game);
+		model.addAttribute("game", game);
+		return "game.html";
+	}
 	
 	//************************************* //
 	// CONTROLLER PER RICHIESTE DI UN ADMIN

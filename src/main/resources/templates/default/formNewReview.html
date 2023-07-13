@@ -19,21 +19,21 @@
 			
 			<form th:action="@{'/default/newReview/' + ${gameId} + '/' + ${currentUser.id}}" method="POST" th:object="${review}" class="mb-4">
 			    <div class="row">
-			    	<div class="mb-3">
-			       		 <label for="score" class="form-label"><b>Valutazione:</b></label>
-			       		 <input type="number" required min="1" max="5" class="form-control" id="score"  th:field="${review.score}">
-			   		 </div>
-			        <div class="col-md-6 mb-3">
+			        <div class=" col-md-6 mb-3">
 			            <label for="name" class="form-label"><b>Titolo:</b></label>
 			            <input required type="text" class="form-control" id="title" th:field="${review.title}">
 			            <div class="invalid-feedback" th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></div>
 			        </div>
-			        <div class="col-md-6 mb-3">
+			    	<div class="col-md-6 mb-3">
+			       		 <label for="score" class="form-label"><b>Valutazione:</b></label>
+			       		 <input type="number" required min="1" max="5" class="form-control" id="score"  th:field="${review.score}">
+			   		 </div>
+			        <div class=" mb-3">
 			            <label for="yearOfFoundation" class="form-label"><b>Recensione:</b></label>
 			            <textarea required type="text" rows="5" class="form-control" id="body" th:field="${review.body}"></textarea>
 			            <div class="invalid-feedback" th:if="${#fields.hasErrors('body')}" th:errors="*{body}"></div>
 			        </div>
-			        <button type="submit" class="btn btn-primary">Conferma</button>
+			        <button type="submit" class="btn btn-primary mt-3">Conferma</button>
 			    </div>
 			</form>
 		</div>

@@ -14,10 +14,17 @@
 		<div class="container">
 			<h1>Generi</h1>
 			<div th:if="${genres==null || genres.isEmpty()}">Non ci sono generi nel sistema</div>
-			<ul>
-				<li th:each="genre : ${genres}">
-					<a th:href="@{'/genre' + '/' + ${genre.id}}"
-						th:text="${genre.name}"></a>
+			<ul class="row">
+				<li class="card col-lg-3 col-md-4 col-sm-6 m-3" th:each="genre : ${genres}">
+					<a th:href="@{'/genre' + '/' + ${genre.id}}">
+						<div th:if="${genre.backgroundImage} != null" class="card-img-top">
+							<img th:src="@{'/display/image/' + ${genre.backgroundImage.id}}" width="200px" height="120px" class="d-block w-100"/>
+						</div>
+						<div th:if="${genre.backgroundImage} == null" class="card-img-top" >
+							<img src="/images/image-not-available.jpeg" width="200px" height="120px" class="d-block w-100" />
+						</div>
+					</a>
+					<h5 class="card-body" th:text="${genre.name}"></h5>
 				</li>
 			</ul>
 		</div>

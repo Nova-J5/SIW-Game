@@ -39,26 +39,6 @@
 				        </div>
 					</span>
 					
-					<span>
-				        <div th:if="${currentUser.} == null">
-				        	<div th:if="${currentUser != null && currentUser.isAdmin()}">
-								<button th:href="" class="btn btn-success">Aggiungi immagine</button>
-							</div>
-				        </div>
-					</span>
-					
-					<span>
-				        <div th:if="${game.imageForGames} == null">
-				        	<img class="rounded-1 w-100" src="/images/image-not-available.jpeg" />
-				        	<div th:if="${currentUser != null && currentUser.isAdmin()}">
-								<div>Aggiungi una foto del gioco</div>
-						        	<form method="POST" enctype="multipart/form-data" th:action="@{'/admin/addImageToGame/' + ${game.id}}">
-						        	<input type="file" name="file" class="my-2 form-control" style="max-width: 280px;" required />
-					        	<button type="submit" class="btn btn-success">Aggiungi immagine</button>
-					        	</form>
-							</div>
-				        </div>
-					</span>
 				</div>
 				
 				<div class="col">

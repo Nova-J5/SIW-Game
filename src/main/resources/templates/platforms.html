@@ -8,15 +8,15 @@
 		<link rel="stylesheet" href="/css/platforms_style.css"/>		
 	</head>
 	
-	<body>
+	<body style="background-color: #eee;">
 		<div th:replace="fragments/navbar :: navbar"></div>
 		
 		<div class="container">
 	        <div th:each="developer : ${developers}">
 	            <div th:if="${developer.platformsProduced != null && !developer.platformsProduced.isEmpty()}">
 	                <h1 class="mt-2" th:text="${developer.name}"></h1>
-	                <div class="row d-flex row-cols-1 row-cols-md-3">
-	                    <div class="col mb-4">
+	                <div class="d-flex row row-cols-1 row-cols-md-3">
+	                    <div class="col mb-4" >
 	                      <!-- Carta -->
 	                      <div class="card" th:each="platform : ${developer.platformsProduced}">
 	                        <!--Immagine-->

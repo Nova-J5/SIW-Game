@@ -64,7 +64,7 @@
 					            <!-- Contenuto della carta -->
 					            <div class="card-body">
 					                <!-- Titolo -->
-					                <h4 class="card-title"  th:text="${game.title} + ' (' + ${platform.yearOfRelease} + ')'"></h4>
+					                <h4 class="card-title"  th:text="${game.title} + ' (' + ${game.year} + ')'"></h4>
 					                <!-- Descrizione -->
 					                <p class="card-text" th:text="${game.description}"></p>
 					            </div>

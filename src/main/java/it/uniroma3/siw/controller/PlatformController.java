@@ -123,7 +123,7 @@ public class PlatformController {
 	@GetMapping("/admin/deletePlatform/{id}")
 	public String deletePlatform(@PathVariable("id") Long id, Model model) {
 		this.platformService.deletePlatform(id);
-		model.addAttribute("platforms", this.platformService.getAllPlatforms());
+		model.addAttribute("developers", this.developerService.getAllDevelopers());
 		return "platforms.html";
 	}
 	

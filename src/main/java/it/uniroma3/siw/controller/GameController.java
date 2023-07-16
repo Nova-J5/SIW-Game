@@ -29,7 +29,6 @@ import it.uniroma3.siw.service.GameService;
 import it.uniroma3.siw.service.GenreService;
 import it.uniroma3.siw.service.ImageService;
 import it.uniroma3.siw.service.PlatformService;
-import it.uniroma3.siw.service.UserService;
 import it.uniroma3.siw.validator.GameValidator;
 import jakarta.validation.Valid;
 
@@ -57,9 +56,6 @@ public class GameController {
 	
 	@Autowired
 	private GenreService genreService;
-	
-	@Autowired
-	private UserService userService;
 	
 	
 	private void inzializeAddPlatformsAndGenres(Model model, Game game) {
@@ -91,18 +87,6 @@ public class GameController {
 		model.addAttribute("genres", this.genreService.getAllGenres());
 		model.addAttribute("games", this.gameService.getAllGamesWithNoGenre());
 		return "games.html";
-	}
-	
-	@GetMapping("/currentlyPlaying/{id}")
-	private String getCurrentlyPlayingGames(@PathVariable("id") Long id, Model model) {
-		model.addAttribute("games", this.userService.findUserById(id).getCurrentlyPlaying());
-		return "userGames.html";
-	}
-	
-	@GetMapping("/played/{id}")
-	private String getPlayedGames(@PathVariable("id") Long id, Model model) {
-		model.addAttribute("games", this.userService.findUserById(id).getPlayed());
-		return "userGames.html";
 	}
 
 	@PostMapping("/searchGames")
@@ -275,8 +259,7 @@ public class GameController {
 	@GetMapping("/admin/deleteGame/{id}")
 	public String deleteGame(@PathVariable("id") Long id, Model model) {
 		this.gameService.deleteGame(id);
-		model.addAttribute("games", this.gameService.getAllGames());
-		return "games.html";
+		return "redirect:/games";
 	}
 }
 	

@@ -54,9 +54,8 @@ public class ReviewController {
 			//user.getReviews().add(review);
 			this.reviewService.saveReview(review);
 			
-			model.addAttribute("game", game);
 			this.gameService.saveGame(game);
-			return "game.html";
+			return "redirect:/game/" + game.getId();
 		} else {
 			return "default/formNewReview.html";
 		}

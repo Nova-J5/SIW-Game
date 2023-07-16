@@ -7,7 +7,7 @@
 </head>
 	<th:block th:fragment="navbar">
 		
-		<nav class="navbar navbar-expand-md navbar-dark bg-dark" style="background-color: #101010;">
+		<nav class="navbar navbar-expand-md" style="background-color: #101010;">
 		    <div class="container-fluid">
 		        <a href="/">
 		            <img class="logo" src="/images/navbar-logo.png" width="40%" alt="logo" />
@@ -20,14 +20,14 @@
   						</button>
             		</form>
             		<ul class="navbar-nav ms-auto mb-2 mb-md-0">
-		                <li class="nav-item">
-		                    <a class="nav-link" href="/games">Giochi</a>
+		                <li class="nav-item" >
+		                    <a class="nav-link" href="/games" style="color: white;">Giochi</a>
 		                </li>
 		                <li class="nav-item">
-		                    <a class="nav-link" href="/platforms">Piattaforme</a>
+		                    <a class="nav-link" href="/platforms" style="color: white;">Piattaforme</a>
 		                </li> 
 		                <li class="nav-item">
-		                    <a class="nav-link" href="/developers">Sviluppatori</a>
+		                    <a class="nav-link" href="/developers" style="color: white;"> Sviluppatori</a>
 		                </li>
 						<li class="dropdown" th:if="${userDetails}">
 						  <button

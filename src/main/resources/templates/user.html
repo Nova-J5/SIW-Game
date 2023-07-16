@@ -7,7 +7,7 @@
 		<div th:replace="fragments/css :: css-dep"></div>
 		<!-- <link rel="stylesheet" href="/css/user_style.css" /> -->		
 	</head>
-	<body>
+	<body style=" background-color: #323232;  color: white;">
 		<div th:replace="fragments/navbar :: navbar"></div>
 		
 		<div class="container  mt-4 mb-4">
@@ -34,11 +34,11 @@
 		                    </button>
 		                    <div class="d-flex justify-content-end text-center py-1">
 		                        <div>
-		                            <p class="mb-1 h5" th:text="${#lists.size(currentlyPlaying)}"></p>
+		                            <p class="mb-1 h5" th:text="${#lists.size(played)}"></p>
 		                            <p class="small text-muted mb-0">Giochi terminati</p>
 		                        </div>
 		                        <div class="px-3">
-		                            <p class="mb-1 h5" th:text="${#lists.size(played)}"></p>
+		                            <p class="mb-1 h5" th:text="${#lists.size(currentlyPlaying)}"></p>
 		                            <p class="small text-muted mb-0">Giochi correnti</p>
 		                        </div>
 		                        <div>

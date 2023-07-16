@@ -25,3 +25,7 @@ footer {
     align-items: center;
     justify-content: center;
 }
+
+.nav-item a:hover{
+    color: rgb(217, 217, 217);
+}

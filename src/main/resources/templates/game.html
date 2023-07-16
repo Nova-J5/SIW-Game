@@ -8,7 +8,7 @@
 		<link rel="stylesheet" href="/css/game_style.css"/>		
 	</head>
 
-	<body style="background-color: #eee;">
+	<body>
 		<div th:replace="fragments/navbar :: navbar"></div>
 						
 			<div class="blocco-gioco rounded-2 my-4">
@@ -40,8 +40,8 @@
 							</div>
 							<div>
 								<span>Piattaforme: 
-									<ul th:if="${!game.platforms.isEmpty()}" class="d-flex flex-row flex-nowrap overflow-auto list-group list-group-horizontal">
-										<li class="list-group-item border-0 text-start" th:each="platform : ${game.platforms}">
+									<ul th:if="${!game.platforms.isEmpty()}" class="d-flex flex-row flex-nowrap overflow-auto list-group list-group-horizontal" >
+										<li class="list-group-item border-0 text-start" th:each="platform : ${game.platforms}" style="background-color: #272727;  ">
 											<b><a th:href="@{'/platform/' + ${platform.id}}" class="text-decoration-none" th:text="${platform.name}"></a></b>
 										</li>
 									</ul>
@@ -51,7 +51,7 @@
 							<div>
 								<span>Generi: 
 									<ul th:if="${!game.genres.isEmpty()}" class="d-flex flex-row flex-nowrap overflow-auto list-group list-group-horizontal">
-										<li class="border-0 list-group-item text-start" th:each="genre : ${game.genres}"> 
+										<li class="border-0 list-group-item text-start" th:each="genre : ${game.genres}" style="background-color: #272727;  "> 
 											<b><a th:href="@{'/genre/' + ${genre.id}}" class="text-decoration-none" th:text="${genre.name}"></a></b>
 										</li>
 									</ul>
@@ -62,13 +62,13 @@
 				</div>
 				<div class="sottoImmagine mb-4 mt-1">
 					<div class="elemento-sottoimmagine" th:if="${currentUser != null && currentUser.isAuth()}">
-						Giocato 
-							<a th:if="${!giocato}" class="text-decoration-none" th:href="@{'/addPlayed/' + ${game.id}}"><img src="/images/save-icon.jpg" width="5%"> </a>
-							<a th:if="${giocato}" class="text-decoration-none" th:href="@{'/game/' + ${game.id}}"><img src="/images/tick.png" width="5%"> </a>
+						L'ho giocato!
+							<a th:if="${!giocato}" class="text-decoration-none" th:href="@{'/addPlayed/' + ${game.id}}"><img src="/images/save.png" width="6%" title="metti in lista"> </a>
+							<a th:if="${giocato}" class="text-decoration-none" th:href="@{'/removeFromPlayed/' + ${game.id}}"><img src="/images/tick.png" width="5%" title="togli dalla lista"> </a>
 							
-						Giocando 
-							<a th:if="${!giocando}" th:href="@{'/addCurrentlyPlaying/' + ${game.id}}"><img src="/images/save-icon.jpg" width="5%"></a>
-							<a th:if="${giocando}" class="text-decoration-none" th:href="@{'/game/' + ${game.id}}"><img src="/images/tick.png" width="5%"> </a>
+						Lo sto giocando!
+							<a th:if="${!giocando}" th:href="@{'/addCurrentlyPlaying/' + ${game.id}}"><img src="/images/save.png" width="6%" title="metti in lista"></a>
+							<a th:if="${giocando}" class="text-decoration-none" th:href="@{'/removeFromCurrentlyPlayng/' + ${game.id}}"><img src="/images/tick.png" width="5%" title="togli dalla lista"> </a>
 					</div>
 					<div class="elemento-sottoimmagine text-end" th:if="${currentUser != null && currentUser.isAdmin() && game.imageForGames != null}">
 						<a th:href="@{'/admin/removeImageForGamesFromGame/' + ${game.id}}"><button type="button" class="btn btn-success my-3"> Rimuovi immagine </button></a>
@@ -92,22 +92,29 @@
 				</div>
 			</div>
 
-			<div th:if="${!game.reviews.isEmpty()}" >
-				<h3 class="mt-5"> Recensioni: </h3>
-				<li th:each="review: ${game.reviews}" th:remove="tag">
-					<div class="border rounded bg-light text-dark p-3 my-3" style="width: 1000px">
-					<h5 th:text="${review.user.name} + ' ' + ${review.user.surname} + ' (' + ${review.user.credentials.username} + ')'"> </h5>
-						<span th:utext="${game.printStars(review.score)}"></span>
-				  
-					
-					<span class="h5" th:text="${review.title}"></span>
-					<div th:text="${review.body}" ></div>
+			<h3 class="mt-5" style=" margin-left: 15%;"> Recensioni: </h3>
+			<span th:if="${currentUser != null && currentUser.isAuth()}" style=" margin-left: 15%;">
+				<a th:href="@{'/default/formNewReview/' + ${game.id}}" class="text-decoration-none">Aggiungi recensione</a>
+			</span>
+			<div class="blocco-recensioni rounded-2 mb-4">
+				<div th:if="${!game.reviews.isEmpty()}" >
+					<li th:each="review: ${game.reviews}" th:remove="tag" >
+						<div class="border-0 rounded p-3 my-3 w-100" style=" background-color: #181717; color: white;">
+						<h5 th:text="${review.user.name} + ' ' + ${review.user.surname} + ' (' + ${review.user.credentials.username} + ')'"> </h5>
+							<span th:utext="${game.printStars(review.score)}"></span>
+					  
+						
+						<span class="h5" th:text="${review.title}"></span>
+						<div th:text="${review.body}" ></div>
+					</div>
+					</li>
 				</div>
-				</li>
+				<div th:if="${game.reviews.isEmpty()}" class="fst-italic fw-bold"  >
+					Nessuna recensione
+				</div>
 			</div>
-			<div th:if="${currentUser != null && currentUser.isAuth()}">
-				<a th:href="@{'/default/formNewReview/' + ${game.id}}">Aggiungi recensione</a>
-			</div>
+
+			
 
 
 			<div th:replace="fragments/footer :: footer"></div>

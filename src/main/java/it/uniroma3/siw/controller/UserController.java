@@ -59,13 +59,13 @@ public class UserController {
 		        if (played.get(i) != null) {
 		            String attributeName;
 		            if (i == 1) {
-		                attributeName = "secondCurrentlyPlaying";
+		                attributeName = "secondPlayed";
 		            } else if (i == 2) {
-		                attributeName = "thirdCurrentlyPlaying";
+		                attributeName = "thirdPlayed";
 		            } else if (i == 3) {
-		                attributeName = "fourthCurrentlyPlaying";
+		                attributeName = "fourthPlayed";
 		            } else {
-		                attributeName = "firstCurrentlyPlaying";
+		                attributeName = "firstPlayed";
 		            }
 		            model.addAttribute(attributeName, played.get(i));
 		        }
@@ -80,13 +80,13 @@ public class UserController {
 		            String attributeName;
 		            
 		            if (i == 1) {
-		                attributeName = "secondPlayed";
+		                attributeName = "secondCurrentlyPlaying";
 		            } else if (i == 2) {
-		                attributeName = "thirdPlayed";
+		                attributeName = "thirdCurrentlyPlaying";
 		            } else if (i == 3) {
-		                attributeName = "fourthPlayed";
+		                attributeName = "fourthCurrentlyPlaying";
 		            } else {
-		                attributeName = "firstPlayed";
+		                attributeName = "firstCurrentlyPlaying";
 		            }
 		            model.addAttribute(attributeName, currentlyPlaying.get(i));
 		        }
@@ -163,5 +163,35 @@ public class UserController {
 		return "redirect:/game/" + game.getId();
 	}
 	
+	
+	@GetMapping("/currentlyPlaying/{id}")
+	private String getCurrentlyPlayingGames(@PathVariable("id") Long id, Model model) {
+		model.addAttribute("games", this.userService.findUserById(id).getCurrentlyPlaying());
+		return "userGames.html";
+	}
+	
+	@GetMapping("/played/{id}")
+	private String getPlayedGames(@PathVariable("id") Long id, Model model) {
+		model.addAttribute("games", this.userService.findUserById(id).getPlayed());
+		return "userGames.html";
+	}
+	
+	@GetMapping("/removeFromPlayed/{id}")
+	private String removeFromPlayed(@PathVariable("id") Long id, Model model) {
+		Game game = this.gameService.getGameById(id);
+		User user = this.globalController.getCurrentUser();
+		user.getPlayed().remove(game);
+		this.userService.saveUser(user);
+		return "redirect:/game/" + game.getId();
+	}
+	
+	@GetMapping("/removeFromCurrentlyPlayng/{id}")
+	private String removeFromCurrentlyPlayng(@PathVariable("id") Long id, Model model) {
+		Game game = this.gameService.getGameById(id);
+		User user = this.globalController.getCurrentUser();
+		user.getCurrentlyPlaying().remove(game);
+		this.userService.saveUser(user);
+		return "redirect:/game/" + game.getId();
+	}
 }
 

@@ -14,7 +14,7 @@
 			<div th:if="${currentUser != null && currentUser.isAdmin()}">
 				<div class="text-center" >
 					<h1 class="mt-3 mb-1">Operazioni per gli amministratori</h1>
-					<div class="container-fluid mt-4" >
+					<div class="container-fluid mt-4" style="width: 60%;">
 						<div class="row">
 							<a href="/admin/formNewGame" class="btn btn-success col">
 								<i class="fas fa-gamepad"></i>
@@ -50,7 +50,7 @@
 										<img src="/images/image-not-available.jpeg" class="d-block w-100" />
 									</div> 
 								</a>
-								<div class="carousel-caption d-none d-md-block rounded-3" style="color: black; background-color: rgba(255, 255, 255, 0.493);">
+								<div class="carousel-caption d-none d-md-block rounded-3" style="color: black; background-color: rgba(255, 255, 255, 0.144);">
 									<h5 class="fw-bolder" th:text="${platformActive.name}">Piattaforma</h5>
 									<p th:text="${platformActive.carouselDescription}"> Breve descrizione </p>
 								</div>
@@ -65,7 +65,7 @@
 										<img src="/images/image-not-available.jpeg" class="d-block w-100" />
 									</div> 
 								</a>
-								<div class="carousel-caption d-none d-md-block rounded-3" style="color: black; background-color: rgba(255, 255, 255, 0.493);">
+								<div class="carousel-caption d-none d-md-block rounded-3" style="color: black; background-color: rgba(255, 255, 255, 0.144);">
 									<h5 class="fw-bolder" th:text="${platform.name}">Piattaforma</h5>
 									<p th:text="${platform.carouselDescription}"> Breve descrizione </p>
 								</div>
@@ -83,7 +83,7 @@
 				</div>
 			</div>
 			<div class="blocco-generi ">
-				<div class="text-center mt-3 h1 fw-bolder"  >Generi</div>
+				<div class="text-center mt-3 h1" >Generi</div>
 				<div class="container-fluid">
 					<ul th:if="${genres!=null && !genres.isEmpty()}" class="row">
 						<li class="card col-lg-3 col-md-4 col-sm-6 m-3 " th:each="genre : ${genres}" style="margin-right: 10%; background-color: #323232;">

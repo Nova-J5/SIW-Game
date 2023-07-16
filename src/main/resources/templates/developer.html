@@ -5,10 +5,10 @@
 			Sviluppatore
 		</title>
 		<div th:replace="fragments/css :: css-dep"></div>
-		<link rel="stylesheet" href="/css/developer_style.css"/>		
+		<link rel="stylesheet" href="/css/game_style.css"/>		
 	</head>
 
-	<body style="background-color: #eee;">
+	<body>
 		<div th:replace="fragments/navbar :: navbar"></div>
 						
 			<div class="blocco-gioco rounded-2 my-4">
@@ -33,8 +33,7 @@
 					</div>
 				</div>
 				<div class="sottoImmagine mb-4 mt-1">
-
-					<div class="elemento-sottoimmagine text-end" th:if="${currentUser != null && currentUser.isAdmin() && developer.image != null}">
+					<div class="elemento-sottoimmagine text-start" th:if="${currentUser != null && currentUser.isAdmin() && developer.image != null}">
 						<a th:href="@{'/admin/removeImageFromDeveloper/' + ${developer.id}}"><button type="button" class="btn btn-success my-3"> Rimuovi immagine </button></a>
 					</div>
 				</div>	

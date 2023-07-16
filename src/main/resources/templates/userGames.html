@@ -23,7 +23,7 @@
 			      <div class="card">
 			        <!-- Immagine del gioco -->
 			        <div class="view overlay">
-			          <div th:if="${review.game.image} != null">
+			          <div th:if="${game.image} != null">
 			            <a th:href="@{'/game' + '/' + ${game.id}}" class="mask rgba-white-slight">
 			                <img class="card-img-top" th:src="@{'/display/image/' + ${game.image.id}}" width=50% />
 			            </a>

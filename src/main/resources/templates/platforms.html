@@ -8,34 +8,34 @@
 		<link rel="stylesheet" href="/css/platforms_style.css"/>		
 	</head>
 	
-	<body style="background-color: #eee;">
+	<body style=" background-color: #323232;  color: white;">
 		<div th:replace="fragments/navbar :: navbar"></div>
 		
 		<div class="container">
-	        <div th:each="developer : ${developers}">
+	        <div th:each="developer : ${developers}" class="mb-4">
 	            <div th:if="${developer.platformsProduced != null && !developer.platformsProduced.isEmpty()}">
-	                <h1 class="mt-2" th:text="${developer.name}"></h1>
+	                <h1 class="mt-2 text-center" th:text="${developer.name}"></h1>
 	                <div class="row row-cols-3">
 	                    <div class="col mb-4" th:each="platform : ${developer.platformsProduced}">
 	                      <!-- Carta -->
-	                      <div class="card">
+	                      <div class="card" style="background-color: #101010;">
 	                        <!--Immagine-->
 	                        <div class="view overlay">
 							  <a th:href="@{'/platform' + '/' + ${platform.id}}">
 		                        <div th:if="${platform.image} != null">
-		                          <img th:src="@{'/display/image/' + ${platform.image.id}}" height="230px" class="card-img-top d-block w-100"/>
+		                          <img th:src="@{'/display/image/' + ${platform.image.id}}" height="250px" class="card-img-top d-block w-100"/>
 		                        </div>
 							  </a>
 							  <a th:href="@{'/platform' + '/' + ${platform.id}}">
 		                        <div th:if="${platform.image} == null" >
-		                            <img src="/images/image-not-available.jpeg" class="card-img-top d-block w-100"/>
+		                            <img src="/images/image-not-available.jpeg" height="250px" class="card-img-top d-block w-100"/>
 		                        </div>
 							  </a>
 	                        </div>
 	                        <!-- Contenuto -->
-	                        <div class="card-body">
+	                        <div class="card-body" style="color: white;" >
 	                          <!-- Titolo e anno di rilascio -->
-	                          <h4 class="card-title" th:text="${platform.name} + ' (' + ${platform.yearOfRelease} + ')'"></h4>
+	                          <h4 class="card-title text-center" th:text="${platform.name} + ' (' + ${platform.yearOfRelease} + ')'"></h4>
 	                        </div>
 	                      </div>
 	                      <!-- Fine Carta -->
@@ -44,5 +44,6 @@
 	            </div>
 	        </div>
 		</div>
+		<div th:replace="fragments/footer :: footer"></div>
 	</body>
 </html>

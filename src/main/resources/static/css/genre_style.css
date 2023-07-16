@@ -1,0 +1,40 @@
+.blocco-gioco{
+    background-color: white;
+    padding: 2%;
+    margin-left: 15%;
+    margin-right: 15%;
+}
+
+.immagineEdescrizione{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.immagine{
+    width: 55%;
+}
+
+.descrizione{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 40%;
+}
+
+.sottoImmagine{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-right: 45%;
+}
+
+.elemento-sottoimmagine{
+    width: 50%;
+}
+
+.blocco-pulsanti{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}

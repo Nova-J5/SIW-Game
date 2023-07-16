@@ -5,75 +5,84 @@
 			Genere
 		</title>
 		<div th:replace="fragments/css :: css-dep"></div>
-		<link rel="stylesheet" href="/css/genre_style.css" />		
+		<link rel="stylesheet" href="/css/genre_style.css"/>		
 	</head>
 
-	<body>
-		
+	<body style="background-color: #eee;">
 		<div th:replace="fragments/navbar :: navbar"></div>
-		
-		<div class="container">
-		    <div th:if="${genre}">
-			    <h1 th:text="${genre.name}"></h1>
-			    <h5 th:text="${genre.description}"></h5>
-				<div th:if="${currentUser != null && currentUser.isAdmin()}">
-					<a th:href="@{'/admin/updateGenre/' + ${genre.id}}" >modifica dati del genere </a><br>
-				</div>
-			    
-		        <span th:if= "${!genre.games.isEmpty()}">
-		        	<h2>Giochi</h2>
-		        	<li th:each="game : ${genre.games}">
-				        <a th:href="@{'/game/' + ${game.id}}" th:text="${game.title}"></a>   	
-					</li>
-		    	</span>
-		    	
-		   	 	<div th:if="${genre.backgroundImage} != null">
-					<img th:src="@{'/display/image/' + ${genre.backgroundImage.id}}" width=50% />
-					<div th:if="${currentUser != null && currentUser.isAdmin()}">
-						<a th:href="@{'/admin/removeBackgroundImageFromGenre/' + ${genre.id}}"><button type="button" class="btn btn-success my-3"> Rimuovi sfondo </button></a>
+						
+			<div class="blocco-gioco rounded-2 my-4">
+				<div class="immagineEdescrizione w-100">
+					<div class="immagine" th:if="${genre.backgroundImage} != null">
+						<img th:src="@{'/display/image/' + ${genre.backgroundImage.id}}"  class="d-block w-100 rounded-3"/>
 					</div>
-		        </div>
-		        <div th:if="${genre.backgroundImage} == null">
-		        	<img src="/images/image-not-available.jpeg" />
-		        	<div th:if="${currentUser != null && currentUser.isAdmin()}">
-						<div>Aggiungi una foto dello sfondo</div>
-				        	<form method="POST" enctype="multipart/form-data" th:action="@{'/admin/addBackgroundImageToGenre/' + ${genre.id}}">
-				        	<input type="file" name="file" class="my-2 form-control" style="max-width: 280px;" required />
-			        	<button type="submit" class="btn btn-success">Aggiungi sfondo</button>
-			        	</form>
-			        </div>	
-		      	</div>
-		      	
-		      	<div th:if="${genre.iconImage} != null">
-					<img th:src="@{'/display/image/' + ${genre.iconImage.id}}" width=50% />
-					<div th:if="${currentUser != null && currentUser.isAdmin()}">
-						<a th:href="@{'/admin/removeIconImageFromGenre/' + ${genre.id}}"><button type="button" class="btn btn-success my-3"> Rimuovi icon </button></a>
-					</div>
-		        </div>
-		        <div th:if="${genre.iconImage} == null">
-		        	<img src="/images/image-not-available.jpeg" />
-		        	<div th:if="${currentUser != null && currentUser.isAdmin()}">
-						<div>Aggiungi una foto dell'icon</div>
-				        	<form method="POST" enctype="multipart/form-data" th:action="@{'/admin/addIconImageToGenre/' + ${genre.id}}">
-				        	<input type="file" name="file" class="my-2 form-control" style="max-width: 280px;" required />
-			        	<button type="submit" class="btn btn-success">Aggiungi icon</button>
-			        	</form>
-		      	</div>
-		      	
-				<div th:if="${currentUser != null && currentUser.isAdmin()}">
-						<div class="d-flex">
-					    	<div>
-								<a th:href="@{'/admin/updateGenre/' + ${genre.id}}"><button type="button" class="mt-4 mb-2 btn btn-warning">Modifica Genere</button></a>
-							</div>		
-							<div>
-								<a th:href="@{'/admin/deleteGenre/' + ${genre.id}}"><button type="button" class="mt-4 mb-2 btn btn-danger">Elimina Genere</button></a>
-							</div>	
-						</div>	
-						<br>
-				</div>
-		    	
-		    <div th:unless="${genre}">Non esiste</div>
-		</div>
 
-	 </body>
+					<div class="immagine" th:if="${genre.backgroundImage} == null">
+						<img class="rounded-1 w-100" src="/images/image-not-available.jpeg" />
+						<div th:if="${currentUser != null && currentUser.isAdmin()}">
+							<div>Aggiungi una foto del genere</div>
+								<form method="POST" enctype="multipart/form-data" th:action="@{'/admin/addBackgroundImageToGenre/' + ${genre.id}}">
+								<input type="file" name="file" class="my-2 form-control" style="max-width: 280px;" required />
+							<button type="submit" class="btn btn-success">Aggiungi immagine</button>
+							</form>
+						</div>
+					</div>
+					<div class="descrizione">
+						<h1 class="fw-bold" th:text="${genre.name}"></h1> 
+					</div>
+				</div>
+				<div class="sottoImmagine mb-4 mt-1">
+
+					<div class="elemento-sottoimmagine text-end" th:if="${currentUser != null && currentUser.isAdmin() && genre.backgroundImage != null}">
+						<a th:href="@{'/admin/removeBackgroundImageFromGenre/' + ${genre.id}}"><button type="button" class="btn btn-danger my-3"> Rimuovi immagine </button></a>
+					</div>
+				</div>	
+				<h3 class="mt-2">Descrizione</h3>
+				<p th:text="${genre.description}"></p>
+				
+				<div class="row" th:if= "${!genre.games.isEmpty()}">
+					<h2 class="mb-3 mt-3">Giochi</h2>
+				</div>
+				<div class="row">
+					<div class=" d-flex row row-cols-1 row-cols-md-3" th:if= "${!genre.games.isEmpty()}">
+					    <div class="col mb-4" th:each="game : ${genre.games}">
+					        <!-- Carta -->
+					        <div class="card">
+					            <!-- Immagine-->
+					            <div class="view overlay">
+									<a th:href="@{'/game/' + ${game.id}}">   
+										<div th:if="${game.image} != null">
+											<img th:src="@{'/display/image/' + ${game.image.id}}" class="card-img-top"/>
+										</div>
+										<div th:if="${game.image} == null">
+											<img src="/images/image-not-available.jpeg" class="card-img-top" />
+										</div>
+									</a>
+					            </div>
+					            <!-- Contenuto della carta -->
+					            <div class="card-body">
+					                <!-- Titolo -->
+					                <h4 class="card-title"  th:text="${game.title} + ' (' + ${game.year} + ')'"></h4>
+					            </div>
+					        </div>
+					        <!-- Fine carta -->
+					    </div>
+					</div>
+				</div>
+				
+				<div th:if="${currentUser != null && currentUser.isAdmin()}">
+					<div class="blocco-pulsanti">
+					    <div>
+							<a th:href="@{'/admin/updateGenre/' + ${genre.id}}"><button type="button" class="mt-4 mb-2 btn btn-warning">Modifica Genere</button></a>
+						</div>	
+					    <div>
+							<a th:href="@{'/admin/deleteGenre/' + ${genre.id}}"><button type="button" class="mt-4 mb-2 btn btn-danger">Elimina Genere</button></a>
+						</div>	
+					</div>	
+					<br>
+				</div>
+			</div>
+
+		<div th:replace="fragments/footer :: footer"></div>
+	</body>
 </html>

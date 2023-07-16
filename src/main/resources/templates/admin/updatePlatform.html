@@ -33,7 +33,7 @@
 			            <label for="developer" class="form-label"><b>Sviluppatore:</b></label>
 			            <select required class="form-select" id="developer" name="developerId">
 			                <option value="" disabled >Scegli uno sviluppatore</option>
-							<option th:if="${platform.developer}" th:value="${platform.developer.id}" th:text="${game.developer.name}" selected></option>
+							<option th:if="${platform.developer}" th:value="${platform.developer.id}" th:text="${platform.developer.name}" selected></option>
 			                <option th:each="developer : ${developers}" th:value="${developer.id}" th:text="${developer.name}"></option>
 			            </select>
 			        </div>

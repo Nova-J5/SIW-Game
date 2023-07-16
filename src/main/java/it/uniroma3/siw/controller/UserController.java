@@ -35,10 +35,10 @@ public class UserController {
 	private ImageService imageService;
 	
 	@Autowired
-	GameService gameService;
+	private GameService gameService;
 	
 	@Autowired
-	GlobalController globalController;
+	private GlobalController globalController;
 	
 	@GetMapping("user/{id}")
 	private String getUser(@PathVariable("id") Long id, Model model) {
@@ -151,8 +151,7 @@ public class UserController {
 		User user = this.globalController.getCurrentUser();
 		user.getPlayed().add(game);
 		this.userService.saveUser(user);
-		model.addAttribute("game", game);
-		return "game.html";
+		return "redirect:/game/" + game.getId();
 	}
 	
 	@GetMapping("/addCurrentlyPlaying/{id}")
@@ -161,8 +160,7 @@ public class UserController {
 		User user = this.globalController.getCurrentUser();
 		user.getCurrentlyPlaying().add(game);
 		this.userService.saveUser(user);
-		model.addAttribute("game", game);
-		return "game.html";
+		return "redirect:/game/" + game.getId();
 	}
 	
 }

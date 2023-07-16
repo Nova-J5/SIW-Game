@@ -1,11 +1,9 @@
 
 
 
-insert into game values (nextval('game_seq'), 'gioco bello', 'super mario', 2000);
-insert into game values (nextval('game_seq'), 'gioco brutto', 'pokemon scarlatto', 2022);
-insert into game values (nextval('game_seq'), 'gioco meraviglioso', 'zelda', 2018);
 
-insert into platform values (nextval('platform_seq'), 'descrizione carosello', 'descrizione console', 'nintendo switch', 1800);
+
+
 
 
 
@@ -17,7 +15,11 @@ INSERT INTO developer VALUES (nextval('developer_seq'), 'descrizione', 'Microsof
 
 INSERT INTO developer VALUES (nextval('developer_seq'), 'descrizione', 'Team Cherry', 2014);
 
+insert into game values (nextval('game_seq'), 'gioco bello', 'super mario', 2000, 1);
 
+insert into game values (nextval('game_seq'), 'gioco brutto', 'pokemon scarlatto', 2022, 1);
+
+insert into game values (nextval('game_seq'), 'gioco meraviglioso', 'zelda', 2018, 1);
 
 
 INSERT INTO game VALUES (nextval('game_seq'), 'descrizione', 'Super Mario Odyssey', 2017, 1);
@@ -26,11 +28,11 @@ INSERT INTO game VALUES (nextval('game_seq'), 'descrizione', 'Pokémon Colosseum
 
 INSERT INTO game VALUES (nextval('game_seq'), 'descrizione', 'Uncharted 4: Fine di un Ladro', 2016, 51);
 
-INSERT INTO game VALUES (nextval('game_seq'), 'descrizione', 'Halo: Combat Evolved', 2001);
+INSERT INTO game VALUES (nextval('game_seq'), 'descrizione', 'Halo: Combat Evolved', 2001, 101);
 
-INSERT INTO game VALUES (nextval('game_seq'), 'descrizione', 'Hollow Knight', 2017);
+INSERT INTO game VALUES (nextval('game_seq'), 'descrizione', 'Hollow Knight', 2017, 151);
 
-
+insert into platform values (nextval('platform_seq'), 'descrizione carosello', 'descrizione console', 'nintendo switch', 1800);
 
 
 INSERT INTO genre (id, name) VALUES (nextval('genre_seq'), 'Azione')

@@ -67,12 +67,23 @@
 				</div>
 				<div class="sottoImmagine mb-4 mt-1">
 					<div class="elemento-sottoimmagine" th:if="${currentUser != null && currentUser.isAuth()}">
-						Giocato 
+						<span>
+							Giocato 
 							<a th:if="${!giocato}" class="text-decoration-none" th:href="@{'/addPlayed/' + ${game.id}}"><img src="/images/save-icon.jpg" width="5%"> </a>
-							<a th:if="${giocato}" class="text-decoration-none" th:href="@{'/game/' + ${game.id}}"><img src="/images/tick.png" width="5%"> </a>
-						Giocando 
+							<span class="imgCambiabile" th:if="${giocato}" >
+								<img src="/images/tick.png" width="2%" class="tick-image">
+								<a th:href="@{'/game/' + ${game.id}}"> <img src="/images/x.png" width="2%" class="hover-image"> </a>
+							</span>
+						</span>
+						
+						<span>
+							Giocando 
 							<a th:if="${!giocando}" th:href="@{'/addCurrentlyPlaying/' + ${game.id}}"><img src="/images/save-icon.jpg" width="5%"></a>
-							<a th:if="${giocando}" th:href="@{'/game/' + ${game.id}}"><img src="/images/tick.png" width="5%"></a>
+							<span class="imgCambiabile" th:if="${giocando}">
+								<img src="/images/tick.png" width="2%" class="tick-image">
+								<a th:href="@{'/game/' + ${game.id}}"> <img src="/images/x.png" width="2%" class="hover-image"> </a>
+							</span>
+						</span>
 					</div>
 					<div class="elemento-sottoimmagine text-end" th:if="${currentUser != null && currentUser.isAdmin()}">
 						<a th:href="@{'/admin/removeImageForGamesFromGame/' + ${game.id}}"><button type="button" class="btn btn-success my-3"> Rimuovi immagine </button></a>

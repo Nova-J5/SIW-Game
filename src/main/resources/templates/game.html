@@ -11,12 +11,11 @@
 	<body style="background-color: #eee;">
 		<div th:replace="fragments/navbar :: navbar"></div>
 						
-						<div th:if="${currentUser != null && currentUser.isAdmin()}">
-							<a th:href="@{'/admin/updateTitleAndDesc/' + ${game.id}}" >modifica titolo e descrizione</a><br>
-							<a th:href="@{'/admin/updatePlatAndGen/' + ${game.id}}">modifica generi e piattaforme</a>
-						</div>
-
-			<div class="blocco-gioco1 rounded-2 my-4">
+			<div class="blocco-gioco rounded-2 my-4">
+				<div th:if="${currentUser != null && currentUser.isAdmin()}">
+					<a th:href="@{'/admin/updateTitleAndDesc/' + ${game.id}}" >modifica titolo e descrizione</a><br>
+					<a th:href="@{'/admin/updatePlatAndGen/' + ${game.id}}">modifica generi e piattaforme</a>
+				</div>
 				<div class="immagineEdescrizione w-100">
 					<div class="immagine" th:if="${game.imageForGames} != null">
 						<img th:src="@{'/display/image/' + ${game.imageForGames.id}}"  class="d-block w-100 rounded-3"/>
@@ -75,7 +74,7 @@
 							<a th:if="${!giocando}" th:href="@{'/addCurrentlyPlaying/' + ${game.id}}"><img src="/images/save-icon.jpg" width="5%"></a>
 							<a th:if="${giocando}" class="text-decoration-none" th:href="@{'/game/' + ${game.id}}"><img src="/images/tick.png" width="5%"> </a>
 					</div>
-					<div class="elemento-sottoimmagine text-end" th:if="${currentUser != null && currentUser.isAdmin()}">
+					<div class="elemento-sottoimmagine text-end" th:if="${currentUser != null && currentUser.isAdmin() && game.imageForGames != null}">
 						<a th:href="@{'/admin/removeImageForGamesFromGame/' + ${game.id}}"><button type="button" class="btn btn-success my-3"> Rimuovi immagine </button></a>
 					</div>
 				</div>	

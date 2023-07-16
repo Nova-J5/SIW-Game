@@ -269,8 +269,7 @@ public class GameController {
 		Game game = this.gameService.getGameById(gameId);
 		this.gameService.modifyGame(game, title, year, description, this.developerService.getDeveloperById(developerId));
 		this.gameService.saveGame(game);
-		model.addAttribute("game", game);
-		return "game.html";
+		return "redirect:/game/" + game.getId();
 	}
 }
 	

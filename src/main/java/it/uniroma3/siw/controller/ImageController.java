@@ -61,8 +61,7 @@ public class ImageController {
 			game.setImage(img);
 			this.gameService.saveGame(game);
 		}
-		model.addAttribute("game", game);
-		return "game.html";
+		return "redirect:/game/" + game.getId();
 	}
 	
 	@GetMapping("/admin/removeImageFromGame/{gameId}")
@@ -70,8 +69,7 @@ public class ImageController {
 		Game game = this.gameService.getGameById(gameId);
 		game.setImage(null);
 		this.gameService.saveGame(game);
-		model.addAttribute("game", game);
-		return "game.html";
+		return "redirect:/game/" + game.getId();
 	
 	}
 	
@@ -84,8 +82,7 @@ public class ImageController {
 				game.setImageForGames(img);
 				this.gameService.saveGame(game);
 			}
-			model.addAttribute("game", game);
-			return "game.html";
+			return "redirect:/game/" + game.getId();
 		}
 	 
 	 @GetMapping("/admin/removeImageForGamesFromGame/{gameId}")
@@ -93,8 +90,7 @@ public class ImageController {
 			Game game = this.gameService.getGameById(gameId);
 			game.setImageForGames(null);
 			this.gameService.saveGame(game);
-			model.addAttribute("game", game);
-			return "game.html";
+			return "redirect:/game/" + game.getId();
 		
 		}
 

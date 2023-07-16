@@ -8,54 +8,119 @@
 		<link rel="stylesheet" href="/css/developer_style.css"/>		
 	</head>
 
-	<body>
+	<body style="background-color: #eee;">
 		<div th:replace="fragments/navbar :: navbar"></div>
-	
-	    <div th:if="${developer}">
-		    <h1 th:text="${developer.name}"></h1>
-		    <p th:text="${developer.description}"></p>
-			<div th:if="${currentUser != null && currentUser.isAdmin()}">
-				<a th:href="@{'/admin/updateDeveloper/' + ${developer.id}}" >modifica dati sviluppatore </a><br>
+						
+			<div class="blocco-gioco rounded-2 my-4">
+				<div class="immagineEdescrizione w-100">
+					<div class="immagine" th:if="${developer.image} != null">
+						<img th:src="@{'/display/image/' + ${developer.image.id}}"  class="d-block w-100 rounded-3"/>
+					</div>
+
+					<div class="immagine" th:if="${developer.image} == null">
+						<img class="rounded-1 w-100" src="/images/image-not-available.jpeg" />
+						<div th:if="${currentUser != null && currentUser.isAdmin()}">
+							<div>Aggiungi una foto dello sviluppatore</div>
+								<form method="POST" enctype="multipart/form-data" th:action="@{'/admin/addImageToDeveloper/' + ${developer.id}}">
+								<input type="file" name="file" class="my-2 form-control" style="max-width: 280px;" required />
+							<button type="submit" class="btn btn-success">Aggiungi immagine</button>
+							</form>
+						</div>
+					</div>
+					<div class="descrizione">
+						<h1 class="fw-bold" th:text="${developer.name}"></h1> 
+							<div>Anno di fondazione: <b><span th:text="${developer.yearOfFoundation}"></span></b></div>
+					</div>
+				</div>
+				<div class="sottoImmagine mb-4 mt-1">
+
+					<div class="elemento-sottoimmagine text-end" th:if="${currentUser != null && currentUser.isAdmin() && developer.image != null}">
+						<a th:href="@{'/admin/removeImageFromDeveloper/' + ${developer.id}}"><button type="button" class="btn btn-success my-3"> Rimuovi immagine </button></a>
+					</div>
+				</div>	
+				<h3 class="mt-2">Descrizione</h3>
+				<p th:text="${developer.description}"></p>
+				
+				<div class="row" th:if= "${!developer.gamesProduced.isEmpty()}">
+					<h2 class="mb-3 mt-3">Giochi prodotti</h2>
+				</div>
+				<div class="row">
+					<div class=" d-flex row row-cols-1 row-cols-md-3" th:if= "${!developer.gamesProduced.isEmpty()}">
+					    <div class="col mb-4" th:each="game : ${developer.gamesProduced}">
+					        <!-- Carta -->
+					        <div class="card">
+					            <!-- Immagine-->
+					            <div class="view overlay">
+									<a th:href="@{'/game/' + ${game.id}}">   
+										<div th:if="${game.image} != null">
+											<img th:src="@{'/display/image/' + ${game.image.id}}" class="card-img-top"/>
+										</div>
+										<div th:if="${game.image} == null">
+											<img src="/images/image-not-available.jpeg" class="card-img-top" />
+										</div>
+									</a>
+					            </div>
+					            <!-- Contenuto della carta -->
+					            <div class="card-body">
+					                <!-- Titolo -->
+					                <h4 class="card-title"  th:text="${game.title} + ' (' + ${game.year} + ')'"></h4>
+					            </div>
+					        </div>
+					        <!-- Fine carta -->
+					    </div>
+					</div>
+				</div>
+				
+				<div class="row" th:if= "${!developer.platformsProduced.isEmpty()}">
+					<h2 class="mb-3 mt-3">Piattaforme Prodotte</h2>
+				</div>
+				<div class="row">
+					<div class=" d-flex row row-cols-1 row-cols-md-3" th:if= "${!developer.platformsProduced.isEmpty()}">
+					    <div class="col mb-4" th:each="platform : ${developer.platformsProduced}">
+					        <!-- Carta -->
+					        <div class="card">
+					            <!-- Immagine-->
+					            <div class="view overlay">
+									<a th:href="@{'/platform/' + ${platform.id}}">   
+										<div th:if="${platform.image} != null">
+											<img th:src="@{'/display/image/' + ${platform.image.id}}" class="card-img-top"/>
+										</div>
+										<div th:if="${platform.image} == null">
+											<img src="/images/image-not-available.jpeg" class="card-img-top" />
+										</div>
+									</a>
+					            </div>
+					            <!-- Contenuto della carta -->
+					            <div class="card-body">
+					                <!-- Nome -->
+					                <h4 class="card-title"  th:text="${platform.name} + ' (' + ${platform.yearOfRelease} + ')'"></h4>
+					                <!-- Descrizione -->
+					                <p class="card-text" th:text="${platform.carouselDescription}"></p>
+					            </div>
+					        </div>
+					        <!-- Fine carta -->
+					    </div>
+					</div>
+				</div>
+				
+				<div th:if="${currentUser != null && currentUser.isAdmin()}">
+					<div class="blocco-pulsanti">
+					    <div>
+							<a th:href="@{'/admin/updateDeveloper/' + ${developer.id}}"><button type="button" class="mt-4 mb-2 btn btn-warning">Modifica Sviluppatore</button></a>
+						</div>	
+					    <div>
+							<a th:href="@{'/admin/deleteDeveloper/' + ${developer.id}}"><button type="button" class="mt-4 mb-2 btn btn-danger">Elimina Sviluppatore</button></a>
+						</div>	
+					</div>	
+					<br>
+				</div>
 			</div>
 
-	        <div>Anno di fondazione: <span th:text="'(' + ${developer.yearOfFoundation} + ')'"></span></div>
-	    
-	   	 	<div th:if="${developer.image} != null">
-				<img th:src="@{'/display/image/' + ${developer.image.id}}" width=50% />
-				<div th:if="${currentUser != null && currentUser.isAdmin()}">
-						<a th:href="@{'/admin/removeImageFromDeveloper/' + ${developer.id}}"><button type="button" class="btn btn-success my-3"> Rimuovi immagine </button></a>
-				</div>
-	        </div>
-	        	
-	        	<div th:if="${developer.image} == null">
-	        	<img src="/images/image-not-available.jpeg" />
-	        	<div th:if="${currentUser != null && currentUser.isAdmin()}">
-					<div>Aggiungi un immagine dello sviluppatore</div>
-			        	<form method="POST" enctype="multipart/form-data" th:action="@{'/admin/addImageToDeveloper/' + ${developer.id}}">
-			        	<input type="file" name="file" class="my-2 form-control" style="max-width: 280px;" required />
-		        	<button type="submit" class="btn btn-success">Aggiungi immagine</button>
-		        	</form>
-				</div>
-	        </div>
-	        
-	    	<span th:if= "${!developer.gamesProduced.isEmpty()}">
-		        <h2>Giochi</h2>
-	        	<li th:each="game : ${developer.gamesProduced}">
-			        <a th:href="@{'/game/' + ${game.id}}" th:text="${game.title}"> gioco </a>   	
-				</li>
-	   	 	</span>
-	   	 	
-				<div th:if="${currentUser != null && currentUser.isAdmin()}">
-						<div class="d-flex">
-					    	<div>
-								<a th:href="@{'/admin/updateDeveloper/' + ${developer.id}}"><button type="button" class="mt-4 mb-2 btn btn-warning">Modifica Sviluppatore</button></a>
-							</div>		
-							<div>
-								<a th:href="@{'/admin/deleteDeveloper/' + ${developer.id}}"><button type="button" class="mt-4 mb-2 btn btn-danger">Elimina Sviluppatore</button></a>
-							</div>	
-						</div>	
-						<br>
-				</div>
-	    <div th:unless="${developer}">Non esiste</div>
-	 </body>
+		<div th:replace="fragments/footer :: footer"></div>
+	</body>
 </html>
+
+
+
+
+	

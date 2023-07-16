@@ -1,0 +1,34 @@
+.blocco-gioco{
+    background-color: white;
+    padding: 2%;
+}
+
+.blocco-gioco1{
+    background-color: white;
+    padding: 2%;
+    margin-left: 2%;
+    margin-right: 2%;
+}
+
+.immagineEdescrizione{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.immagine{
+    width: 55%;
+}
+
+.descrizione{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 40%;
+}
+
+.sottoImmagine{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}

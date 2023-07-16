@@ -97,7 +97,7 @@ public class ImageController {
 			return "game.html";
 		
 		}
-	
+
 	//************************************* //
 	// CONTROLLER PER IMMAGINI DEL GENERE
 	//************************************* //

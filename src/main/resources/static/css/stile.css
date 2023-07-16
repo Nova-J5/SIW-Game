@@ -1,6 +1,7 @@
 body { 
-    font-family: "Geneva";
-    color:dimgrey;
+    font-family: "barlow,arial,sans-serif";
+    background-color: #323232;
+    color: white;
 	min-height: 100vh;
 	display: flex;
 	flex-direction: column;
@@ -17,43 +18,6 @@ footer {
 .container {
 	margin: 0;
 	padding: 0;
-}
-
-
-.elemento-lista-header{
-    margin-left: -2.9%;
-    margin-right: -0.5%;
-}
-
-.elemento-lista-header a{
-    text-decoration: none; 
-    color: darkgrey;
-}
-
-.elemento-lista-header a:hover{
-    text-decoration: underline;
-    color: rgb(208, 208, 208);
-}
-
-.list-group-header{
-    margin-left: 17%;
-}
-
-header{
-    background-color: #966fd6;
-}
-
-header img{
-    width: 20%;
-}
-
-.mb-3 img{
-    width: 20px;
-}
-
-.header-col form{
-    margin-top: 20px;
-
 }
 
 .row{

@@ -76,7 +76,13 @@ public class GameController {
 	
 	@GetMapping("/game/{id}")
 	public String getGame(@PathVariable("id") Long id, Model model) {
-		model.addAttribute("game", this.gameService.getGameById(id));
+		Game game = this.gameService.getGameById(id);
+		model.addAttribute("game", game );
+		User user = this.globalController.getCurrentUser();
+		if(user != null) {
+			model.addAttribute("giocato", user.getPlayed().contains(game));
+			model.addAttribute("giocando", user.getCurrentlyPlaying().contains(game));
+		}
 		return "game.html";
 	}
 

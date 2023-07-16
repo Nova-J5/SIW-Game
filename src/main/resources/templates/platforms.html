@@ -23,12 +23,12 @@
 	                        <div class="view overlay">
 							  <a th:href="@{'/platform' + '/' + ${platform.id}}">
 		                        <div th:if="${platform.image} != null">
-		                          <img th:src="@{'/display/image/' + ${platform.image.id}}" class="card-img-top"/>
+		                          <img th:src="@{'/display/image/' + ${platform.image.id}}" height="230px" class="card-img-top d-block w-100"/>
 		                        </div>
 							  </a>
 							  <a th:href="@{'/platform' + '/' + ${platform.id}}">
 		                        <div th:if="${platform.image} == null" >
-		                            <img src="/images/image-not-available.jpeg" class="card-img-top"/>
+		                            <img src="/images/image-not-available.jpeg" class="card-img-top d-block w-100"/>
 		                        </div>
 							  </a>
 	                        </div>
@@ -36,8 +36,6 @@
 	                        <div class="card-body">
 	                          <!-- Titolo e anno di rilascio -->
 	                          <h4 class="card-title" th:text="${platform.name} + ' (' + ${platform.yearOfRelease} + ')'"></h4>
-	                          <!-- Descrizione -->
-	                          <p class="card-text" th:text="${platform.description}"></p>
 	                        </div>
 	                      </div>
 	                      <!-- Fine Carta -->

@@ -271,5 +271,12 @@ public class GameController {
 		this.gameService.saveGame(game);
 		return "redirect:/game/" + game.getId();
 	}
+	
+	@GetMapping("/admin/deleteGame/{id}")
+	public String deleteGame(@PathVariable("id") Long id, Model model) {
+		this.gameService.deleteGame(id);
+		model.addAttribute("games", this.gameService.getAllGames());
+		return "games.html";
+	}
 }
 	

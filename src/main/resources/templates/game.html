@@ -98,6 +98,24 @@
 			<div th:if="${currentUser != null && currentUser.isAuth()}">
 				<a th:href="@{'/default/formNewReview/' + ${game.id}}">Aggiungi recensione</a>
 			</div>
+			<div>
+				<div th:if="${currentUser != null && currentUser.isAdmin()}">
+					<div class="d-flex">
+					    <div>
+							<a th:href="@{'/admin/updateTitleAndDesc/' + ${game.id}}"><button type="button" class="mt-4 mb-2 btn btn-warning">Modifica Titolo e Descrizione</button></a>
+						</div>	
+					    <div>
+							<a th:href="@{'/admin/updatePlatAndGen/' + ${game.id}}"><button type="button" class="mt-4 mb-2 btn btn-warning
+							">Modifica Generi e Piattaforme</button></a>
+						</div>	
+					    <div>
+							<a th:href="@{'/admin/deleteGame/' + ${game.id}}"><button type="button" class="mt-4 mb-2 btn btn-danger">Elimina Gioco</button></a>
+						</div>	
+					</div>	
+					<br>
+				</div>
+			</div>
+
 
 			<div th:replace="fragments/footer :: footer"></div>
 	 </body>

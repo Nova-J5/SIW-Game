@@ -1,9 +1,6 @@
 package it.uniroma3.siw.model;
 
 import java.util.*;
-
-import org.hibernate.annotations.Cascade;
-
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 

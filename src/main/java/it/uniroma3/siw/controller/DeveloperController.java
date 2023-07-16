@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import it.uniroma3.siw.model.Developer;
-import it.uniroma3.siw.model.Game;
 import it.uniroma3.siw.model.Image;
 import it.uniroma3.siw.service.DeveloperService;
 import it.uniroma3.siw.service.ImageService;

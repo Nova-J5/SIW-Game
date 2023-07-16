@@ -120,4 +120,11 @@ public class PlatformController {
 		return "platform.html";
 	}
 	
+	@GetMapping("/admin/deletePlatform/{id}")
+	public String deletePlatform(@PathVariable("id") Long id, Model model) {
+		this.platformService.deletePlatform(id);
+		model.addAttribute("platforms", this.platformService.getAllPlatforms());
+		return "platforms.html";
+	}
+	
 }

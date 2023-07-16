@@ -59,6 +59,18 @@
 			        	<button type="submit" class="btn btn-success">Aggiungi icon</button>
 			        	</form>
 		      	</div>
+		      	
+				<div th:if="${currentUser != null && currentUser.isAdmin()}">
+						<div class="d-flex">
+					    	<div>
+								<a th:href="@{'/admin/updateGenre/' + ${genre.id}}"><button type="button" class="mt-4 mb-2 btn btn-warning">Modifica Genere</button></a>
+							</div>		
+							<div>
+								<a th:href="@{'/admin/deleteGenre/' + ${genre.id}}"><button type="button" class="mt-4 mb-2 btn btn-danger">Elimina Genere</button></a>
+							</div>	
+						</div>	
+						<br>
+				</div>
 		    	
 		    <div th:unless="${genre}">Non esiste</div>
 		</div>

@@ -11,15 +11,17 @@
 
 	<body>
 		<div th:replace="fragments/navbar :: navbar"></div>
+		
+		<div class="container">
+			<h1>Giochi che soddisfano i requisiti</h1>
+			<div th:if="${games.isEmpty()}">Non ci sono giochi che soddisfano i requisiti</div>
+			<ul th:if="${!games.isEmpty()}">
+				<li th:each="game : ${games}">
+					<a th:href="@{'/game' + '/' + ${game.id}}"
+						th:text="${game.title} + ' (' + ${game.year}+')'">Up! (2000)</a>
+				</li>
+			</ul>
+		</div>
 
-	
-		<h1>Giochi che soddisfano i requisiti</h1>
-		<div th:if="${games.isEmpty()}">Non ci sono giochi che soddisfano i requisiti</div>
-		<ul th:if="${!games.isEmpty()}">
-			<li th:each="game : ${games}">
-				<a th:href="@{'/game' + '/' + ${game.id}}"
-					th:text="${game.title} + ' (' + ${game.year}+')'">Up! (2000)</a>
-			</li>
-		</ul>
 	</body>
 </html>

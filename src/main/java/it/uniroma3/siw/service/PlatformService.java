@@ -1,6 +1,7 @@
 package it.uniroma3.siw.service;
 
 import java.util.ArrayList;
+
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,12 @@ public class PlatformService {
 	
 	@Autowired
 	private PlatformRepository platformRepository;
+	
+	@Autowired
+	private DeveloperService developerService;
+	
+	@Autowired
+	private GameService gameService;
 	
 	@Transactional
 	public Platform savePlatform(Platform platform) {
@@ -57,11 +64,6 @@ public class PlatformService {
 	public void updatePlatform(Platform updatedPlatform) {
 		this.platformRepository.save(updatedPlatform);
 	}
-
-	@Transactional
-	public void deletePlatform(Long id) {
-		this.platformRepository.deleteById(id);		
-	}
 	
 	@Transactional
 	public boolean alreadyExists(Platform platform) {
@@ -89,6 +91,23 @@ public class PlatformService {
 		platform.setCarouselDescription(carouselDescription);
 		platform.setDeveloper(developer);
 		
+	}
+	
+	
+	@Transactional
+	public void deletePlatform(Long id) {
+		Platform platform = this.getPlatformById(id);
+		Developer developer = platform.getDeveloper();
+		if(developer!=null) {
+			developer.getPlatformsProduced().remove(platform);
+			this.developerService.saveDeveloper(developer);
+		}
+		List<Game> games = platform.getGames();
+		for(Game game : games) {
+			game.getPlatforms().remove(platform);
+			this.gameService.saveGame(game);
+		}
+		this.platformRepository.deleteById(id);
 	}
 
 }

@@ -24,10 +24,10 @@ public class User {
     @OneToOne
     private Image image;
 	
-	@OneToMany
+	@ManyToMany
 	private List<Game> currentlyPlaying;
 	
-	@OneToMany
+	@ManyToMany
 	private List<Game> played;
 	
 	@OneToMany(mappedBy = "user")

@@ -110,4 +110,11 @@ public class GenreController {
 		return "genre.html";
 	}
 	
+	@GetMapping("/admin/deleteGenre/{id}")
+	public String deleteGenre(@PathVariable("id") Long id, Model model) {
+		this.genreService.deleteGenre(id);
+		model.addAttribute("genres", this.genreService.getAllGenres());
+		return "index.html";
+	}
+	
 }

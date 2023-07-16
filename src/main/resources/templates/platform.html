@@ -74,6 +74,17 @@
 					</div>
 				</div>
 			</div>
+			<div th:if="${currentUser != null && currentUser.isAdmin()}">
+					<div class="d-flex">
+				    	<div>
+							<a th:href="@{'/admin/updatePlatform/' + ${platform.id}}"><button type="button" class="mt-4 mb-2 btn btn-warning">Modifica Piattaforma</button></a>
+						</div>		
+						<div>
+							<a th:href="@{'/admin/deletePlatform/' + ${platform.id}}"><button type="button" class="mt-4 mb-2 btn btn-danger">Elimina Piattaforma</button></a>
+						</div>	
+					</div>	
+					<br>
+			</div>
 			<div th:unless="${platform}">Non esiste</div>
 		</div>
 	 </body>

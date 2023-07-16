@@ -46,14 +46,6 @@ public class Developer {
 		return Id;
 	}
 
-	public List<Game> getGamesProduced() {
-		return gamesProduced;
-	}
-
-	public void setGamesProduced(List<Game> gamesProduced) {
-		this.gamesProduced = gamesProduced;
-	}
-
 	public void setId(Long id) {
 		Id = id;
 	}
@@ -90,13 +82,13 @@ public class Developer {
 	public void setImage(Image image) {
 		this.image = image;
 	}
-
-	public List<Game> getGames() {
+	
+	public List<Game> getGamesProduced() {
 		return gamesProduced;
 	}
 
-	public void setGames(List<Game> games) {
-		this.gamesProduced = games;
+	public void setGamesProduced(List<Game> gamesProduced) {
+		this.gamesProduced = gamesProduced;
 	}
 
 	public List<Platform> getPlatformsProduced() {

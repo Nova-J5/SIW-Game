@@ -1,6 +1,9 @@
 package it.uniroma3.siw.model;
 
 import java.util.*;
+
+import org.hibernate.annotations.Cascade;
+
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 
@@ -37,7 +40,7 @@ public class Game {
 	@ManyToMany(mappedBy = "games")
 	private List<Platform> platforms;
 	
-	@OneToMany (mappedBy = "game")
+	@OneToMany (mappedBy = "game", cascade = CascadeType.REMOVE)
 	private List<Review> reviews;
 	
 	public Game() {

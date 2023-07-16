@@ -1,12 +1,14 @@
 package it.uniroma3.siw.service;
 
 import java.util.ArrayList;
+
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import it.uniroma3.siw.model.Game;
 import it.uniroma3.siw.model.Genre;
+
 import it.uniroma3.siw.repository.GenreRepository;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
@@ -16,6 +18,9 @@ public class GenreService {
 
 	@Autowired
 	private GenreRepository genreRepository;
+	
+	@Autowired
+	private GameService gameService;
 	
 	@Transactional
 	public Genre saveGenre(Genre genre) {
@@ -46,11 +51,6 @@ public class GenreService {
 	public void updateGenre(Genre updatedGenre) {
 		this.genreRepository.save(updatedGenre);
 	}
-
-	@Transactional
-	public void deleteGenre(Long id) {
-		this.genreRepository.deleteById(id);		
-	}
 	
 	@Transactional
 	public boolean alreadyExists(Genre genre) {
@@ -67,6 +67,17 @@ public class GenreService {
 		genre.setName(name);
 		genre.setDescription(description);
 		
+	}
+	
+	@Transactional
+	public void deleteGenre(Long id) {
+		Genre genre = this.getGenreById(id);
+		List<Game> games = genre.getGames();
+		for(Game game : games) {
+			game.getGenres().remove(genre);
+			this.gameService.saveGame(game);
+		}
+		this.genreRepository.deleteById(id);
 	}
 
 }

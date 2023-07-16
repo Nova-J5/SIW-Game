@@ -101,4 +101,11 @@ public class DeveloperController {
 		return "developer.html";
 	}
 	
+	@GetMapping("/admin/deleteDeveloper/{id}")
+	public String deleteDeveloper(@PathVariable("id") Long id, Model model) {
+		this.developerService.deleteDeveloper(id);
+		model.addAttribute("developers", this.developerService.getAllDevelopers());
+		return "developers.html";
+	}
+	
 }

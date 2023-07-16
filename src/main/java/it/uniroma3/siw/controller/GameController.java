@@ -76,13 +76,20 @@ public class GameController {
 	
 	@GetMapping("/game/{id}")
 	public String getGame(@PathVariable("id") Long id, Model model) {
-		model.addAttribute("game", this.gameService.getGameById(id));
+		Game game = this.gameService.getGameById(id);
+		model.addAttribute("game", game );
+		User user = this.globalController.getCurrentUser();
+		if(user != null) {
+			model.addAttribute("giocato", user.getPlayed().contains(game));
+			model.addAttribute("giocando", user.getCurrentlyPlaying().contains(game));
+		}
 		return "game.html";
 	}
 
 	@GetMapping("/games")
 	public String showGames(Model model) {
 		model.addAttribute("genres", this.genreService.getAllGenres());
+		model.addAttribute("games", this.gameService.getAllGames());
 		return "games.html";
 	}
 	
@@ -262,8 +269,7 @@ public class GameController {
 		Game game = this.gameService.getGameById(gameId);
 		this.gameService.modifyGame(game, title, year, description, this.developerService.getDeveloperById(developerId));
 		this.gameService.saveGame(game);
-		model.addAttribute("game", game);
-		return "game.html";
+		return "redirect:/game/" + game.getId();
 	}
 }
 	

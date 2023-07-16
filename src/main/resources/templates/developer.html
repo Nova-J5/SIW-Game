@@ -44,6 +44,18 @@
 			        <a th:href="@{'/game/' + ${game.id}}" th:text="${game.title}"> gioco </a>   	
 				</li>
 	   	 	</span>
+	   	 	
+				<div th:if="${currentUser != null && currentUser.isAdmin()}">
+						<div class="d-flex">
+					    	<div>
+								<a th:href="@{'/admin/updateDeveloper/' + ${developer.id}}"><button type="button" class="mt-4 mb-2 btn btn-warning">Modifica Sviluppatore</button></a>
+							</div>		
+							<div>
+								<a th:href="@{'/admin/deleteDeveloper/' + ${developer.id}}"><button type="button" class="mt-4 mb-2 btn btn-danger">Elimina Sviluppatore</button></a>
+							</div>	
+						</div>	
+						<br>
+				</div>
 	    <div th:unless="${developer}">Non esiste</div>
 	 </body>
 </html>

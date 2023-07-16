@@ -1,17 +1,12 @@
 package it.uniroma3.siw.service;
 
 import java.util.ArrayList;
-
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import it.uniroma3.siw.model.Developer;
 import it.uniroma3.siw.model.Game;
-import it.uniroma3.siw.model.Genre;
-import it.uniroma3.siw.model.Platform;
-import it.uniroma3.siw.model.User;
 import it.uniroma3.siw.repository.GameRepository;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
@@ -21,19 +16,6 @@ public class GameService {
 	
 	@Autowired
 	private GameRepository gameRepository;
-	
-	@Autowired
-	private DeveloperService developerService;
-	
-	@Autowired
-	private GenreService genreService;
-	
-	@Autowired 
-	private PlatformService platformService;
-	
-	@Autowired
-	private UserService userService;
-	
 	
 	@Transactional
 	public Game saveGame(Game game) {
@@ -75,6 +57,10 @@ public class GameService {
 		this.gameRepository.save(updatedGame);
 	}
 
+	@Transactional
+	public void deleteGame(Long id) {
+		this.gameRepository.deleteById(id);		
+	}
 	
 	@Transactional
 	public boolean alreadyExists(Game game) {
@@ -93,36 +79,8 @@ public class GameService {
 		game.setDescription(description);
 		game.setDeveloper(developer);
 	}
+	
 
-	@Transactional
-	public void deleteGame(Long id) {
-		
-		Game game = this.getGameById(id);
-		Developer developer = game.getDeveloper();
-		if(developer!=null) {
-			developer.getGamesProduced().remove(game);
-			this.developerService.saveDeveloper(developer);
-		}
-		
-		List<Genre> genres = game.getGenres();
-		for(Genre genre : genres) {
-			genre.getGames().remove(game);
-			this.genreService.saveGenre(genre);
-		}
-		
-		List<Platform> platforms = game.getPlatforms();
-		for(Platform platform : platforms) {
-			platform.getGames().remove(game);
-			this.platformService.savePlatform(platform);
-		}
-		
-		List<User> users = this.userService.getAllUsers();
-		for(User user : users) {
-			user.getCurrentlyPlaying().remove(game);
-			user.getPlayed().remove(game);
-			this.userService.saveUser(user);
-		}
-		
-		this.gameRepository.deleteById(id);
-	}
+
+
 }

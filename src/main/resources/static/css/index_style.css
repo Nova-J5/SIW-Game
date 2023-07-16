@@ -13,12 +13,17 @@
 
 .blocco-carosello{
     margin-top: 3%;
-    background-color: #ffffff;
-    margin-left: 15%;
-    margin-right: 15%;
+    background-color: #272727;
+    margin-left: 20%;
+    margin-right: 20%;
     padding: 2%;
 }
 
 body{
-    background-color: #eee;
+    background-color: #323232;;
+    color: white;
+}
+
+.blocco-generi{
+    background-color: #272727;
 }

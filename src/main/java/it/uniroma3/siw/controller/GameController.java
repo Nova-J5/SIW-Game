@@ -126,23 +126,6 @@ public class GameController {
 		return "foundGames.html";
 	}
 	
-	@GetMapping("/addPlayed/{id}")
-	public String addPlayedGame(@PathVariable("id") Long id, Model model) {
-		Game game = this.gameService.getGameById(id);
-		User user = this.globalController.getCurrentUser();
-		user.getPlayed().add(game);
-		this.userService.saveUser(user);
-		model.addAttribute("game", game);
-		return "game.html";
-	}
-	
-	@GetMapping("/addCurrentlyPlaying/{id}")
-	public String addCurrentlyPlayingGame(@PathVariable("id") Long id, Model model) {
-		Game game = this.gameService.getGameById(id);
-		this.globalController.getCurrentUser().getCurrentlyPlaying().add(game);
-		model.addAttribute("game", game);
-		return "game.html";
-	}
 	
 	//************************************* //
 	// CONTROLLER PER RICHIESTE DI UN ADMIN

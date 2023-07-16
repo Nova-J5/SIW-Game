@@ -16,7 +16,7 @@ import it.uniroma3.siw.model.Game;
 import it.uniroma3.siw.model.Image;
 import it.uniroma3.siw.model.Review;
 import it.uniroma3.siw.model.User;
-
+import it.uniroma3.siw.service.GameService;
 import it.uniroma3.siw.service.ImageService;
 import it.uniroma3.siw.service.ReviewService;
 import it.uniroma3.siw.service.UserService;
@@ -33,6 +33,12 @@ public class UserController {
 	
 	@Autowired
 	private ImageService imageService;
+	
+	@Autowired
+	GameService gameService;
+	
+	@Autowired
+	GlobalController globalController;
 	
 	@GetMapping("user/{id}")
 	private String getUser(@PathVariable("id") Long id, Model model) {
@@ -137,6 +143,26 @@ public class UserController {
 		model.addAttribute("reviews", this.reviewService.getReviewsByUser(user));
 		model.addAttribute("user", user);
 		return "user.html";
+	}
+	
+	@GetMapping("/addPlayed/{id}")
+	public String addPlayedGame(@PathVariable("id") Long id, Model model) {
+		Game game = this.gameService.getGameById(id);
+		User user = this.globalController.getCurrentUser();
+		user.getPlayed().add(game);
+		this.userService.saveUser(user);
+		model.addAttribute("game", game);
+		return "game.html";
+	}
+	
+	@GetMapping("/addCurrentlyPlaying/{id}")
+	public String addCurrentlyPlayingGame(@PathVariable("id") Long id, Model model) {
+		Game game = this.gameService.getGameById(id);
+		User user = this.globalController.getCurrentUser();
+		user.getCurrentlyPlaying().add(game);
+		this.userService.saveUser(user);
+		model.addAttribute("game", game);
+		return "game.html";
 	}
 	
 }

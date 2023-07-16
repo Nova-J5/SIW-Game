@@ -31,4 +31,9 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-right: 45%;
+}
+
+.elemento-sottoimmagine{
+    width: 50%;
 }

@@ -121,17 +121,6 @@
 				<div class="immagineEdescrizione w-100">
 					<div class="immagine" th:if="${game.imageForGames} != null">
 						<img th:src="@{'/display/image/' + ${game.imageForGames.id}}"  class="d-block w-100 rounded-3"/>
-						<div class="sottoImmagine mt-2">
-							<span th:if="${currentUser != null && currentUser.isAdmin()}">
-								<a th:href="@{'/admin/removeImageForGamesFromGame/' + ${game.id}}"><button type="button" class="btn btn-success my-3"> Rimuovi immagine </button></a>
-							</span>
-							<span th:if="${currentUser != null && currentUser.isAuth()}">
-								Giocato <a th:href="@{'/addPlayed/' + ${game.id}}"> <img src="/images/save-icon.jpg" width="10%"> </a>
-							</span>
-							<span th:if="${currentUser != null && currentUser.isAuth()}">
-								Giocando <a th:href="@{'/addCurrentlyPlaying/' + ${game.id}}"> <img src="/images/save-icon.jpg" width="10%"> </a>
-							</span>
-						</div>	
 					</div>
 
 					<div class="immagine" th:if="${game.imageForGames} == null">
@@ -177,7 +166,18 @@
 							</div>
 					</div>
 				</div>
-				<h3 class="mt-3">Descrizione</h3>
+				<div class="sottoImmagine">
+					<div class="elemento-sottoimmagine" th:if="${currentUser != null && currentUser.isAuth()}">
+						Giocato <a class="text-decoration-none" th:href="@{'/addPlayed/' + ${game.id}}"><img src="/images/save-icon.jpg" width="5%"> </a>
+						<span style="margin-right: 5%">
+							Giocando <a th:href="@{'/addCurrentlyPlaying/' + ${game.id}}"><img src="/images/save-icon.jpg" width="5%"></a>
+						</span>
+					</div>
+					<div class="elemento-sottoimmagine text-end" th:if="${currentUser != null && currentUser.isAdmin()}">
+						<a th:href="@{'/admin/removeImageForGamesFromGame/' + ${game.id}}"><button type="button" class="btn btn-success my-3"> Rimuovi immagine </button></a>
+					</div>
+				</div>	
+				<h3 class="mt-2">Descrizione</h3>
 				<p th:text="${game.description}"></p>
 			</div>
 	 </body>

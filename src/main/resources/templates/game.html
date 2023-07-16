@@ -12,10 +12,6 @@
 		<div th:replace="fragments/navbar :: navbar"></div>
 						
 			<div class="blocco-gioco rounded-2 my-4">
-				<div th:if="${currentUser != null && currentUser.isAdmin()}">
-					<a th:href="@{'/admin/updateTitleAndDesc/' + ${game.id}}" >modifica titolo e descrizione</a><br>
-					<a th:href="@{'/admin/updatePlatAndGen/' + ${game.id}}">modifica generi e piattaforme</a>
-				</div>
 				<div class="immagineEdescrizione w-100">
 					<div class="immagine" th:if="${game.imageForGames} != null">
 						<img th:src="@{'/display/image/' + ${game.imageForGames.id}}"  class="d-block w-100 rounded-3"/>
@@ -45,7 +41,7 @@
 							<div>
 								<span>Piattaforme: 
 									<ul th:if="${!game.platforms.isEmpty()}" class="d-flex flex-row flex-nowrap overflow-auto list-group list-group-horizontal">
-										<li class="list-group-item border-0" th:each="platform : ${game.platforms}">
+										<li class="list-group-item border-0 text-start" th:each="platform : ${game.platforms}">
 											<b><a th:href="@{'/platform/' + ${platform.id}}" class="text-decoration-none" th:text="${platform.name}"></a></b>
 										</li>
 									</ul>
@@ -55,7 +51,7 @@
 							<div>
 								<span>Generi: 
 									<ul th:if="${!game.genres.isEmpty()}" class="d-flex flex-row flex-nowrap overflow-auto list-group list-group-horizontal">
-										<li class="border-0 list-group-item" th:each="genre : ${game.genres}"> 
+										<li class="border-0 list-group-item text-start" th:each="genre : ${game.genres}"> 
 											<b><a th:href="@{'/genre/' + ${genre.id}}" class="text-decoration-none" th:text="${genre.name}"></a></b>
 										</li>
 									</ul>
@@ -80,6 +76,20 @@
 				</div>	
 				<h3 class="mt-2">Descrizione</h3>
 				<p th:text="${game.description}"></p>
+				<div th:if="${currentUser != null && currentUser.isAdmin()}">
+					<div class="blocco-pulsanti">
+					    <div>
+							<a th:href="@{'/admin/updateTitleAndDesc/' + ${game.id}}"><button type="button" class="mt-4 mb-2 btn btn-warning">Modifica Titolo e Descrizione</button></a>
+						</div>	
+					    <div>
+							<a th:href="@{'/admin/updatePlatAndGen/' + ${game.id}}"><button type="button" class="mt-4 mb-2 btn btn-warning">Modifica Generi e Piattaforme</button></a>
+						</div>	
+					    <div>
+							<a th:href="@{'/admin/deleteGame/' + ${game.id}}"><button type="button" class="mt-4 mb-2 btn btn-danger">Elimina Gioco</button></a>
+						</div>	
+					</div>	
+					<br>
+				</div>
 			</div>
 
 			<div th:if="${!game.reviews.isEmpty()}" >
@@ -97,23 +107,6 @@
 			</div>
 			<div th:if="${currentUser != null && currentUser.isAuth()}">
 				<a th:href="@{'/default/formNewReview/' + ${game.id}}">Aggiungi recensione</a>
-			</div>
-			<div>
-				<div th:if="${currentUser != null && currentUser.isAdmin()}">
-					<div class="d-flex">
-					    <div>
-							<a th:href="@{'/admin/updateTitleAndDesc/' + ${game.id}}"><button type="button" class="mt-4 mb-2 btn btn-warning">Modifica Titolo e Descrizione</button></a>
-						</div>	
-					    <div>
-							<a th:href="@{'/admin/updatePlatAndGen/' + ${game.id}}"><button type="button" class="mt-4 mb-2 btn btn-warning
-							">Modifica Generi e Piattaforme</button></a>
-						</div>	
-					    <div>
-							<a th:href="@{'/admin/deleteGame/' + ${game.id}}"><button type="button" class="mt-4 mb-2 btn btn-danger">Elimina Gioco</button></a>
-						</div>	
-					</div>	
-					<br>
-				</div>
 			</div>
 
 

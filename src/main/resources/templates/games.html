@@ -39,9 +39,9 @@
 					</ul>
 				</li>
 			</ul>
-			<div class="h1" th:if="${!games.isEmpty()}"> Giochi senza genere </div>
-			<ul class="d-flex flex-row flex-nowrap overflow-auto list-group list-group-horizontal rounded-3" >
-				<li th:each="game : ${games}" class="list-group-item">
+			<div class="h1 fw-bold" th:if="${!games.isEmpty()}"> Giochi senza genere </div>
+			<ul class="d-flex flex-row flex-nowrap overflow-auto list-group list-group-horizontal rounded-3  mb-4" >
+				<li th:each="game : ${games}" class="list-group-item border-0">
 					<div class="card border-0" style="width: 18rem;">
 						<a th:href="@{'/game/' + ${game.id}}">   
 							<div th:if="${game.imageForGames} != null" class="card-img-top">

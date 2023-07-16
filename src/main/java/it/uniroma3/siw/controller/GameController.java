@@ -89,7 +89,7 @@ public class GameController {
 	@GetMapping("/games")
 	public String showGames(Model model) {
 		model.addAttribute("genres", this.genreService.getAllGenres());
-		model.addAttribute("games", this.gameService.getAllGames());
+		model.addAttribute("games", this.gameService.getAllGamesWithNoGenre());
 		return "games.html";
 	}
 	

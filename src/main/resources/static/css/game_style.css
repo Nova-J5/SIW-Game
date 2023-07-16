@@ -32,3 +32,9 @@
 .elemento-sottoimmagine{
     width: 50%;
 }
+
+.blocco-pulsanti{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}

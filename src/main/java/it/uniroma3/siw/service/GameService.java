@@ -123,4 +123,9 @@ public class GameService {
 		this.gameRepository.deleteById(id);
 	}
 	
+	@Transactional
+	public List<Game> getAllGamesWithNoGenre(){
+		return this.gameRepository.findGamesWithEmptyGenres();
+	}
+	
 }

@@ -19,5 +19,7 @@ public interface GameRepository extends CrudRepository<Game, Long> {
 			
     public boolean existsByTitleAndYear(String title, Integer year); 
     
+    @Query("SELECT g FROM Game g WHERE g.genres IS EMPTY")
+    List<Game> findGamesWithEmptyGenres();
     
 }

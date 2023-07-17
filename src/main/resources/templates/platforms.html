@@ -15,10 +15,10 @@
 	        <div th:each="developer : ${developers}" class="mb-4">
 	            <div th:if="${developer.platformsProduced != null && !developer.platformsProduced.isEmpty()}">
 	                <h1 class="mt-2 text-center" th:text="${developer.name}"></h1>
-	                <div class="row row-cols-3">
+	                <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3">
 	                    <div class="col mb-4" th:each="platform : ${developer.platformsProduced}">
 	                      <!-- Carta -->
-	                      <div class="card" style="background-color: #101010;">
+	                      <div class="card h-100" style="background-color: #101010;">
 	                        <!--Immagine-->
 	                        <div class="view overlay">
 							  <a th:href="@{'/platform' + '/' + ${platform.id}}">

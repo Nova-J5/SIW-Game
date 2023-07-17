@@ -49,7 +49,7 @@
 					<div class=" d-flex row row-cols-1 row-cols-md-3" th:if= "${!platform.games.isEmpty()}">
 					    <div class="col mb-4" th:each="game : ${platform.games}">
 					        <!-- Carta -->
-					        <div class="card">
+					        <div class="card h-100">
 					            <!-- Immagine-->
 					            <div class="view overlay">
 									<a th:href="@{'/game/' + ${game.id}}">   
@@ -85,5 +85,7 @@
 			</div>
 			<div th:unless="${platform}">Non esiste</div>
 		</div>
+		
+		<div th:replace="fragments/footer :: footer"></div>
 	 </body>
 </html>

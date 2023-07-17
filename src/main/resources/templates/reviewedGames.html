@@ -24,7 +24,7 @@
 				<!-- Scorro la lista delle recensioni -->
 			    <div class="col mb-4" th:each="review : ${reviews}">
 			      <!-- Inizio carta -->
-			      <div class="card">
+			      <div class="card h-100">
 			        <!-- Immagine del gioco -->
 			        <div class="view overlay">
 			          <div th:if="${review.game.image} != null">

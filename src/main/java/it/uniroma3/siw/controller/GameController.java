@@ -1,7 +1,8 @@
 package it.uniroma3.siw.controller;
 
 import java.io.IOException;
-
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -84,7 +85,9 @@ public class GameController {
 
 	@GetMapping("/games")
 	public String showGames(Model model) {
-		model.addAttribute("genres", this.genreService.getAllGenres());
+		List<Genre> genres = this.genreService.getAllGenres();
+		Collections.sort(genres, Comparator.comparing(Genre :: getName));
+		model.addAttribute("genres", genres);
 		model.addAttribute("games", this.gameService.getAllGamesWithNoGenre());
 		return "games.html";
 	}

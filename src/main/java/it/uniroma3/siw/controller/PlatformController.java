@@ -1,6 +1,9 @@
 package it.uniroma3.siw.controller;
 
 import java.io.IOException;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -59,10 +62,11 @@ public class PlatformController {
 
 	@GetMapping("/platforms")
 	public String showPlatforms(Model model) {
-		model.addAttribute("developers", this.developerRepository.findAll());
+		List<Developer> developers = this.developerService.getAllDevelopers();
+		Collections.sort(developers, Comparator.comparing(Developer :: getName));
+		model.addAttribute("developers", developers);
 		return "platforms.html";
 	}
-	
 	
 	//************************************* //
 	// CONTROLLER PER RICHIESTE DI UN ADMIN

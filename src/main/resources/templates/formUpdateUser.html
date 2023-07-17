@@ -7,15 +7,15 @@
 		<div th:replace="fragments/css :: css-dep"></div>
 		<link rel="stylesheet" href="/css/user_settings_style.css" />		
 	</head>
-	<body>
+	<body style="background-color: #272727;">
 		
 		<div th:replace="fragments/navbar :: navbar"></div>
 
-		<div class="container rounded mt-5 mb-5" style="background-color: whitesmoke; padding: 2%;">
+		<div class="container rounded mt-5 mb-5" style="background-color: #323232; padding: 2%;">
 			<form th:action="@{'/updateUser/' + ${user.id}}" method="POST" enctype="multipart/form-data" class="mb-4">
 				<div class="row text-center">
-					<h3 class="font-weight-bold"><strong th:text="${user.name} + ' ' + ${user.surname}"></strong></h3>
-					<h5 class="mt-1" th:text="'@' + ${userDetails.username}"></h5>
+					<h3 class="font-weight-bold text-white"><strong th:text="${user.name} + ' ' + ${user.surname}"></strong></h3>
+					<h5 class="mt-1 text-white" th:text="'@' + ${userDetails.username}"></h5>
 				</div>
 			    <div class="row">
 			        <div class="col-md-3 border-right">
@@ -31,7 +31,7 @@
 			                    </div>
 							    <div class="d-flex justify-content-center">
 							        <div>
-							            <label class="form-label text-black m-1" for="image">Modifica Foto</label>
+							            <label class="form-label text-white m-1" for="image">Cambia Foto</label>
 							            <input type="file"  th:value="${user.image}" name="file" class="form-control d-none" id="image" />
 										<div class="invalid-feedback" th:if="${#fields.hasErrors('user.image')}" th:errors="*{user.image}"></div>
 							        </div>
@@ -43,23 +43,23 @@
 			        <div class="col-md-5 border-right">
 			            <div class="p-3 py-5">
 			                <div class="d-flex justify-content-between align-items-center mb-3">
-			                    <h4 class="text-right">Impostazioni</h4>
+			                    <h4 class="text-right text-white">Modifica i tuoi dati</h4>
 			                </div>
 			                <div class="row mt-2">
 			                    <div class="col-md-6">
-									<label for="name" class="labels">Nome</label>
+									<label for="name" class="labels text-white">Nome</label>
 									<input th:value="${user.name}" id="name" name="name" type="text" class="form-control" placeholder="Nome">
 									<div class="invalid-feedback" th:if="${#fields.hasErrors('user.name')}" th:errors="*{user.name}"></div>
 								</div>
 			                    <div class="col-md-6">
-									<label for="surname" class="labels">Cognome</label>
+									<label for="surname" class="labels text-white">Cognome</label>
 									<input th:value="${user.surname}" id="surname" name="surname" type="text" class="form-control" placeholder="Cognome">
 									<div class="invalid-feedback" th:if="${#fields.hasErrors('user.surname')}" th:errors="*{user.surname}"></div>
 								</div>
 			                </div>
 			                <div class="row mt-3">
 			                    <div class="col-md-12">
-									<label for="email" class="labels">Email</label>
+									<label for="email" class="labels text-white">Email</label>
 									<input th:value="${user.email}" id="email" name="email" type="text" class="form-control" placeholder="Email">
 									<div class="invalid-feedback" th:if="${#fields.hasErrors('user.email')}" th:errors="*{user.email}"></div>			                    
 								</div>

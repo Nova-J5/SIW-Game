@@ -25,10 +25,10 @@
 							<div class="card border-0" style="width: 18rem; background-color: #323232;">
 								<a th:href="@{'/game/' + ${game.id}}">   
 									<div th:if="${game.imageForGames} != null" class="card-img-top">
-										<img th:src="@{'/display/image/' + ${game.imageForGames.id}}" height="140px" class="rounded-3 d-block w-100"/>
+										<img th:src="@{'/display/image/' + ${game.imageForGames.id}}" height="160px" class="rounded-3 d-block w-100"/>
 									</div>
 									<div th:if="${game.imageForGames} == null" class="card-img-top" >
-										<img src="/images/image-not-available.jpeg" height="140px" class="rounded-3 d-block w-100" />
+										<img src="/images/image-not-available.jpeg" height="160px" class="rounded-3 d-block w-100" />
 									</div>
 								</a>
 								<div class="card-body">

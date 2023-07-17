@@ -14,7 +14,7 @@
 			<div class="blocco-gioco rounded-2 my-4">
 				<div class="immagineEdescrizione w-100">
 					<div class="immagine" th:if="${developer.image} != null">
-						<img th:src="@{'/display/image/' + ${developer.image.id}}"  class="d-block w-100 rounded-3"/>
+						<img th:src="@{'/display/image/' + ${developer.image.id}}" class="w-100 rounded-3"/>
 					</div>
 
 					<div class="immagine" th:if="${developer.image} == null">
@@ -37,7 +37,7 @@
 						<a th:href="@{'/admin/removeImageFromDeveloper/' + ${developer.id}}"><button type="button" class="btn btn-success my-3"> Rimuovi immagine </button></a>
 					</div>
 				</div>	
-				<h3 class="mt-2">Descrizione</h3>
+				<h3 class="fw-bold mt-2">Descrizione</h3>
 				<p th:text="${developer.description}"></p>
 				
 				
@@ -60,17 +60,17 @@
 			<div class="h1 mt-2" style="margin-left: 15%;"> Giochi prodotti</div>
 			<div class="blocco-recensioni rounded-2 mb-4">
 				<div class="row">
-					<div class=" d-flex row row-cols-1 row-cols-md-3" th:if= "${!developer.gamesProduced.isEmpty()}">
+					<div class=" d-flex row row-cols-1 row-cols-md-3 justify-content-start" th:if= "${!developer.gamesProduced.isEmpty()}">
 					    <div class="col my-4" th:each="game : ${developer.gamesProduced}">
 					        <!-- Carta -->
 					        <div class="card h-100" style="background-color: #101010;">
 					            <!-- Immagine-->
 					            <div class="view overlay">
 									<a th:href="@{'/game/' + ${game.id}}">   
-										<div th:if="${game.image} != null">
-											<img th:src="@{'/display/image/' + ${game.image.id}}" height="200px" class="card-img-top d-block w-100"/>
+										<div th:if="${game.imageForGames} != null">
+											<img th:src="@{'/display/image/' + ${game.imageForGames.id}}" height="200px" class="card-img-top d-block w-100"/>
 										</div>
-										<div th:if="${game.image} == null">
+										<div th:if="${game.imageForGames} == null">
 											<img src="/images/image-not-available.jpeg" height="200px" class="card-img-top d-block w-100" />
 										</div>
 									</a>
@@ -90,10 +90,10 @@
 				</div>
 			</div>
 
-			<div class="h1 mt-2" style="margin-left: 15%;"> Piattaforme Prodotte</div>
+			<div class="h1 mt-2" style="margin-left: 15%;"> Piattaforme prodotte</div>
 			<div class="blocco-recensioni rounded-2 mb-4">
 				<div class="row">
-					<div class=" d-flex row row-cols-1 row-cols-md-3" th:if= "${!developer.platformsProduced.isEmpty()}">
+					<div class=" d-flex row row-cols-1 row-cols-md-3 justify-content-start" th:if= "${!developer.platformsProduced.isEmpty()}">
 					    <div class="col my-4" th:each="platform : ${developer.platformsProduced}">
 					        <!-- Carta -->
 					        <div class="card h-100" style="background-color: #101010;">

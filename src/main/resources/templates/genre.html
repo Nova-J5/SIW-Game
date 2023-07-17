@@ -5,62 +5,32 @@
 			Genere
 		</title>
 		<div th:replace="fragments/css :: css-dep"></div>
-		<link rel="stylesheet" href="/css/genre_style.css"/>		
+		<link rel="stylesheet" href="/css/game_style.css"/>		
 	</head>
 
-	<body style="background-color: #eee;">
+	<body>
 		<div th:replace="fragments/navbar :: navbar"></div>
-						
-			<div class="blocco-gioco rounded-2 my-4">
-				<div class="immagineEdescrizione w-100">
-					<div class="immagine" th:if="${genre.backgroundImage} != null">
-						<img th:src="@{'/display/image/' + ${genre.backgroundImage.id}}"  class="d-block w-100 rounded-3"/>
-					</div>
-
-					<div class="immagine" th:if="${genre.backgroundImage} == null">
-						<img class="rounded-1 w-100" src="/images/image-not-available.jpeg" />
-						<div th:if="${currentUser != null && currentUser.isAdmin()}">
-							<div>Aggiungi una foto del genere</div>
-								<form method="POST" enctype="multipart/form-data" th:action="@{'/admin/addBackgroundImageToGenre/' + ${genre.id}}">
-								<input type="file" name="file" class="my-2 form-control" style="max-width: 280px;" required />
-							<button type="submit" class="btn btn-success">Aggiungi immagine</button>
-							</form>
-						</div>
-					</div>
-					<div class="descrizione">
-						<h1 class="fw-bold" th:text="${genre.name}"></h1> 
-					</div>
-				</div>
-				<div class="sottoImmagine mb-4 mt-1">
-
-					<div class="elemento-sottoimmagine text-end" th:if="${currentUser != null && currentUser.isAdmin() && genre.backgroundImage != null}">
-						<a th:href="@{'/admin/removeBackgroundImageFromGenre/' + ${genre.id}}"><button type="button" class="btn btn-danger my-3"> Rimuovi immagine </button></a>
-					</div>
-				</div>	
-				<h3 class="mt-2">Descrizione</h3>
-				<p th:text="${genre.description}"></p>
-				
-				<div class="row" th:if= "${!genre.games.isEmpty()}">
-					<h2 class="mb-3 mt-3">Giochi</h2>
-				</div>
+		
+			<div class="h1 mt-4" style="margin-left: 15%;"> Giochi di <span th:text="${genre.name}"> </span></div>
+			<div class="blocco-recensioni rounded-2 mb-4">
 				<div class="row">
 					<div class=" d-flex row row-cols-1 row-cols-md-3" th:if= "${!genre.games.isEmpty()}">
-					    <div class="col mb-4" th:each="game : ${genre.games}">
+					    <div class="col my-4" th:each="game : ${genre.games}">
 					        <!-- Carta -->
-					        <div class="card h-100">
+					        <div class="card h-100" style="background-color: #101010;">
 					            <!-- Immagine-->
 					            <div class="view overlay">
 									<a th:href="@{'/game/' + ${game.id}}">   
 										<div th:if="${game.image} != null">
-											<img th:src="@{'/display/image/' + ${game.image.id}}" class="card-img-top"/>
+											<img th:src="@{'/display/image/' + ${game.image.id}}" height="200px" class="card-img-top d-block w-100"/>
 										</div>
 										<div th:if="${game.image} == null">
-											<img src="/images/image-not-available.jpeg" class="card-img-top" />
+											<img src="/images/image-not-available.jpeg" height="200px" class="card-img-top d-block w-100" />
 										</div>
 									</a>
 					            </div>
 					            <!-- Contenuto della carta -->
-					            <div class="card-body">
+					            <div class="card-body" style="color: white;">
 					                <!-- Titolo -->
 					                <h4 class="card-title"  th:text="${game.title} + ' (' + ${game.year} + ')'"></h4>
 					            </div>
@@ -69,20 +39,11 @@
 					    </div>
 					</div>
 				</div>
-				
-				<div th:if="${currentUser != null && currentUser.isAdmin()}">
-					<div class="blocco-pulsanti">
-					    <div>
-							<a th:href="@{'/admin/updateGenre/' + ${genre.id}}"><button type="button" class="mt-4 mb-2 btn btn-warning">Modifica Genere</button></a>
-						</div>	
-					    <div>
-							<a th:href="@{'/admin/deleteGenre/' + ${genre.id}}"><button type="button" class="mt-4 mb-2 btn btn-danger">Elimina Genere</button></a>
-						</div>	
-					</div>	
-					<br>
+					<div class="fw-bold h2 text-center fst-italic" th:if= "${genre.games.isEmpty()}">
+						Nessuno
+					</div>
 				</div>
 			</div>
-
 		<div th:replace="fragments/footer :: footer"></div>
 	</body>
 </html>

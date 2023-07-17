@@ -21,12 +21,12 @@
 	                <div class="view overlay">
 					  <a th:href="@{'/developer' + '/' + ${developer.id}}">
 	                    <div th:if="${developer.image} != null">
-	                      <img th:src="@{'/display/image/' + ${developer.image.id}}" height="170px" class="card-img-top d-block w-100"/>
+	                      <img th:src="@{'/display/image/' + ${developer.image.id}}" height="200px" class="card-img-top d-block w-100"/>
 	                    </div>
 					  </a>
 					  <a th:href="@{'/developer' + '/' + ${developer.id}}">
 	                    <div th:if="${developer.image} == null" >
-	                        <img src="/images/image-not-available.jpeg" height="230px" class="card-img-top d-block w-100"/>
+	                        <img src="/images/image-not-available.jpeg" height="200px" class="card-img-top d-block w-100"/>
 	                    </div>
 					  </a>
 	                </div>

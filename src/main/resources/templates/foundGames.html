@@ -1,28 +1,46 @@
 <!DOCTYPE html>
 <html>
-
 	<head>
 		<title>
-			Giochi
+			Giochi Trovati
 		</title>
 		<div th:replace="fragments/css :: css-dep"></div>
 		<link rel="stylesheet" href="/css/found_games_style.css" />		
 	</head>
-
-	<body>
+	
+	<body style=" background-color: #323232;  color: white;">
 		<div th:replace="fragments/navbar :: navbar"></div>
 		
 		<div class="container">
-			<h1>Giochi che soddisfano i requisiti</h1>
-			<div th:if="${games.isEmpty()}">Non ci sono giochi che soddisfano i requisiti</div>
-			<ul th:if="${!games.isEmpty()}">
-				<li th:each="game : ${games}">
-					<a th:href="@{'/game' + '/' + ${game.id}}"
-						th:text="${game.title} + ' (' + ${game.year}+')'">Up! (2000)</a>
-				</li>
-			</ul>
+			<div class="mt-3" th:if="${games==null || games.isEmpty()}">Nessun risultato trovato</div>
+			<div class="mt-3 row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3">
+	            <div class="col mb-4" th:each="game : ${games}">
+	              <!-- Carta -->
+	              <div class="card h-100" style="background-color: #101010;">
+	                <!--Immagine-->
+	                <div class="view overlay">
+					  <a th:href="@{'/game' + '/' + ${game.id}}">
+	                    <div th:if="${game.imageForGames} != null">
+	                      <img th:src="@{'/display/image/' + ${game.imageForGames.id}}" height="200px" class="card-img-top d-block w-100"/>
+	                    </div>
+					  </a>
+					  <a th:href="@{'/game' + '/' + ${game.id}}">
+	                    <div th:if="${game.imageForGames} == null" >
+	                        <img src="/images/image-not-available.jpeg" height="200px" class="card-img-top d-block w-100"/>
+	                    </div>
+					  </a>
+	                </div>
+	                <!-- Contenuto -->
+	                <div class="card-body text-center" style="color: white;">
+	                  <!-- Titolo del gioco -->
+	                  <h4 class="card-title" th:text="${game.title} + ' (' + ${game.year} + ')'"></h4>
+	                </div>
+	              </div>
+	              <!-- Fine Carta -->
+	            </div>
+	          </div>
 		</div>
-		
+
 		<div th:replace="fragments/footer :: footer"></div>
 	</body>
 </html>

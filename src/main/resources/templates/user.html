@@ -55,36 +55,36 @@
 		                    </div>
 		                    <div class="row g-2">
 		                        <div class="col mb-2" th:if="${firstPlayed}">
-		                            <div th:if="${firstPlayed.image} != null">
-		                              <img th:src="@{'/display/image/' + ${firstPlayed.image.id}}" class="w-100 rounded-3"/>
+		                            <div th:if="${firstPlayed.imageForGames} != null">
+		                              <img th:src="@{'/display/image/' + ${firstPlayed.imageForGames.id}}" class="w-100 rounded-3"/>
 		                            </div>
-		                            <div th:if="${firstPlayed.image} == null" >
+		                            <div th:if="${firstPlayed.imageForGames} == null" >
 		                                <img src="/images/image-not-available.jpeg" class="w-100 rounded-3"/>
 		                            </div>
 		                        </div>
 		                        <div class="col mb-2" th:if="${secondPlayed}">
-		                            <div th:if="${secondPlayed.image} != null">
-		                              <img th:src="@{'/display/image/' + ${secondPlayed.image.id}}" class="w-100 rounded-3"/>
+		                            <div th:if="${secondPlayed.imageForGames} != null">
+		                              <img th:src="@{'/display/image/' + ${secondPlayed.imageForGames.id}}" class="w-100 rounded-3"/>
 		                            </div>
-		                            <div th:if="${secondPlayed.image} == null" >
+		                            <div th:if="${secondPlayed.imageForGames} == null" >
 		                                <img src="/images/image-not-available.jpeg" class="w-100 rounded-3"/>
 		                            </div>
 		                        </div>
 		                    </div>
 		                    <div class="row g-2">
 		                        <div class="col" th:if="${thirdPlayed}">
-		                            <div th:if="${thirdPlayed.image} != null">
-		                              <img th:src="@{'/display/image/' + ${thirdPlayed.image.id}}" class="w-100 rounded-3"/>
+		                            <div th:if="${thirdPlayed.imageForGames} != null">
+		                              <img th:src="@{'/display/image/' + ${thirdPlayed.imageForGames.id}}" class="w-100 rounded-3"/>
 		                            </div>
-		                            <div th:if="${thirdPlayed.image} == null" >
+		                            <div th:if="${thirdPlayed.imageForGames} == null" >
 		                                <img src="/images/image-not-available.jpeg" class="w-100 rounded-3"/>
 		                            </div>
 		                        </div>
 		                        <div class="col" th:if="${fourthPlayed}">
-		                            <div th:if="${fourthPlayed.image} != null">
-		                              <img th:src="@{'/display/image/' + ${fourthPlayedimage.id}}" class="w-100 rounded-3"/>
+		                            <div th:if="${fourthPlayed.imageForGames} != null">
+		                              <img th:src="@{'/display/image/' + ${fourthPlayed.imageForGames.id}}" class="w-100 rounded-3"/>
 		                            </div>
-		                            <div th:if="${fourthPlayed.image} == null" >
+		                            <div th:if="${fourthPlayed.imageForGames} == null" >
 		                                <img src="/images/image-not-available.jpeg" class="w-100 rounded-3"/>
 		                            </div>
 		                        </div>
@@ -98,36 +98,36 @@
 		                    </div>
 		                    <div class="row g-2">
 		                        <div class="col mb-2" th:if="${firstCurrentlyPlaying}">
-		                            <div th:if="${firstCurrentlyPlaying.image} != null">
-		                              <img th:src="@{'/display/image/' + ${firstCurrentlyPlaying.image.id}}" class="w-100 rounded-3"/>
+		                            <div th:if="${firstCurrentlyPlaying.imageForGames} != null">
+		                              <img th:src="@{'/display/image/' + ${firstCurrentlyPlaying.imageForGames.id}}" class="w-100 rounded-3"/>
 		                            </div>
-		                            <div th:if="${firstCurrentlyPlaying.image} == null" >
+		                            <div th:if="${firstCurrentlyPlaying.imageForGames} == null" >
 		                                <img src="/images/image-not-available.jpeg" class="w-100 rounded-3"/>
 		                            </div>
 		                        </div>
 		                        <div class="col mb-2" th:if="${secondCurrentlyPlaying}">
-		                            <div th:if="${secondCurrentlyPlaying.image} != null">
-		                              <img th:src="@{'/display/image/' + ${secondCurrentlyPlaying.image.id}}" class="w-100 rounded-3"/>
+		                            <div th:if="${secondCurrentlyPlaying.imageForGames} != null">
+		                              <img th:src="@{'/display/image/' + ${secondCurrentlyPlaying.imageForGames.id}}" class="w-100 rounded-3"/>
 		                            </div>
-		                            <div th:if="${secondCurrentlyPlaying.image} == null" >
+		                            <div th:if="${secondCurrentlyPlaying.imageForGames} == null" >
 		                                <img src="/images/image-not-available.jpeg" class="w-100 rounded-3"/>
 		                            </div>
 		                        </div>
 		                    </div>
 		                    <div class="row g-2">
 		                        <div class="col" th:if="${thirdCurrentlyPlaying}">
-		                            <div th:if="${thirdCurrentlyPlaying.image} != null">
-		                              <img th:src="@{'/display/image/' + ${thirdCurrentlyPlaying.image.id}}" class="w-100 rounded-3"/>
+		                            <div th:if="${thirdCurrentlyPlaying.imageForGames} != null">
+		                              <img th:src="@{'/display/image/' + ${thirdCurrentlyPlaying.imageForGames.id}}" class="w-100 rounded-3"/>
 		                            </div>
-		                            <div th:if="${thirdCurrentlyPlaying.image} == null" >
+		                            <div th:if="${thirdCurrentlyPlaying.imageForGames} == null" >
 		                                <img src="/images/image-not-available.jpeg" class="w-100 rounded-3"/>
 		                            </div>
 		                        </div>
 		                        <div class="col" th:if="${fourthCurrentlyPlaying}">
-		                            <div th:if="${fourthCurrentlyPlaying.image} != null">
-		                              <img th:src="@{'/display/image/' + ${fourthCurrentlyPlaying.image.id}}" class="w-100 rounded-3"/>
+		                            <div th:if="${fourthCurrentlyPlaying.imageForGames} != null">
+		                              <img th:src="@{'/display/image/' + ${fourthCurrentlyPlaying.imageForGames.id}}" class="w-100 rounded-3"/>
 		                            </div>
-		                            <div th:if="${fourthCurrentlyPlaying.image} == null" >
+		                            <div th:if="${fourthCurrentlyPlaying.imageForGames} == null" >
 		                                <img src="/images/image-not-available.jpeg" class="w-100 rounded-3"/>
 		                            </div>
 		                        </div>
@@ -141,36 +141,36 @@
 		                    </div>
 		                    <div class="row g-2">
 		                        <div class="col mb-2" th:if="${firstReviewed}">
-		                            <div th:if="${firstReviewed.game.image} != null">
-		                              <img th:src="@{'/display/image/' + ${firstReviewed.game.image.id}}" class="w-100 rounded-3"/>
+		                            <div th:if="${firstReviewed.game.imageForGames} != null">
+		                              <img th:src="@{'/display/image/' + ${firstReviewed.game.imageForGames.id}}" class="w-100 rounded-3"/>
 		                            </div>
-		                            <div th:if="${firstReviewed.game.image} == null" >
+		                            <div th:if="${firstReviewed.game.imageForGames} == null" >
 		                                <img src="/images/image-not-available.jpeg" class="w-100 rounded-3"/>
 		                            </div>
 		                        </div>
 		                        <div class="col mb-2" th:if="${secondReviewed}">
-		                            <div th:if="${secondReviewed.game.image} != null">
-		                              <img th:src="@{'/display/image/' + ${secondReviewed.game.image.id}}" class="w-100 rounded-3"/>
+		                            <div th:if="${secondReviewed.game.imageForGames} != null">
+		                              <img th:src="@{'/display/image/' + ${secondReviewed.game.imageForGames.id}}" class="w-100 rounded-3"/>
 		                            </div>
-		                            <div th:if="${secondReviewed.game.image} == null" >
+		                            <div th:if="${secondReviewed.game.imageForGames} == null" >
 		                                <img src="/images/image-not-available.jpeg" class="w-100 rounded-3"/>
 		                            </div>
 		                        </div>
 		                    </div>
 		                    <div class="row g-2">
 		                        <div class="col" th:if="${thirdReviewed}">
-		                            <div th:if="${thirdReviewed.game.image} != null">
-		                              <img th:src="@{'/display/image/' + ${thirdReviewed.game.image.id}}" class="w-100 rounded-3"/>
+		                            <div th:if="${thirdReviewed.game.imageForGames} != null">
+		                              <img th:src="@{'/display/image/' + ${thirdReviewed.game.imageForGames.id}}" class="w-100 rounded-3"/>
 		                            </div>
-		                            <div th:if="${thirdReviewed.game.image} == null" >
+		                            <div th:if="${thirdReviewed.game.imageForGames} == null" >
 		                                <img src="/images/image-not-available.jpeg" class="w-100 rounded-3"/>
 		                            </div>
 		                        </div>
 		                        <div class="col" th:if="${fourthReviewed}">
-		                            <div th:if="${fourthReviewed.game.image} != null">
-		                              <img th:src="@{'/display/image/' + ${fourthReviewed.game.image.id}}" class="w-100 rounded-3"/>
+		                            <div th:if="${fourthReviewed.game.imageForGames} != null">
+		                              <img th:src="@{'/display/image/' + ${fourthReviewed.game.imageForGames.id}}" class="w-100 rounded-3"/>
 		                            </div>
-		                            <div th:if="${fourthReviewed.game.image} == null" >
+		                            <div th:if="${fourthReviewed.game.imageForGames} == null" >
 		                                <img src="/images/image-not-available.jpeg" class="w-100 rounded-3"/>
 		                            </div>
 		                        </div>

@@ -47,13 +47,6 @@ public class GenreController {
 		return "genre.html";
 	}
 	
-	@GetMapping("/genres")
-	public String showGames(Model model) {
-		model.addAttribute("genres", this.genreRepository.findAll());
-		return "genres.html";
-	}
-	
-	
 	//************************************* //
 	// CONTROLLER PER RICHIESTE DI UN ADMIN
 	//************************************* //

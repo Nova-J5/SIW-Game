@@ -17,7 +17,7 @@
 			    <span class="ms-2 text-white">Modifica dati del genere <span th:text="${genre.name}"> </span> </span>
 			</h1>
 			
-			<form th:action="@{'/admin/modifyGenre/' + ${genre.id}}" method="POST" class="mb-4">
+			<form th:action="@{'/admin/modifyGenre/' + ${genre.id}}" method="POST" class="mb-4" enctype="multipart/form-data">
 			    <div class="row">
 			        <div class="col-md-6 mb-3">
 			            <label for="name" class="form-label text-white"><b>Nome:</b></label>
@@ -28,6 +28,16 @@
 			            <textarea required class="form-control" id="description" rows="5" name="description" th:value="${genre.description}"></textarea>
 			        </div>
                 </div>
+				<div class="row">
+			        <div class="col-md-6 mb-3">
+			            <label for="iconImage" class="form-label text-white"><b>Icona:</b></label>
+			            <input type="file" name="icon" class="form-control" id="iconImage" accept="icon/png, icon/jpeg, icon/jpg">
+			        </div>
+					<div class="col-md-6 mb-3">
+			            <label for="backgroundImage" class="form-label text-white"><b>Sfondo:</b></label>
+			            <input type="file" name="background" class="form-control" id="backgroundImage" accept="background/png, background/jpeg, background/jpg"> 
+			        </div>
+			    </div>
 			    <div>
 			        <button type="submit" class="btn btn-success">Conferma</button>
 			    </div>

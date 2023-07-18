@@ -94,13 +94,37 @@ public class GenreController {
 	
 	@PostMapping("/admin/modifyGenre/{genreId}")
 	public String modifyGenre(Model model, @PathVariable("genreId") Long genreId, @RequestParam("name") String name,
-			@RequestParam("description") String description){
+			@RequestParam("description") String description, @RequestParam("icon") String icon,
+			@RequestParam("background") String background){
+		
+		System.out.println("apre il metodo \n");
 		Genre genre  = this.genreService.getGenreById(genreId);
+		
+		System.out.println("prende il genere \n");
+		if (!icon.isEmpty()) {
+			System.out.println("icon non empty \n");
+			Image img = new Image(icon.getBytes());
+			this.imageService.save(img);
+			genre.setIconImage(img);
+			System.out.println("settata icon \n");
+		}
+		
+		if (!background.isEmpty()) {
+			System.out.println("background non empty \n");
+			Image img = new Image(background.getBytes());
+			this.imageService.save(img);
+			genre.setBackgroundImage(img);
+			System.out.println("settata icon \n");
+		}	
+		
+		System.out.println("finito controlli \n");
+		
 		this.genreService.modifyGenre(genre, name, description);
+		System.out.println("modificato \n");
 		this.genreService.saveGenre(genre);
-		model.addAttribute("genre", genre);
-		return "genre.html";
-	}
+		System.out.println("finito \n");
+		return "redirect:/";
+		}
 	
 	@GetMapping("/admin/deleteGenre/{id}")
 	public String deleteGenre(@PathVariable("id") Long id, Model model) {

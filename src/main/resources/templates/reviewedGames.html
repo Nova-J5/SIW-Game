@@ -15,7 +15,7 @@
 		<div class="container">
 			<!-- Lista recensioni vuota -->
 			<div th:if="${reviews==null || reviews.isEmpty()}">
-				<h1 class="mt-5 mb-5">Non ci sono giochi recensiti dall'utente</h1>
+				<h1 class="mt-5 mb-5 text-center fw-bold fst-italic" style="background-color: #272727; padding: 2%;" >Non hai ancora recensito nessun gioco!</h1>
 			</div>
 			<!-- Lista recensioni non vuota -->
 			<div class="text-center mt-4 mb-2" th:if="${reviews!=null && !reviews.isEmpty()}">

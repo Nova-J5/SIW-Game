@@ -11,7 +11,7 @@ import jakarta.validation.Valid;
 
 public interface PlatformRepository extends CrudRepository<Platform, Long>{
 
-	public Platform findByName(String name);
+	public Platform findByNameIgnoreCase(String name);
 	
 	public List<Platform> findByYearOfRelease(Integer yearOfRelease);
 	

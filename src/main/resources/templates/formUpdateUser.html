@@ -31,8 +31,8 @@
 			                    </div>
 							    <div class="d-flex justify-content-center">
 							        <div>
-							            <label class="form-label text-white m-1" for="image">Cambia Foto</label>
-							            <input type="file"  th:value="${user.image}" name="file" class="form-control d-none" id="image" />
+							            <label class="form-label text-white m-1 btn btn-primary" for="image">Cambia Foto</label>
+							            <input type="file"  th:value="${user.image}" name="file" class="form-control d-none" id="image" accept="file/png, file/jpeg, file/jpg" />
 										<div class="invalid-feedback" th:if="${#fields.hasErrors('user.image')}" th:errors="*{user.image}"></div>
 							        </div>
 							    </div>

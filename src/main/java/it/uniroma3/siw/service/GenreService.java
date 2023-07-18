@@ -35,8 +35,9 @@ public class GenreService {
 	
 	@Transactional
 	public Genre getGenreByName(String name) {
-		return this.genreRepository.findByName(name);
+		return this.genreRepository.findByNameIgnoreCase(name);
     }
+
 
 	@Transactional
     public List<Genre> getAllGenres() {

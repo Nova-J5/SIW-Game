@@ -8,11 +8,10 @@
 }
 
 .carousel-item img{
-    height: 500px;
+    height: 550px;
 }
 
 .blocco-carosello{
-    margin-top: 3%;
     background-color: #272727;
     margin-left: 20%;
     margin-right: 20%;

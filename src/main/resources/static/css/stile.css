@@ -3,21 +3,19 @@ body {
     background-color: #323232;
     color: white;
 	min-height: 100vh;
-	display: flex;
-	flex-direction: column;
+    position: relative;
 }
 
 footer {
-    position: static;
-    left: 0;
+    position: absolute;
     bottom: 0;
     width: 100%;
-    bottom: auto;
+    height: 21rem;
 }
 
 .container {
 	margin: 0;
-	padding: 0;
+	padding-bottom: 21rem;
 }
 
 .row{

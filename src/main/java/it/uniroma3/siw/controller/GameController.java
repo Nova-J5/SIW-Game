@@ -101,6 +101,7 @@ public class GameController {
 		
 		List<Game> titleGames = this.gameService.getGamesByTitle(str);
 		
+		model.addAttribute("ricerca", str);
 		
 		try {
 			Integer year = Integer.parseInt(str);

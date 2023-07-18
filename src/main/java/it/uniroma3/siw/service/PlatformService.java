@@ -39,7 +39,7 @@ public class PlatformService {
 	
 	@Transactional
 	public Platform getPlatformByName(String name) {
-		return this.platformRepository.findByName(name);
+		return this.platformRepository.findByNameIgnoreCase(name);
 	}
 	
 	@Transactional

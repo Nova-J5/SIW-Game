@@ -46,7 +46,7 @@ public class GameService {
 	
 	@Transactional
 	public List<Game> getGamesByTitle(String title) {
-		return this.gameRepository.findByTitle(title);
+		return this.gameRepository.findByTitleContainingIgnoreCase(title);
 	}
 	
 	@Transactional

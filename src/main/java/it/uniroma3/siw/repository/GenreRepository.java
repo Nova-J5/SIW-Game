@@ -10,8 +10,8 @@ import it.uniroma3.siw.model.Genre;
 import jakarta.validation.Valid;
 
 public interface GenreRepository extends CrudRepository<Genre, Long>{
-
-	public Genre findByName(String name);
+	
+	public Genre findByNameIgnoreCase(String name);
 		
 	public boolean existsByName(String name);
 

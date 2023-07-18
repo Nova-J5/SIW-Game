@@ -11,7 +11,7 @@ import jakarta.validation.Valid;
 
 public interface GameRepository extends CrudRepository<Game, Long> {
 	
-	public List<Game> findByTitle(String title);
+	public List<Game> findByTitleContainingIgnoreCase(String title);
 
 	public List<Game> findByYear(Integer year);
 	

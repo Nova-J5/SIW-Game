@@ -1,6 +1,7 @@
 package it.uniroma3.siw.controller;
 
 import java.io.IOException;
+
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -18,7 +19,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import it.uniroma3.siw.model.Developer;
-import it.uniroma3.siw.model.Genre;
 import it.uniroma3.siw.model.Image;
 import it.uniroma3.siw.service.DeveloperService;
 import it.uniroma3.siw.service.ImageService;

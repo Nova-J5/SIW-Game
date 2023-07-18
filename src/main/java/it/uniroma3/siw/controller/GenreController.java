@@ -94,32 +94,28 @@ public class GenreController {
 	
 	@PostMapping("/admin/modifyGenre/{genreId}")
 	public String modifyGenre(Model model, @PathVariable("genreId") Long genreId, @RequestParam("name") String name,
-			@RequestParam("description") String description, @RequestParam("icon") String icon,
-			@RequestParam("background") String background){
+			 @RequestParam("icon") MultipartFile icon, @RequestParam("background") MultipartFile background) throws IOException {
 		
 		System.out.println("apre il metodo \n");
 		Genre genre  = this.genreService.getGenreById(genreId);
 		
 		System.out.println("prende il genere \n");
+		
 		if (!icon.isEmpty()) {
-			System.out.println("icon non empty \n");
-			Image img = new Image(icon.getBytes());
-			this.imageService.save(img);
-			genre.setIconImage(img);
-			System.out.println("settata icon \n");
-		}
+			  Image imgIcon = new Image(icon.getBytes());
+			  this.imageService.save(imgIcon);
+			  genre.setIconImage(imgIcon);
+		  }	
 		
 		if (!background.isEmpty()) {
-			System.out.println("background non empty \n");
-			Image img = new Image(background.getBytes());
-			this.imageService.save(img);
-			genre.setBackgroundImage(img);
-			System.out.println("settata icon \n");
+			Image imgBackground = new Image(background.getBytes());
+			this.imageService.save(imgBackground);
+			genre.setBackgroundImage(imgBackground);
 		}	
 		
 		System.out.println("finito controlli \n");
 		
-		this.genreService.modifyGenre(genre, name, description);
+		this.genreService.modifyGenre(genre, name);
 		System.out.println("modificato \n");
 		this.genreService.saveGenre(genre);
 		System.out.println("finito \n");

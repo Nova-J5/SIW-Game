@@ -63,11 +63,8 @@ public class GenreService {
 		return this.genreRepository.findGenreNotInGame(game);
 	}
 
-	public void modifyGenre(Genre genre, String name, String description) {
-
-		genre.setName(name);
-		genre.setDescription(description);
-		
+	public void modifyGenre(Genre genre, String name) {
+		genre.setName(name);		
 	}
 	
 	@Transactional

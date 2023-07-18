@@ -119,14 +119,14 @@ public class GenreController {
 		System.out.println("modificato \n");
 		this.genreService.saveGenre(genre);
 		System.out.println("finito \n");
-		return "redirect:/";
+		model.addAttribute("genre", genre);
+		return "genre.html";
 		}
 	
 	@GetMapping("/admin/deleteGenre/{id}")
-	public String deleteGenre(@PathVariable("id") Long id, Model model) {
+	public String deleteGenre(@PathVariable("id") Long id) {
 		this.genreService.deleteGenre(id);
-		model.addAttribute("genres", this.genreService.getAllGenres());
-		return "index.html";
+		return "redirect:/";
 	}
 	
 }

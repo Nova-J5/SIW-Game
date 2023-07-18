@@ -5,17 +5,17 @@
 			Genere
 		</title>
 		<div th:replace="fragments/css :: css-dep"></div>
-		<link rel="stylesheet" href="/css/game_style.css"/>		
+		<link rel="stylesheet" href="/css/game_style.css"/>			
 	</head>
 
 	<body>
 		<div th:replace="fragments/navbar :: navbar"></div>
 		<div style="padding-bottom: 21rem;">
 			<div class="h1 mt-4" style="margin-left: 15%;"> Giochi di <span th:text="${genre.name}"> </span>
-				<span th:if="${currentUser != null && currentUser.isAdmin()}">
-					<a th:href="@{'/admin/updateGenre/' + ${genre.id}}" class="btn btn-primary"> modifica </a>
-				</span>
-				
+				<div th:if="${currentUser != null && currentUser.isAdmin()}" >
+					<a th:href="@{'/admin/updateGenre/' + ${genre.id}}" class="mt-4 mb-2 btn btn-primary"> modifica </a>
+					<a th:href="@{'/admin/deleteGenre/' + ${genre.id}}"><button type="button" class="mt-4 mb-2 btn btn-danger">Elimina Genere</button></a>
+				</div>
 			</div>
 			<div class="blocco-recensioni rounded-2 mb-4">
 				<div class="row">

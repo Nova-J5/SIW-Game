@@ -8,28 +8,28 @@
 		<link rel="stylesheet" href="/css/form_new_game_style.css" />		
 	</head>
 
-	<body>
+	<body style="background-color: #272727;">
 		<div th:replace="fragments/navbar :: navbar"></div>
 		
-		<div class="container">
+		<div class="container rounded mt-5 mb-5" style="background-color: #323232; padding: 2%;">
 			
 			<h1 class="mb-4">
-			    <span class="ms-2">Modifica dati di <span th:text="${developer.name}"> </span> </span>
+			    <span class="ms-2 text-white">Modifica dati di <span th:text="${developer.name}"> </span> </span>
 			</h1>
 			
 			<form th:action="@{'/admin/modifyDeveloper/' + ${developer.id}}" method="POST" class="mb-4">
 			    <div class="row">
 			        <div class="col-md-6 mb-3">
-			            <label for="name" class="form-label"><b>Nome:</b></label>
+			            <label for="name" class="form-label text-white"><b>Nome:</b></label>
 			            <input required type="text" class="form-control" id="name" name="name" th:value="${developer.name}">
 			        </div>
 			        <div class="col-md-6 mb-3">
-			            <label for="year" class="form-label"><b>Anno di fondazione:</b></label>
+			            <label for="year" class="form-label text-white"><b>Anno di fondazione:</b></label>
 			            <input required type="number" max="2023" class="form-control" id="year" name="year" th:value="${developer.yearOfFoundation}">
 			        </div>
 			    </div>
 			    <div class="mb-3">
-			        <label for="description" class="form-label"><b>Descrizione:</b></label>
+			        <label for="description" class="form-label text-white"><b>Descrizione:</b></label>
 			        <textarea required class="form-control" id="description" rows="5" name="description" th:value="${developer.description}"></textarea>
 			    </div>
 			    <div>

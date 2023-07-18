@@ -8,33 +8,33 @@
 		<link rel="stylesheet" href="/css/form_new_game_style.css" />		
 	</head>
 
-	<body>
+	<body style="background-color: #272727;">
 		<div th:replace="fragments/navbar :: navbar"></div>
 		
-		<div class="container">
+		<div class="container rounded mt-5 mb-5" style="background-color: #323232; padding: 2%;">
 			
 			<h1 class="mt-4 mb-4">
-			    <span class="ms-2">Nuovo Gioco</span>
+			    <span class="ms-2 text-white">Nuovo Gioco</span>
 			</h1>
 			
 			<form th:action="@{/admin/newGame}" method="POST" th:object="${game}" enctype="multipart/form-data" class="mb-4">
 			    <div class="row">
 			        <div class="col-md-6 mb-3">
-			            <label for="title" class="form-label"><b>Titolo:</b></label>
+			            <label for="title" class="form-label text-white"><b>Titolo:</b></label>
 			            <input required type="text" class="form-control" id="title" th:field="${game.title}">
 			            <div class="invalid-feedback" th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></div>
 			        </div>
 			        <div class="col-md-6 mb-3">
-			            <label for="year" class="form-label"><b>Anno di uscita:</b></label>
+			            <label for="year" class="form-label text-white"><b>Anno di uscita:</b></label>
 			            <input required type="number" min="1958" max="2023" class="form-control" id="year" th:field="${game.year}">
 			            <div class="invalid-feedback" th:if="${#fields.hasErrors('year')}" th:errors="*{year}"></div>
 			        </div>
 			    </div>
 			    <div class="row">
 			        <div class="col-md-6 mb-3">
-			            <label for="developer" class="form-label"><b>Sviluppatore:</b></label>
+			            <label for="developer" class="form-label text-white"><b>Sviluppatore:</b></label>
 			            <select required class="form-select" id="developer" name="developerId">
-			                <option value="" disabled selected>Scegli uno sviluppatore</option>
+			                <option value="" class="text-white" disabled selected>Scegli uno sviluppatore</option>
 			                <option th:each="developer : ${developers}" th:value="${developer.id}" th:text="${developer.name}"></option>
 			            </select>
 			            <div class="invalid-feedback" th:if="${#fields.hasErrors('developer')}" th:errors="*{developer}"></div>
@@ -42,19 +42,19 @@
 				</div>
 				<div class="row">
 					<div class="col-md-6 mb-3">
-			            <label for="image" class="form-label"><b>Immagine per la pagina del singolo gioco (verticale):</b></label>
+			            <label for="image" class="form-label text-white"><b>Immagine per la pagina del singolo gioco (verticale):</b></label>
 			            <input required type="file" name="file" class="form-control" id="image" accept="file/png, file/jpeg, file/jpg">
 			            <div class="invalid-feedback" th:if="${#fields.hasErrors('image')}" th:errors="*{image}"></div>
 			        </div>
 					<div class="col-md-6 mb-3">
-			            <label for="image2" class="form-label"><b>Immagine per la pagina con tutti i giochi (orizzontale):</b></label>
+			            <label for="image2" class="form-label text-white"><b>Immagine per la pagina con tutti i giochi (orizzontale):</b></label>
 			            <input required type="file" name="file2" class="form-control" id="image2" accept="file/png, file/jpeg, file/jpg">
 			            <div class="invalid-feedback" th:if="${#fields.hasErrors('image')}" th:errors="*{image}"></div>
 			        </div>
 				</div>
-				<div class="mt-2 mb-2">Non trovi lo sviluppatore? <a href="/admin/formNewDeveloper"><u>Creane uno nuovo</u></a></div>
+				<div class="mt-2 mb-2 text-white">Non trovi lo sviluppatore? <a href="/admin/formNewDeveloper" class="text-decoration-none"><u>Creane uno nuovo</u></a></div>
 			    <div class="mt-4 mb-3">
-			        <label for="description" class="form-label"><b>Descrizione:</b></label>
+			        <label for="description" class="form-label text-white"><b>Descrizione:</b></label>
 			        <textarea required class="form-control" id="description" rows="5" th:field="${game.description}"></textarea>
 			    </div>
 			    <div>

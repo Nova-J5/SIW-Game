@@ -126,7 +126,7 @@ public class UserController {
 	}
 	
 	@PostMapping("updateUser/{id}")
-	public String updateUser(@PathVariable("id") Long id, Model model,
+	public String updateUser(@PathVariable("id") Long id,
 			@RequestParam("name") String name, @RequestParam("surname") String surname,
 			@RequestParam("email") String email, @RequestParam("file") MultipartFile file) throws IOException {
 				
@@ -138,11 +138,8 @@ public class UserController {
 			user.setImage(img);
 		}		
 		this.userService.saveUser(user);
-		model.addAttribute("currentlyPlaying", user.getCurrentlyPlaying());
-		model.addAttribute("played", user.getPlayed());
-		model.addAttribute("reviews", this.reviewService.getReviewsByUser(user));
-		model.addAttribute("user", user);
-		return "user.html";
+		
+		return "redirect:/user/" + user.getId();
 	}
 	
 	@GetMapping("/addPlayed/{id}")
